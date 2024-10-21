@@ -1,0 +1,45 @@
+// general colors
+$app: darkviolet;
+$app-sec: rgb(152, 100, 174);
+$app-accent: deeppink;
+
+// background colors:
+$bg-pri: #efefef;
+$bg-sec: whitesmoke;
+
+// text colors
+$text-color-pri: #000000;
+$text-color-sec: #ffffff;
+
+
+// utility colors:
+$success: yellowgreen;
+$info: deepskyblue;
+$danger: crimson;
+$warning:  tomato;
+
+// button colors
+$button-pri: $app;
+$button-accent: $app-accent;
+$button-hover: $app-sec;
+
+// typography:
+$font-size-base: 12px;
+$font-weight-normal: 400;
+$font-weight-bold: 600;
+$font-family-pri: "Helvetica Neue", "Arial", sans-serif;
+$font-family-sec: "Roboto", sans-serif;
+$font-family-icon: "Font Awesome 5 Free";
+
+// layout dimentions
+$header-height: 45px;
+$footer-height: 15px;
+$rounding-pri: 5px;
+
+//shadows
+$shadow-pri: 5px -5px 5px 0 rgba(0,0,0,0.14); //2dp
+$shadow-sec: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.20); //4dp
+$shadow-hover: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.20); //8dp
+
+// separator
+$separator: 1px dotted $app;

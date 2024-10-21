@@ -1,0 +1,23 @@
+@import "../_app-variables.scss";
+@import "../settings/settings-breakpoints";
+
+html,
+body {
+	min-height: 100vh;
+	min-height: -webkit-fill-available;
+	width: 100vw;
+	scroll-behavior: smooth;
+	margin: 0;
+	padding: 0;
+	overflow: auto;
+	overflow-x: hidden;
+	background-color: $bg-pri;
+}
+
+body, * {
+	margin: 0;
+	padding: 0;
+	font-family: $font-family-pri;
+	font-size: 1rem;
+	color: $text-color-pri;
+}

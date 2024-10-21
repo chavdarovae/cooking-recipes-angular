@@ -1,0 +1,30 @@
+@import "app-variables.scss";
+@import "settings-breakpoints";
+
+:host {
+	* {
+		color: $text-color-sec;
+		cursor: pointer;
+	}
+
+	.nav__item {
+		transition: scale 300ms;
+
+		&:hover {
+			scale: 1.05;
+		}
+	}
+
+	.logo {
+		display: flex;
+		height: 35px;
+		width: 35px;
+
+		img {
+			height: 100%;
+			width: auto;
+			filter: invert(1);
+		}
+	}
+}
+

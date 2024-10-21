@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./styles/_app-variables.scss";
+
+@import "./styles/settings/_settings-keyframes.scss";
+@import "./styles/settings/_settings-breakpoints.scss";
+
+@import "./styles/generic/_generic-normalize.scss";
+@import "./styles/generic/_generic-fonts.scss";
+
+@import "./styles/elements/_elements-body.scss";
+@import "./styles/elements/_elements-paragraphs.scss";
+@import "./styles/elements/_elements-headings.scss";
+@import "./styles/elements/_elements-lists.scss";
+@import "./styles/elements/_elements-list-items.scss";
+@import "./styles/elements/_elements-images.scss";
+@import "./styles/elements/_elements-buttons.scss";
+@import "./styles/elements/_elements-links.scss";
+@import "./styles/elements/_elements-placeholder.scss";
+
+
+@import "./styles/objects/_objects-containers.scss";
+@import "./styles/objects/_objects-row.scss";
+@import "./styles/objects/_objects-col.scss";
+@import "./styles/objects/_objects-icons-custom.scss";
+
+@import "./styles/utilities/_utilities-bold.scss";
+@import "./styles/utilities/_utilities-text-overflow.scss";
+@import "./styles/utilities/_utilities-hidden.scss";
+@import "./styles/utilities/_utilities-animations.scss";
+@import "./styles/utilities/_utilities-margin-und-paddigns.scss";
+@import "./styles/utilities/_utilities-mobile-only.scss";
+@import "./styles/utilities/_utilities-tablet-only.scss";
+@import "./styles/utilities/_utilities-misc.scss";
+@import "./styles/utilities/_utilities-width.scss";
+@import "./styles/utilities/_utilities-flex-gap.scss";
+

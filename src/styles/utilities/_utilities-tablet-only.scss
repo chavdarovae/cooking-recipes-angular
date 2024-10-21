@@ -1,0 +1,32 @@
+
+.show-on-tablet {
+    display: flex !important;
+
+    @include desktop-normal {
+        display: none !important;
+    }
+}
+
+.hide-on-tablet {
+    display: none !important;
+
+    @include desktop-normal {
+        display: flex !important;
+    }
+}
+
+.show-on-tablet-portrait {
+    display: flex !important;
+
+    @include tablet-landscape {
+        display: none !important;
+    }
+}
+
+.hide-on-tablet-portrait {
+    display: none !important;
+
+    @include tablet-landscape {
+        display: flex !important;
+    }
+}

@@ -1,0 +1,33 @@
+@import "app-variables";
+
+.app {
+  $width: 100vw;
+  $gap: 30px;
+
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: $gap;
+
+  & > * {
+    width: $width;
+  }
+
+  &__header {
+    height: $header-height;
+    z-index: 20;
+    background: $app;
+  }
+
+  &__main {
+    height: calc(100vh - $header-height - $footer-height - 2 * $gap);
+    background: $bg-sec;
+  }
+
+  &__footer {
+    height: $footer-height;
+    margin-top: auto;
+    z-index: 20;
+    background: $app;
+  }
+}

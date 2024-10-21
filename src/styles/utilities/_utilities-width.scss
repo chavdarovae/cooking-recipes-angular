@@ -1,0 +1,10 @@
+
+@for $i from 0 through 50 {
+	.w-#{10*$i} { width: 10px*$i !important; }
+}
+
+
+
+@for $i from 0 through 10 {
+	.w#{10*$i} { width: 10%*$i !important; }
+}

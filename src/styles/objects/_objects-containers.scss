@@ -1,0 +1,31 @@
+@import "../_app-variables.scss";
+@import "../settings/settings-breakpoints";
+
+.container {
+	width: 90vw !important;
+	height: 100%;
+	margin: 0px auto;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+
+	@include tablet-portrait {
+		gap: 40px;
+	}
+
+	@include tablet-landscape {
+		width: 80vw;
+		gap: 40px;
+	}
+
+	@include desktop-normal {
+		gap: 50px;
+	}
+
+	@include desktop-large {
+		width: 80vw;
+		gap: 60px;
+	}
+}

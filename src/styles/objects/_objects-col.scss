@@ -1,0 +1,44 @@
+@import "../_app-variables.scss";
+
+.col {
+	height: 100%;
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+
+	&--centered {
+		align-items: center;
+	}
+
+	&--middle {
+		justify-content: center;
+	}
+
+	&--top-aligned {
+		justify-content: flex-start;
+	}
+
+	&--bottom-aligned {
+		justify-content: flex-end;
+	}
+
+	&--right-aligned {
+		align-items: flex-end;
+	}
+
+	&--left-aligned {
+		align-items: flex-start;
+	}
+
+	&--space-btw {
+		justify-content: space-between;
+	}
+
+	&--space-around {
+		justify-content: space-around;
+	}
+
+	&--no-wrap {
+		flex-flow: column nowrap;
+	}
+}

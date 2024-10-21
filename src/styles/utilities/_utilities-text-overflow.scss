@@ -1,0 +1,12 @@
+@import "../_app-variables.scss";
+
+.text-overflow {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.text-centered {
+	text-align: center !important;
+}

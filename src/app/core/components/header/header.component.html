@@ -1,0 +1,8 @@
+<div class="container nav row row--no-wrap">
+	<span [routerLink]="['/']" class="logo mr-a" aria-label="Navigate to home">
+		<img src="../../../../assets/img/logo.png" alt="logo">
+	</span>
+	@for (item of menuItems; track $index) {
+		<span class="nav__item" [routerLink]="'/'+[item.path]" [attr.aria-label]="'Navigate to section ' + item.path">{{item.path | uppercase}}</span>
+	}
+</div>

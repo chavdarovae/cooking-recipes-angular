@@ -1,0 +1,26 @@
+@import "app-variables";
+
+.invalid-feedback {
+	color: $danger;
+	font-size: 12px;
+}
+
+.form-control.ng-invalid.ng-touched {
+	border-color: $danger;
+}
+
+
+.form {
+	border-right: $rounding-pri;
+	background-color: $bg-pri;
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 30px;
+	box-shadow: $shadow-pri;
+
+	&__row {
+		display: flex;
+		flex-flow: column nowrap;
+
+	}
+}

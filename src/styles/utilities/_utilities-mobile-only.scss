@@ -1,0 +1,16 @@
+@import "../settings/settings-breakpoints";
+
+.show-on-mobile {
+    display: flex !important;
+
+    @include tablet-portrait {
+        display: none !important;
+    }
+}
+
+.hide-on-mobile {
+    display: none !important;
+    @include tablet-portrait {
+        display: flex !important;
+    }
+}

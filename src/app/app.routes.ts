@@ -1,18 +1,21 @@
 import { Routes } from '@angular/router';
-import { MENU_ITEMS } from './core/constants/menu-items';
 
 
 export const routes: Routes = [
 	{
-		path: MENU_ITEMS['home'].path,
-		loadComponent: () => import('./features/home/home.component').then(m => m.HomeComponent)
+		path: 'home',
+		loadComponent: () => import('./features/home/home.component').then(c => c.HomeComponent)
 	},
 	{
-		path: MENU_ITEMS['contact'].path,
-		loadComponent: () => import('./features/contact/contact.component').then(m => m.ContactComponent)
+		path: 'contact',
+		loadComponent: () => import('./features/contact/contact.component').then(c => c.ContactComponent)
 	},
 	{
-		path: MENU_ITEMS['login'].path,
-		loadComponent: () => import('./features/login/login.component').then(m => m.LoginComponent)
+		path: 'users',
+		loadChildren: () => import('./features/users/users.routes').then(r => r.userRoutes)
+	},
+	{
+		path: 'recipes',
+		loadChildren: () => import('./features/recipes/recipes.routes').then(r => r.recipeRoutes)
 	},
 ];

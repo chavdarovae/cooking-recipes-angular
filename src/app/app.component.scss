@@ -21,7 +21,8 @@
 
   &__main {
     height: calc(100vh - $header-height - $footer-height - 2 * $gap);
-    background: $bg-sec;
+    background: $bg-pri;
+	overflow-y: scroll;
   }
 
   &__footer {

@@ -1,16 +1,25 @@
+import { UserRolesEnum } from "src/app/features/users/user.enums";
 import { IAppMenuItem } from "src/app/utils/general.interfaces";
 
 export const MENU_ITEMS: Record<string, IAppMenuItem> = {
 	home: {
-		id: 0,
 		path: 'home',
+		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER, UserRolesEnum.GUEST ]
+	},
+	recipes: {
+		path: 'recipes',
+		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER ]
 	},
 	contact: {
-		id: 2,
 		path: 'contact',
+		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER, UserRolesEnum.GUEST ]
 	},
 	login: {
-		id: 3,
-		path: 'login',
+		path: 'users/login',
+		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.GUEST ]
+	},
+	logout: {
+		path: 'users/logout',
+		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER ]
 	},
 };

@@ -1,0 +1,15 @@
+
+
+<h2>Find your favourie recipe among {{recipeService.recipesSig().length}}</h2>
+
+<div *ngIf="recipeService.recipesSig() as recipes" class="recipes">
+	@for (recipe of recipes; track $index) {
+		<article  class="recipe">
+			<img src="{{recipe.image}}" alt="{{recipe.title}}">
+			<h3>{{recipe.title}}</h3>
+			<p>{{recipe.description}}</p>
+			<a [routerLink]="['/recipes', recipe?._id]" routerLinkActive="router-link-active">Read More</a>
+		</article>
+	}
+</div>
+

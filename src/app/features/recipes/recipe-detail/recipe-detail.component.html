@@ -1,0 +1,28 @@
+<ng-container *ngIf="recipeService.selectedRecipeSig() as recipe">
+	<article class="recipe-detail">
+		<img src="{{recipe.image}}" alt="{{recipe.title}}">
+		<h2>{{recipe.title}}</h2>
+		<p>{{recipe.description}}</p>
+
+		<h3>-----------------------------------------------------</h3>
+
+		<h3>Ingredients:</h3>
+		<p>{{recipe.ingredients}}</p>
+
+		<h3>-----------------------------------------------------</h3>
+
+		<h3>Instructions:</h3>
+		<p>{{recipe.instructions}}</p>
+
+		<h3>-----------------------------------------------------</h3>
+
+			<h3>People Who Recommend:</h3>
+	</article>
+
+	<div class="command">
+			<a [routerLink]="['/recipes/' + recipe?._id + '/edit']">Edit</a>
+			<a [routerLink]="'/recipes/' + recipe?._id + '/edit'">Delete</a>
+			<a>You've already recommended this recipe!</a>
+			<a [routerLink]="'/recipes/' + recipe?._id + '/recommend'">Recommend</a>
+	</div>
+</ng-container>

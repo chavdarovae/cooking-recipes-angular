@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { HeaderComponent } from './core/components/header/header.component';
+import { AuthService } from './features/users/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,11 @@ import { HeaderComponent } from './core/components/header/header.component';
     FooterComponent,
   ]
 })
-export class AppComponent {
-  title = 'cooking-recipes-angular';
+export class AppComponent implements OnInit {
+	protected authService = inject(AuthService);
+  	title = 'cooking-recipes-angular';
 
+	ngOnInit(): void {
+		this.authService.getOwnAccount().subscribe()
+	}
 }

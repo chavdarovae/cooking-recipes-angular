@@ -1,4 +1,7 @@
+import { UserRolesEnum } from "../features/users/user.enums";
+
 export interface IAppMenuItem {
-	id: number,
 	path: string,
+	roles: UserRolesEnum[]
+	title?: string,
 }

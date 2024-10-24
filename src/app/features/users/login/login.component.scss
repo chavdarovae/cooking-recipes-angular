@@ -1,0 +1,11 @@
+@import "app-variables";
+
+.invalid-feedback {
+	color: $danger;
+	font-size: 12px;
+}
+
+.form-control.ng-invalid.ng-touched {
+	border-color: $danger;
+}
+

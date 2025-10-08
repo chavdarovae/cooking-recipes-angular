@@ -1,6 +1,7 @@
 import { AsyncPipe, NgIf } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, Signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { IRecipe } from '../recipe.interface';
 import { RecipeService } from '../recipe.service';
 
 @Component({
@@ -9,11 +10,17 @@ import { RecipeService } from '../recipe.service';
 	templateUrl: './recipe-list.component.html',
 	styleUrl: './recipe-list.component.scss',
 	imports: [
-		AsyncPipe,
 		RouterLink,
-		NgIf,
 	]
 })
-export class RecipeListComponent {
-	protected recipeService = inject(RecipeService);
+export class RecipeListComponent implements OnInit {
+	// services
+	private recipeService = inject(RecipeService);
+
+	// main entity
+	recipes: Signal<IRecipe[]>= this.recipeService.recipesSig;
+
+	ngOnInit(): void {
+		this.recipeService.reloadRecipes();
+	}
 }

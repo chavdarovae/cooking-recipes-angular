@@ -1,28 +1,43 @@
-<ng-container *ngIf="recipeService.selectedRecipeSig() as recipe">
-	<article class="recipe-detail">
-		<img src="{{recipe.image}}" alt="{{recipe.title}}">
-		<h2>{{recipe.title}}</h2>
-		<p>{{recipe.description}}</p>
+<ng-container *ngIf="{ ui: userIteraction$ | async } as subs"></ng-container>
+
+@if(selectedRecipeSig()) {
+	<article class="recipe">
+		<div>
+			<img src="{{selectedRecipeSig()?.image}}" alt="{{selectedRecipeSig()?.title}}">
+		</div>
+
+		<h2>{{selectedRecipeSig()?.title}}</h2>
+		<p>{{selectedRecipeSig()?.description}}</p>
 
 		<h3>-----------------------------------------------------</h3>
 
 		<h3>Ingredients:</h3>
-		<p>{{recipe.ingredients}}</p>
+		<p>{{selectedRecipeSig()?.ingredients}}</p>
 
 		<h3>-----------------------------------------------------</h3>
 
 		<h3>Instructions:</h3>
-		<p>{{recipe.instructions}}</p>
+		<p>{{selectedRecipeSig()?.instructions}}</p>
 
 		<h3>-----------------------------------------------------</h3>
 
-			<h3>People Who Recommend:</h3>
+		<h3>People Who Recommend:</h3>
 	</article>
 
-	<div class="command">
-			<a [routerLink]="['/recipes/' + recipe?._id + '/edit']">Edit</a>
-			<a [routerLink]="'/recipes/' + recipe?._id + '/edit'">Delete</a>
-			<a>You've already recommended this recipe!</a>
-			<a [routerLink]="'/recipes/' + recipe?._id + '/recommend'">Recommend</a>
+	<div class="row row--no-wrap row--space-btw w100">
+
+		@if(authService.currUserSig()?._id === selectedRecipeSig()?.owner) {
+			<button class="danger" (click)="userIteractionSubj.next('deleteDialog')">Delete</button>
+			<button [routerLink]="['/recipes/' + selectedRecipeSig()?._id + '/edit']" [state]="{ recipe: selectedRecipeSig() }">Edit</button>
+		} @else {
+			<button [routerLink]="['/recipes/']" >Back to Recipes</button>
+			<button class="accent" (click)="userIteractionSubj.next('recommend')">Recommend</button>
+		}
+
 	</div>
-</ng-container>
+
+	<div *ngIf="false">You've already recommended this recipe!</div>
+
+	<app-modal [show]="showModal" entity="recipe" (close)="onModalClosed($event)"></app-modal>
+}
+

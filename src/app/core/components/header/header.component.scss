@@ -8,10 +8,12 @@
 	}
 
 	.nav__item {
-		transition: scale 300ms;
+		color: $text-color-sec;
+		padding: 0.5em 1em;
+		border-radius: $rounding-pri;
 
 		&:hover {
-			scale: 1.05;
+  			transform: scale(1.05);
 		}
 	}
 

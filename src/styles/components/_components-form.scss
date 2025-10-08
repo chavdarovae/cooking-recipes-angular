@@ -3,15 +3,49 @@
 
 .form {
 	border-right: $rounding-pri;
-	background-color: $bg-pri;
+	background-color: white;
 	display: flex;
 	flex-flow: column nowrap;
 	gap: 30px;
-	box-shadow: $shadow-pri;
+	box-shadow: $shadow-sec;
 
-	&__row {
+	& > div  {
 		display: flex;
 		flex-flow: column nowrap;
+	}
 
+	&__hint {
+		color: $danger;
+		font-size: 15px;
+	}
+
+	label {
+		display: block;
+		margin-bottom: 0.5em;
+		color: $text-color-ter;
+	}
+
+	input {
+		height: clamp(40px, 45px, 50px);
+		width: clamp(150px, auto, 250px);
+	}
+
+	textarea {
+		height: clamp(80px, 100px, 120px);
+		width: clamp(150px, auto, 250px);
+	}
+
+	input,
+	textarea {
+		width: 100%;
+		padding: 2px 5px;
+		margin-bottom: 3px;
+		border: 1px solid #ddd;
+		border-radius: $rounding-pri;
+		font-family: $font-family-sec;
+
+		&.ng-invalid.ng-touched {
+			border-color: $danger;
+		}
 	}
 }

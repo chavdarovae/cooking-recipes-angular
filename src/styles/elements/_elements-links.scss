@@ -1,7 +1,8 @@
-@import "../_app-variables.scss";
+@import "app-variables.scss";
 
 a {
- text-decoration: none;
+ 	text-decoration: none;
+	color: $app-accent;
 }
 
 *:focus {

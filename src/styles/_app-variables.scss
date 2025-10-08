@@ -1,6 +1,6 @@
 // general colors
 $app: #2c3e50;
-$app-sec: #01436f;
+$app-sec: #5690b4;
 $app-accent: #3498db;
 
 // background colors:
@@ -10,6 +10,7 @@ $bg-sec: #2c3e50;
 // text colors
 $text-color-pri: #2c3e50;
 $text-color-sec: whitesmoke;
+$text-color-ter: #555;
 
 
 // utility colors:
@@ -37,9 +38,9 @@ $footer-height: 15px;
 $rounding-pri: 5px;
 
 //shadows
-$shadow-pri: 5px -5px 5px 0 rgba(0,0,0,0.14); //2dp
-$shadow-sec: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.20); //4dp
-$shadow-hover: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.20); //8dp
+$shadow-pri: 0 4px 8px rgba(0, 0, 0, 0.1); //2dp
+$shadow-sec: 0 2px 10px rgba(0, 0, 0, 0.1); //4dp
+$shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.2); //8dp
 
 // separator
 $separator: 1px dotted $app;

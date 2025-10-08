@@ -1,7 +1,36 @@
-@import "../_app-variables.scss";
+@import "app-variables";
 
 button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 40px;
+	width: 200px;
+	border: none;
+	border-radius: $rounding-pri;
+	text-transform: uppercase;
+	color: $text-color-sec;
+	font-family: $font-family-sec;
+	background-color: $app;
+	cursor: pointer;
+	transition: all 300ms ease-in;
 
+	&.accent {
+		background-color: $app-accent;
+	}
+
+	&.danger {
+		background-color: $danger;
+	}
+
+	&:hover:not(:disabled)  {
+		filter: brightness(1.3) saturate(1.2);
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+		opacity: 0.7;
+	}
 }
 
 

@@ -3,8 +3,8 @@ import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IsAuthorisedDirective } from 'src/app/utils/auth.directive';
 import { IAppMenuItem } from 'src/app/utils/general.interfaces';
+import { AuthService } from '../../../data-access/auth.service';
 import { MENU_ITEMS } from '../../constants/menu-items';
-import { AuthService } from './../../../features/users/auth.service';
 
 @Component({
 	selector: 'app-header',

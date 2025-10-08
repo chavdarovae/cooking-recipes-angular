@@ -10,6 +10,10 @@ export const MENU_ITEMS: Record<string, IAppMenuItem> = {
 		path: 'recipes',
 		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER ]
 	},
+	create: {
+		path: 'recipes/create',
+		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER ]
+	},
 	contact: {
 		path: 'contact',
 		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER, UserRolesEnum.GUEST ]

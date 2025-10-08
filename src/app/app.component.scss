@@ -1,34 +1,34 @@
 @import "app-variables";
 
 .app {
-  $width: 100vw;
-  $gap: 30px;
+	$width: 100vw;
+	$gap: 30px;
 
-  min-height: 100vh;
-  display: flex;
-  flex-flow: column nowrap;
-  gap: $gap;
+	min-height: 100vh;
+	display: flex;
+	flex-flow: column nowrap;
+	gap: $gap;
 
-  & > * {
-    width: $width;
-  }
+	& > * {
+		width: $width;
+	}
 
-  &__header {
-    height: $header-height;
-    z-index: 20;
-    background: $app;
-  }
+	&__header {
+		height: $header-height;
+		z-index: 20;
+		background: $app;
+	}
 
-  &__main {
-    height: calc(100vh - $header-height - $footer-height - 2 * $gap);
-    background: $bg-pri;
-	overflow-y: scroll;
-  }
+	&__main {
+		height: calc(100vh - $header-height - $footer-height - 2 * $gap);
+		background: $bg-pri;
+		overflow-y: scroll;
+	}
 
-  &__footer {
-    height: $footer-height;
-    margin-top: auto;
-    z-index: 20;
-    background: $app;
-  }
+	&__footer {
+		height: $footer-height;
+		margin-top: auto;
+		z-index: 20;
+		background: $app;
+	}
 }

@@ -5,7 +5,7 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@a
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
-import { AuthInterceptor } from './features/users/auth.interceptor';
+import { AuthInterceptor } from './data-access/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -13,9 +13,17 @@ export const appConfig: ApplicationConfig = {
 		importProvidersFrom(
 			BrowserAnimationsModule,
 			BrowserModule,
-			RouterModule.forRoot(routes, { anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled', onSameUrlNavigation: 'reload', useHash: true, })
+			RouterModule.forRoot(routes, {
+				anchorScrolling: 'enabled',
+				scrollPositionRestoration: 'enabled',
+				onSameUrlNavigation: 'reload',
+				useHash: true,
+			})
 		),
-		provideRouter(routes, withComponentInputBinding(),),
+		provideRouter(
+			routes,
+			withComponentInputBinding(),
+		),
 		provideHttpClient(),
 		provideHttpClient(withInterceptorsFromDi()),
 		{

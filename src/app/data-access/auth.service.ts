@@ -3,7 +3,7 @@ import { computed, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { first, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IAccount } from './user.interface';
+import { IAccount } from '../features/users/user.interface';
 
 @Injectable({
 	providedIn: 'root'
@@ -40,7 +40,10 @@ export class AuthService {
 
 	login(loginData: IAccount): Observable<IAccount> {
 		return this.http.post<IAccount>(this.accountApi + '/login', loginData).pipe(
-			tap((user: IAccount) => this.setCurrUser(user)),
+			tap((user: IAccount) => {
+				this.setCurrUser(user);
+				this.router.navigateByUrl('/');
+			}),
 			first()
 		);
 	}
@@ -55,6 +58,5 @@ export class AuthService {
 	private setCurrUser(user: IAccount | null) {
 		this.currUser.set(user);
 		localStorage.setItem(this.currUserSotrageKey, JSON.stringify(user));
-		this.router.navigateByUrl('/');
 	}
 }

@@ -52,11 +52,14 @@ export class RecipeDetailComponent implements OnInit {
 		if (confirmation) {
 			this.userIteractionSubj.next('delete');
 		}
+		this.showModal = false;
 	}
 
 	private initUserInteraction(): void {
 		this.userIteraction$ = this.userIteractionSubj.asObservable().pipe(
-			distinctUntilChanged(),
+			distinctUntilChanged((prev, curr) => {
+				return curr.includes('Dialog') ? false : prev === curr;
+			}),
 			switchMap((action) => {
 				switch (action) {
 					case 'deleteDialog':
@@ -64,11 +67,9 @@ export class RecipeDetailComponent implements OnInit {
 							tap(() => this.showModal = true),
 						);
 					case 'delete':
-						return of('delete').pipe(
-							tap(() => console.log('delete')),
+						return this.recipeService.delete(this.selectedRecipeSig()?._id).pipe(
 							tap(() => this.router.navigateByUrl('/recipes')),
 						);
-						return this.recipeService.delete(this.selectedRecipeSig()?._id);
 					case 'recommend':
 						return this.recipeService.recommend(this.selectedRecipeSig()?._id);
 				}

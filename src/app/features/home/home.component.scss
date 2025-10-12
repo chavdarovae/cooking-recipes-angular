@@ -1,0 +1,81 @@
+@import "app-variables";
+
+
+:host ::ng-deep {
+	width: 1100px;
+
+	.home-container {
+		width: 100%;
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-image: url('https://media.istockphoto.com/id/1222770403/de/foto/pasta-sortiment-an-italienischen-pasta-gerichte-darunter-spaghetti-bolognese-penne-mit-huhn.jpg?s=2048x2048&w=is&k=20&c=qnD8Liozch1ZDYKd6TgVI0I7qOgQJyfN_tYwMupXxag=');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		position: relative;
+		font-family: $font-family-pri;
+		color: $text-color-sec;
+		overflow: hidden;
+		box-shadow: $shadow-pri;
+
+		.overlay {
+			width: 100%;
+			padding: 4rem 2rem;
+			background: rgba(44, 62, 80, 0.7); // translucent dark overlay for readability
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			gap: 2rem;
+		}
+
+		h2 {
+			font-size: 2rem;
+			font-weight: $font-weight-bold;
+			color: $app-accent;
+			text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+		}
+
+		h3, h4 {
+			color: $text-color-sec;
+			max-width: 800px;
+		}
+
+		article {
+			width: 500px;
+			max-width: 500px;
+			background: $bg-pri;
+			color: $text-color-pri;
+			padding: 2rem;
+			border-radius: $rounding-pri;
+			box-shadow: $shadow-sec;
+			backdrop-filter: blur(4px);
+
+			h5 {
+				color: $app;
+				font-family: $font-family-sec;
+			}
+
+			p {
+				color: $text-color-ter;
+			}
+
+			ul {
+				text-align: left;
+				margin: 1rem 0;
+				padding-left: 1.5rem;
+				li {
+					margin-bottom: 0.5rem;
+					list-style: disc;
+				}
+			}
+		}
+
+		button {
+			margin-left: auto;
+			width: 100%;
+		}
+	}
+}

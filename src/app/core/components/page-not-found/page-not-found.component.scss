@@ -1,0 +1,9 @@
+@import "app-variables.scss";
+@import "settings-breakpoints";
+
+:host {
+	* {
+		font-size: 12px;
+		color: $text-color-sec;
+	}
+}

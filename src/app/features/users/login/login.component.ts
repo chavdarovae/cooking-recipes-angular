@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../data-access/auth.service';
 
 @Component({
@@ -15,14 +15,21 @@ import { AuthService } from '../../../data-access/auth.service';
 	templateUrl: './login.component.html',
 	styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 	authService = inject(AuthService);
+	router = inject(Router);
 
 	model: any = {
 		email: '',
 		password: ''
 	};
 	submitted = false;
+
+	ngOnInit(): void {
+		if (this.authService.currUserSig()) {
+			this.router.navigateByUrl('/home');
+		}
+	}
 
 
 	onSubmit() {

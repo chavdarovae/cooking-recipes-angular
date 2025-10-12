@@ -14,4 +14,8 @@ export const userRoutes: Routes = [
 		path: 'logout',
 		loadComponent: () => import('./logout/logout.component').then(c => c.LogoutComponent),
 	},
+	{
+		path: 'list',
+		loadComponent: () => import('./user-list/user-list.component').then(c => c.UserListComponent),
+	},
 ];

@@ -1,0 +1,16 @@
+<h2>There are {{accountsSig().length}} accounts at the moment!</h2>
+
+<div class="row gap-50">
+	@for(account of accountsSig(); track account) {
+		<article class="account jumpy-card row row--no-wrap gap-30">
+			<i class="fa-solid fa-user"></i>
+			<div class="account__body col col--no-wrap gap-10">
+				<span>Username:</span> <span class="text-accent">{{account.username}}</span>
+				<span>Email:</span> <a class="text-accent" [href]="'mailto:' + account.email">{{account.email}}</a>
+				<span>Role:</span> <span class="text-accent">{{account.role}}</span>
+			</div>
+		</article>
+	} @empty {
+		<div>No awailable accounts to see!</div>
+	}
+</div>

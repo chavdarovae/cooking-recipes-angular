@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { first, Observable, tap } from 'rxjs';
+import { first, Observable, shareReplay, Subject, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IAccount } from '../features/users/user.interface';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({
 	providedIn: 'root'
@@ -11,6 +12,14 @@ import { IAccount } from '../features/users/user.interface';
 export class AuthService {
 	private currUser = signal<IAccount | null | undefined>(undefined);
 	currUserSig = computed(()=> this.currUser());
+
+	// service state account list
+	private relaodAccountsSubj: Subject<boolean> = new Subject();
+	private accounts$: Observable<IAccount[]> = this.relaodAccountsSubj.asObservable().pipe(
+		switchMap(() => this.getAllAccounts()),
+		shareReplay(),
+	);
+	accountsSig = toSignal(this.accounts$, {initialValue: [] as IAccount[]});
 
 	// auxiliary varibles
 	private accountApi = environment.backendUrl + '/api/users';
@@ -22,6 +31,10 @@ export class AuthService {
 	) {
 		const storedCurrUser = JSON.parse(localStorage.getItem(this.currUserSotrageKey) as string);
 		this.setCurrUser(storedCurrUser);
+	}
+
+	relaodAccountList() {
+		this.relaodAccountsSubj.next(true);
 	}
 
 	getOwnAccount(): Observable<IAccount> {
@@ -53,6 +66,15 @@ export class AuthService {
 			tap(() => this.setCurrUser(null)),
 			first()
 		);
+	}
+
+	getAllAccounts(): Observable<IAccount[]> {
+		return this.http.get<IAccount[]>(this.accountApi + '/accounts').pipe(
+			tap((res) => {
+				console.log(res);
+
+			}),
+		);;
 	}
 
 	private setCurrUser(user: IAccount | null) {

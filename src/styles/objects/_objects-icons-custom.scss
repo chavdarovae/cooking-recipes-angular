@@ -1,11 +1,11 @@
 .icon {
-	height: 14px;
+	height: 16px;
 	width: auto;
 	background-repeat: no-repeat;
 	cursor: pointer;
 
-	&--interactive:hover {
-		scale: 1.1;
+	&:hover {
+		scale: 1.2;
 	}
 }
 

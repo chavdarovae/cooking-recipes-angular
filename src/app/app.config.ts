@@ -5,7 +5,8 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@a
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
-import { AuthInterceptor } from './data-access/auth.interceptor';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { ErrorCatchingInterceptor } from './core/interceptors/error-catching.interceptor';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -29,6 +30,11 @@ export const appConfig: ApplicationConfig = {
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: AuthInterceptor,
+			multi: true
+		},
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: ErrorCatchingInterceptor,
 			multi: true
 		},
 	]

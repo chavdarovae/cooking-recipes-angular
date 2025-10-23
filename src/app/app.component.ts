@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { AuthService } from './data-access/auth.service';
+import { AlertComponent } from "./core/components/alert/alert.component";
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ import { AuthService } from './data-access/auth.service';
     RouterOutlet,
     HeaderComponent,
     FooterComponent,
-  ]
+    AlertComponent
+]
 })
 export class AppComponent implements OnInit {
 	protected authService = inject(AuthService);

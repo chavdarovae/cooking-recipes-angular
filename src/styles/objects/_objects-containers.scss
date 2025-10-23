@@ -2,7 +2,7 @@
 @import "../settings/settings-breakpoints";
 
 .container {
-	width: 90vw !important;
+	width: 90vw;
 	height: 100%;
 	margin: 0px auto;
 	display: flex;
@@ -12,20 +12,23 @@
 	gap: 30px;
 
 	@include tablet-portrait {
+		width: 90vw;
 		gap: 40px;
 	}
 
 	@include tablet-landscape {
+		width: 90vw;
 		width: 80vw;
 		gap: 40px;
 	}
 
 	@include desktop-normal {
+		width: 75vw;
 		gap: 50px;
 	}
 
 	@include desktop-large {
-		width: 80vw;
+		width: 1600px;
 		gap: 60px;
 	}
 }

@@ -1,10 +1,8 @@
-import { IAccount } from './../users/user.interface';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Observable, shareReplay, Subject, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IRecipe } from '../recipes/recipe.interface';
 
 
 interface IEntity {
@@ -15,7 +13,7 @@ interface IEntity {
 @Injectable({
 	providedIn: 'root'
 })
-export class HomeService {
+export class AccountService {
 	private http = inject(HttpClient);
 
 	//auxiliary variables

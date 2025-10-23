@@ -5,6 +5,7 @@ import { IsAuthorisedDirective } from 'src/app/utils/auth.directive';
 import { IAppMenuItem } from 'src/app/utils/general.interfaces';
 import { AuthService } from '../../../data-access/auth.service';
 import { MENU_ITEMS } from '../../constants/menu-items';
+import { ListFilterPipe } from 'src/app/utils';
 
 @Component({
 	selector: 'app-header',
@@ -15,13 +16,16 @@ import { MENU_ITEMS } from '../../constants/menu-items';
 		CommonModule,
 		RouterModule,
 		IsAuthorisedDirective,
-		NgFor,
 		UpperCasePipe,
-		JsonPipe,
+		ListFilterPipe
 	]
 })
 export class HeaderComponent {
 	protected authService = inject(AuthService);
-	menuItems: IAppMenuItem[] = Object.entries(MENU_ITEMS)
-		.map(([key, value]) => ({ title: key, ...value }));
+
+	menuItems: IAppMenuItem[] = Object.entries(MENU_ITEMS).map(([key, value]) => ({ title: key, ...value }));
+
+	filterMenuMainMenu(mainMenuName: string, equals: boolean): (item: IAppMenuItem) => boolean {
+    	return (item: IAppMenuItem) => equals ? item.underMainMenu === mainMenuName : item.underMainMenu !== mainMenuName;
+  	}
 }

@@ -1,0 +1,33 @@
+@import "../_app-variables.scss";
+
+.popover {
+	color: $text-color-sec;
+	background-color: $app;
+	height: 100%;
+
+	button {
+		width: inherit;
+		height: inherit;
+	}
+}
+
+[popover] {
+	width: inherit;
+	height: fit-content;
+	overflow: hidden;
+	background-color: inherit;
+	inset: unset;
+	transform-origin: top left;
+	left: anchor(left);
+	top: anchor(bottom);
+	transition:
+		opacity 300ms ease,
+		transform 300ms ease;
+	opacity: 0;
+	transform: scale(0.95);
+}
+
+[popover]:popover-open {
+	opacity: 1;
+	transform: scale(1);
+}

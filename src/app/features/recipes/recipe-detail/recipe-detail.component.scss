@@ -3,13 +3,15 @@
 
 .recipe {
 	background: white;
+	display: grid;
+	grid-template-columns: minmax(300px, 500px) 500px;
+	column-gap: 30px;
 	padding: 2em;
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	transition:
 		transform 0.3s,
 		box-shadow 0.3s;
-	max-width: 800px;
 	margin: 2em auto;
 	text-align: center;
 }

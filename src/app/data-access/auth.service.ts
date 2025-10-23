@@ -72,7 +72,6 @@ export class AuthService {
 		return this.http.get<IAccount[]>(this.accountApi + '/accounts').pipe(
 			tap((res) => {
 				console.log(res);
-
 			}),
 		);;
 	}

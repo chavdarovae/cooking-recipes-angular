@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { AuthGuard } from '../../data-access/auth.guard';
 
 
-export const recipeRoutes: Routes = [
+export const RECIPE_ROUTES: Routes = [
 	{
 		path: '',
 		loadComponent: () => import('./recipe-list/recipe-list.component').then(m => m.RecipeListComponent),

@@ -2,32 +2,31 @@ import { UserRolesEnum } from "src/app/features/users/user.enums";
 import { IAppMenuItem } from "src/app/utils/general.interfaces";
 
 export const MENU_ITEMS: Record<string, IAppMenuItem> = {
-	home: {
-		path: 'home',
-		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER, UserRolesEnum.GUEST ]
-	},
 	recipes: {
 		path: 'recipes',
-		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER ]
+		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER, UserRolesEnum.GUEST ],
 	},
 	create: {
 		path: 'recipes/create',
 		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER ]
 	},
 	users: {
-		path: 'users/list',
+		path: 'users',
 		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER ]
 	},
-	contact: {
-		path: 'contact',
-		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER, UserRolesEnum.GUEST ]
+	account: {
+		path: 'account',
+		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER ],
+		underMainMenu: 'account'
 	},
 	login: {
 		path: 'users/login',
-		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.GUEST ]
+		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.GUEST ],
+		underMainMenu: 'account'
 	},
 	logout: {
 		path: 'users/logout',
-		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER ]
+		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER ],
+		underMainMenu: 'account'
 	},
 };

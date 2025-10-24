@@ -3,6 +3,7 @@ import { Component, inject, OnInit, Signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IRecipe } from '../recipe.interface';
 import { RecipeService } from '../recipe.service';
+import { CardComponent } from 'src/app/ui';
 
 @Component({
 	selector: 'app-recipe-list',
@@ -11,6 +12,7 @@ import { RecipeService } from '../recipe.service';
 	styleUrl: './recipe-list.component.scss',
 	imports: [
 		RouterLink,
+		CardComponent
 	]
 })
 export class RecipeListComponent implements OnInit {

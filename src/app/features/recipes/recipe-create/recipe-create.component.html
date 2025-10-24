@@ -1,14 +1,19 @@
-@if({ ui: userIteraction$ | async }; as subs) {
+@if ({ ui: userIteraction$ | async }; as subs) {
+
 	<div class="container">
 
-		<form #createForm="ngForm" class="form w-500 p-50">
+		<form #createForm="ngForm" class="form w80 pt-30 pb-30 pl-50 pr-50">
 
-			<div>
-				<label for="title">Recipe Title:</label>
-				<input #title="ngModel" type="text" id="title" name="title" [(ngModel)]="recipe.title" required />
-				<ng-container
-					*ngTemplateOutlet="hintRef; context: { field: title, fieldName: 'Recipe Title' }"></ng-container>
-			</div>
+			<clt-input-field
+				label="Recipe Title"
+				modelName="recipeTitle"
+				inpType="text"
+				[minLength]="5"
+				[isRequired]="true"
+				[inpValue]="recipe.title"
+				(onInpChanged)="recipe.title = $event">
+			</clt-input-field>
+
 
 			<div>
 				<label for="description">Description:</label>
@@ -26,20 +31,26 @@
 					*ngTemplateOutlet="hintRef; context: { field: ingredients, fieldName: 'Ingredients'  }"></ng-container>
 			</div>
 
-			<div>
-				<label for="instructions">Instructions:</label>
-				<input #instructions="ngModel" type="text" id="instructions" name="instructions"
-					[(ngModel)]="recipe.instructions" required />
-				<ng-container
-					*ngTemplateOutlet="hintRef; context: { field: instructions, fieldName: 'Instructions'  }"></ng-container>
-			</div>
+			<clt-input-field
+				label="Instructions"
+				modelName="instructions"
+				inpType="text"
+				[minLength]="20"
+				[isRequired]="true"
+				[inpValue]="recipe.instructions"
+				(onInpChanged)="recipe.instructions = $event">
+			</clt-input-field>
 
-			<div>
-				<label for="image">Image URL:</label>
-				<input #image="ngModel" type="text" id="image" name="image" [(ngModel)]="recipe.image" required />
-				<ng-container
-					*ngTemplateOutlet="hintRef; context: { field: image, fieldName: 'Image URL'  }"></ng-container>
-			</div>
+			<clt-input-field
+				label="Image URL"
+				modelName="instructions"
+				inpType="text"
+				[minLength]="6"
+				[isRequired]="true"
+				[inpValue]="recipe.image"
+				(onInpChanged)="recipe.image = $event">
+			</clt-input-field>
+
 
 			<div>
 				<button type="submit" class="accent" (click)="userIteractionSubj.next(allowedInteraction)"

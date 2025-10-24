@@ -1,3 +1,24 @@
 <div class="container">
+	<div class="w-400 col gap-20">
+		<div><strong>Username:</strong> {{authService.currUserSig()?.username}}</div>
+		<hr/>
+
+		<div><strong>Email:</strong> {{authService.currUserSig()?.email}}</div>
+		<hr/>
+
+		<div><strong>Role:</strong> {{authService.currUserSig()?.role}}</div>
+		<hr/>
+
+		<div><strong>My recepies:</strong></div>
+
+	</div>
+	<div class="carousel">
+		@for (recipe of ownRecipesSig(); track recipe._id) {
+			<!-- <clt-card [recipe]="recipe"></clt-card> -->
+			<img [src]="recipe.image" [alt]="recipe.title" [routerLink]="['/recipes', recipe?._id]"/>
+
+		}
+	</div>
+
 
 </div>

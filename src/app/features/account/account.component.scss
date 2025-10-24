@@ -1,2 +1,68 @@
 @import "app-variables";
 
+.carousel {
+	width: 100%;
+	overflow-x: auto;
+	height: 500px;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	gap: 1em;
+	scroll-behavior: smooth;
+	scroll-snap-type: x mandatory;
+	anchor-name: --carousel;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	&::scroll-button(left) {
+		content: "⮕";
+		transform: translateX(10px);
+		position-area: right center;
+	}
+
+	&::scroll-button(right) {
+		content: "⬅︎";
+		transform: translateX(-10px);
+		position-area: left center;
+	}
+
+	&::scroll-button(right),
+	&::scroll-button(left) {
+		border: none;
+		font-size: 40px;
+		width: 60px;
+		aspect-ratio: 1;
+		border-radius: 50%;
+		background-color: $app;
+		color: $text-color-sec;
+		position: fixed;
+		cursor: pointer;
+		position-anchor: --carousel;
+
+
+		&:disabled {
+			opacity: 0.5;
+			cursor: auto;
+		}
+	}
+
+	clt-card {
+		scroll-snap-align: start;
+		flex: 0 0 100px;
+	}
+
+	img  {
+		scroll-snap-align: start;
+		width: clamp(300px, 300px, 300px);
+		object-fit: cover;
+		object-position: center;
+		border-radius: $rounding-pri;
+		transition: transform 300ms ease;
+
+		&:hover {
+			transform: translateY(10px);
+		}
+	}
+}

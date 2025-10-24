@@ -1,0 +1,12 @@
+<article class="card jumpy-card">
+	<div>
+		<img src="{{recipe()?.image}}" alt="{{recipe()?.title}}">
+	</div>
+
+	<h4>{{recipe()?.title}}</h4>
+	<p>{{recipe()?.description}}</p>
+
+	<button class="accent mt-10" [routerLink]="['/recipes', recipe()?._id]" routerLinkActive="router-link-active">
+		Read More
+	</button>
+</article>

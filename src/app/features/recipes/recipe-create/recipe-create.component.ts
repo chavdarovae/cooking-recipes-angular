@@ -7,6 +7,7 @@ import { RecipeService } from '../recipe.service';
 import { catchError, distinctUntilChanged, EMPTY, Observable, Subject, switchMap } from 'rxjs';
 import { IRecipe } from '../recipe.interface';
 import { HttpErrorResponse } from '@angular/common/http';
+import { InputFieldComponent } from 'src/app/ui';
 
 type RecipeUserInteractionType = 'create' | 'update';
 
@@ -19,6 +20,7 @@ type RecipeUserInteractionType = 'create' | 'update';
 		CommonModule,
 		FormsModule,
 		RouterModule,
+		InputFieldComponent
 	],
 })
 export class RecipeCreateComponent implements OnInit {

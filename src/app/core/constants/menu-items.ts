@@ -12,7 +12,7 @@ export const MENU_ITEMS: Record<string, IAppMenuItem> = {
 	},
 	users: {
 		path: 'users',
-		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER ]
+		roles: [ UserRolesEnum.ADMIN ]
 	},
 	account: {
 		path: 'account',
@@ -21,7 +21,7 @@ export const MENU_ITEMS: Record<string, IAppMenuItem> = {
 	},
 	login: {
 		path: 'users/login',
-		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.GUEST ],
+		roles: [ UserRolesEnum.GUEST ],
 		underMainMenu: 'account'
 	},
 	logout: {

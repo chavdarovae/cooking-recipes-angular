@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/data-access/auth.service';
 import {
 	HttpErrorResponse,
 	HttpEvent,
@@ -13,6 +14,7 @@ import { AlertService } from '../services/alert.service';
 @Injectable()
 export class ErrorCatchingInterceptor implements HttpInterceptor {
 	private alertService = inject(AlertService);
+	private authService = inject(AuthService);
 	private router = inject(Router);
 
 	intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -27,6 +29,7 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
 						});
 						break;
 					case 401:
+						this.authService.setCurrUserAsGuest();
 						this.router.navigateByUrl('/users/login');
 
 						this.alertService.showAlert({
@@ -36,7 +39,7 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
 						break;
 					case 403:
 						this.alertService.showAlert({
-							alert: 'You are not authorised for this section',
+							alert: 'You are not authorised for this section. Please login!',
 							type: 'danger',
 						});
 						break;

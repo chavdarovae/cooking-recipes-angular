@@ -1,51 +1,47 @@
 @import "app-variables";
+@import "settings-breakpoints";
 
 
 .recipe {
+	$width: 1000px;
+	$gap: 2rem;
+	$padding: 2rem;
+
+	display: flex;
+	flex-flow: row wrap;
+	gap: $gap;
+
+	width: min($width, 100%);
+	height: fit-content;
+
 	background: $bg-ter;
 	border-radius: $rounding-pri;
 	box-shadow: $shadow-pri;
-	padding: 2em;
-	margin: 2em auto;
-	width: fit-content;
+	padding: $padding;
+	margin: auto;
 	transition:
 		transform 0.3s,
 		box-shadow 0.3s;
 
 
-	&:hover {
-		transform: translateY(-10px);
-		box-shadow: $shadow-hover;
-	}
+	&__block {
+		width: 100%;
+		aspect-ratio: 1;
+		overflow: hidden;
 
-	&:hover img {
-		transform: scale(1.05);
+		@include tablet-landscape{
+			width: calc(0.5 * $width - 0.5 * $gap - $padding);
+		}
 	}
-
 
 	h2 {
+		width: 100%;
 		background-color: $app;
 		color: $text-color-sec;
 		padding: 0.5em;
 		border-radius: $rounding-pri;
 		text-align: center;
-	}
-
-	h3 {
-		// color: $text-color-pri;
-
-	}
-
-	&__block {
-		width: min(500px, calc(100%));
-	}
-
-
-	img {
-		width: 100%;
-		border-radius: 8px;
-		margin-bottom: 1em;
-		transition: transform 0.3s;
+		margin-bottom: 0;
 	}
 }
 

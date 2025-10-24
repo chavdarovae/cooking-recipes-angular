@@ -5,7 +5,7 @@
 	box-shadow: $shadow-pri;
 	border-radius: $rounding-pri;
 	background-color: $bg-ter;
-	padding: 15px 15px;
+	padding: 1rem;
 
 	i {
 		font-size: 70px;
@@ -17,7 +17,7 @@
 
 	&__body {
 		display: grid;
-		grid-template-columns: 100px 150px;
+		grid-template-columns: 90px 130px;
 		justify-items: start;
 	}
 }

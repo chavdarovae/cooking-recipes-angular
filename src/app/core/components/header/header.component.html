@@ -11,8 +11,10 @@
 		}
 
 		<!-- username  -->
-		<span id="userMenuTrigger" class="popover w-200">
-			<button popovertarget="userMenu" class="row row--no-wrap row--left-aligned gap-10 pl-20">
+		<span id="userMenuTrigger" class=" popover">
+			<button
+				popovertarget="userMenu"
+				class="nav__item popover__trigger row row--no-wrap row--left-aligned gap-20">
 				<span class="fa-solid fa-user"></span>
 
 				@if (authService.currUserSig()) {
@@ -20,7 +22,7 @@
 				}
 			</button>
 
-			<div popover id="userMenu" anchor="userMenuTrigger">
+			<div popover id="userMenu"  class="popover__panel" anchor="userMenuTrigger">
 				@for (item of menuItems | appListFilterPipe: filterMenuMainMenu('account', true); track $index) {
 					<ng-container *ngTemplateOutlet="navItem; context: {item}"></ng-container>
 				}
@@ -31,12 +33,14 @@
 
 
 <ng-template #navItem let-item="item">
-	<div
+	<button
+		popovertarget="userMenu"
+		popovertargetaction="hide"
 		[appIsAuthorised]="item.roles"
 		[role]="authService.currUserSig()?.role"
 		class="nav__item"
 		[routerLink]="'/'+ item.path"
 		[attr.aria-label]="'Navigate to section ' + item.title">
 		{{ item.title | uppercase }}
-	</div>
+	</button>
 </ng-template>

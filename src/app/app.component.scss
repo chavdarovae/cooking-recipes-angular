@@ -19,7 +19,7 @@
 	}
 
 	&__alert {
-		width: clamp(300px, 400px, 90%);
+		width: clamp(400px, 500px, 90%);
 		position: absolute;
 		right: 40px;
 		top: calc(10px + $header-height);
@@ -30,7 +30,7 @@
 		width: $width;
 		height: calc(100vh - $header-height - $footer-height - 2 * $gap);
 		background: $bg-pri;
-		overflow-y: scroll;
+		overflow-y: auto;
 	}
 
 	&__footer {

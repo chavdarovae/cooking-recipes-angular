@@ -5,7 +5,7 @@ export const RECIPE_ROUTES: Routes = [
 	{
 		path: '',
 		loadComponent: () => import('./recipe-list/recipe-list.component').then(m => m.RecipeListComponent),
-		canActivate: [AuthGuard]
+		canActivate: []
 	},
 	{
 		path: 'create',

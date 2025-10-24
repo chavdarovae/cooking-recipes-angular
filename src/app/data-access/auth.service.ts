@@ -63,7 +63,7 @@ export class AuthService {
 
 	logout(): Observable<any> {
 		return this.http.get<IAccount>(this.accountApi + '/logout').pipe(
-			tap(() => this.setCurrUser(null)),
+			tap(() => this.setCurrUserAsGuest()),
 			first()
 		);
 	}
@@ -74,6 +74,10 @@ export class AuthService {
 				console.log(res);
 			}),
 		);;
+	}
+
+	setCurrUserAsGuest() {
+		this.setCurrUser(null);
 	}
 
 	private setCurrUser(user: IAccount | null) {

@@ -1,16 +1,22 @@
 @import "app-variables";
+@import "settings-breakpoints";
 
 .carousel {
-	width: 100%;
+	width: calc(100% - 6vmin);
+	margin: 0 auto;
 	overflow-x: auto;
-	height: 500px;
+	height: 300px;
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: flex-start;
-	gap: 1em;
+	gap: 3vmin;
 	scroll-behavior: smooth;
 	scroll-snap-type: x mandatory;
 	anchor-name: --carousel;
+
+	@include tablet-landscape{
+		height: 500px;;
+	}
 
 	&::-webkit-scrollbar {
 		display: none;
@@ -18,21 +24,21 @@
 
 	&::scroll-button(left) {
 		content: "⮕";
-		transform: translateX(10px);
+		transform: translateX(-50%);
 		position-area: right center;
 	}
 
 	&::scroll-button(right) {
 		content: "⬅︎";
-		transform: translateX(-10px);
+		transform: translateX(50%);
 		position-area: left center;
 	}
 
 	&::scroll-button(right),
 	&::scroll-button(left) {
 		border: none;
-		font-size: 40px;
-		width: 60px;
+		font-size: 5vmin;
+		height: 15%;
 		aspect-ratio: 1;
 		border-radius: 50%;
 		background-color: $app;
@@ -55,11 +61,15 @@
 
 	img  {
 		scroll-snap-align: start;
-		width: clamp(300px, 300px, 300px);
+		width: clamp(150px, 150px, 150px);
 		object-fit: cover;
 		object-position: center;
 		border-radius: $rounding-pri;
 		transition: transform 300ms ease;
+
+		@include tablet-landscape{
+			width: clamp(300px, 300px, 300px);
+		}
 
 		&:hover {
 			transform: translateY(10px);

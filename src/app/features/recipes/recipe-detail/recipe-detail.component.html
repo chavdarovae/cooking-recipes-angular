@@ -1,52 +1,51 @@
-<ng-container *ngIf="{ ui: userIteraction$ | async } as subs"></ng-container>
+@if({ ui: userIteraction$ | async }; as subs) {
+	<div class="container">
 
-@if (selectedRecipeSig()) {
-	<article class="recipe">
-		<div class="col col--no-wrap">
-			<div>
-				<img src="{{selectedRecipeSig()?.image}}" alt="{{selectedRecipeSig()?.title}}">
-			</div>
-			<div>
+		@if (selectedRecipeSig()) {
+			<article class="recipe col col--no-wrap gap-10">
 				<h2>{{selectedRecipeSig()?.title}}</h2>
-			</div>
-		</div>
+				<div class="row row--top-aligned gap-30">
+					<div class="recipe__block">
+						<img src="{{selectedRecipeSig()?.image}}" alt="{{selectedRecipeSig()?.title}}">
+					</div>
 
-		<div>
+					<div class="recipe__block">
+						<p>{{selectedRecipeSig()?.description}}</p>
 
-			<h2>{{selectedRecipeSig()?.title}}</h2>
-			<p>{{selectedRecipeSig()?.description}}</p>
+						<h3>----------------------------------------</h3>
 
-			<h3>-----------------------------------------------------</h3>
+						<h3>Ingredients:</h3>
+						<p>{{selectedRecipeSig()?.ingredients}}</p>
 
-			<h3>Ingredients:</h3>
-			<p>{{selectedRecipeSig()?.ingredients}}</p>
+						<h3>----------------------------------------</h3>
 
-			<h3>-----------------------------------------------------</h3>
+						<h3>Instructions:</h3>
+						<p>{{selectedRecipeSig()?.instructions}}</p>
 
-			<h3>Instructions:</h3>
-			<p>{{selectedRecipeSig()?.instructions}}</p>
+						<h3>----------------------------------------</h3>
 
-			<h3>-----------------------------------------------------</h3>
+						<!-- <h3>People Who Recommend:</h3> -->
 
-			<h3>People Who Recommend:</h3>
+						<div class="mt-a row row--no-wrap row--space-btw w100">
 
-				<div class="row row--no-wrap row--space-btw w100">
+							@if(authService.currUserSig()?._id === selectedRecipeSig()?.owner) {
+								<button class="danger" (click)="userIteractionSubj.next('deleteDialog')">Delete</button>
+								<button [routerLink]="['/recipes/' + selectedRecipeSig()?._id + '/edit']" [state]="{ recipe: selectedRecipeSig() }">Edit</button>
+							} @else {
+								<button [routerLink]="['/recipes/']" >Back to Recipes</button>
+								<button class="accent" (click)="userIteractionSubj.next('recommend')">Recommend</button>
+							}
 
-					@if(authService.currUserSig()?._id === selectedRecipeSig()?.owner) {
-						<button class="danger" (click)="userIteractionSubj.next('deleteDialog')">Delete</button>
-						<button [routerLink]="['/recipes/' + selectedRecipeSig()?._id + '/edit']" [state]="{ recipe: selectedRecipeSig() }">Edit</button>
-					} @else {
-						<button [routerLink]="['/recipes/']" >Back to Recipes</button>
-						<button class="accent" (click)="userIteractionSubj.next('recommend')">Recommend</button>
-					}
-
+						</div>
+					</div>
 				</div>
-		</div>
+			</article>
 
-	</article>
+			<div *ngIf="false">You've already recommended this recipe!</div>
 
-	<div *ngIf="false">You've already recommended this recipe!</div>
+			<app-modal [show]="showModal" entity="recipe" (close)="onModalClosed($event)"></app-modal>
+		}
 
-	<app-modal [show]="showModal" entity="recipe" (close)="onModalClosed($event)"></app-modal>
+	</div>
 }
 

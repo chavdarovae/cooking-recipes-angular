@@ -9,7 +9,11 @@
 	flex-flow: column nowrap;
 	justify-content: flex-start;
 	align-items: center;
-	gap: 30px;
+	gap: 20px;
+
+	&--centerd-vert {
+		justify-content: center;
+	}
 
 	@include tablet-portrait {
 		width: 90vw;
@@ -23,7 +27,7 @@
 	}
 
 	@include desktop-normal {
-		width: 75vw;
+		width: 80vw;
 		gap: 50px;
 	}
 

@@ -3,21 +3,11 @@
 
 .form {
 	border-right: $rounding-pri;
-	background-color: white;
+	background-color: $bg-ter;
 	display: flex;
 	flex-flow: column nowrap;
 	gap: 30px;
 	box-shadow: $shadow-sec;
-
-	& > div  {
-		display: flex;
-		flex-flow: column nowrap;
-	}
-
-	&__hint {
-		color: $danger;
-		font-size: 15px;
-	}
 
 	label {
 		display: block;

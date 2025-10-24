@@ -8,10 +8,6 @@ export const USER_ROUTES: Routes = [
 	},
 	{
 		path: 'register',
-		loadComponent: () => import('./user-list/user-list.component').then(c => c.UserListComponent),
-	},
-	{
-		path: 'register',
 		loadComponent: () => import('./register/register.component').then(c => c.RegisterComponent),
 	},
 	{

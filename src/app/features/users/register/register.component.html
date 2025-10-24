@@ -1,37 +1,51 @@
-<form #registerForm="ngForm" class="form w-500 p-50" (ngSubmit)="onSubmit()">
+<div class="container container--centerd-vert">
+	<form #registerForm="ngForm" class="form w-500 p-50" (ngSubmit)="onSubmit()">
 
-	<div class="form__row">
-		<label for="email">Name</label>
-		<input type="text" id="username" class="form__control" [(ngModel)]="model.username" name="username" required username
-			#username="ngModel" />
-		<div *ngIf="submitted && username.invalid" class="form__hint">
-			<!-- <div *ngIf="username.errors?.required">username is required</div> -->
-			<!-- <div *ngIf="username.errors?.username">Enter a valid username</div> -->
+		<clt-input-field
+			label="username"
+			modelName="username"
+			inpType="text"
+			[isRequired]="true"
+			[inpValue]="model.username"
+			(onInpChanged)="model.username = $event">
+		</clt-input-field>
+
+		<clt-input-field
+			label="email"
+			modelName="email"
+			inpType="email"
+			[isRequired]="true"
+			[inpValue]="model.email"
+			(onInpChanged)="model.email = $event">
+		</clt-input-field>
+
+
+		<clt-input-field
+			label="password"
+			modelName="password"
+			inpType="password"
+			[isRequired]="true"
+			[minLength]="4"
+			[maxLength]="10"
+			[inpValue]="model.password"
+			(onInpChanged)="model.password = $event">
+		</clt-input-field>
+
+		<clt-input-field
+			label="repeat password"
+			modelName="rePassword"
+			inpType="password"
+			[isRequired]="true"
+			[minLength]="4"
+			[maxLength]="10"
+			[inpValue]="model.rePassword"
+			(onInpChanged)="model.rePassword = $event">
+		</clt-input-field>
+
+		<div class="form__row">
+			<button type="submit" class="accent mb-20" [disabled]="registerForm.invalid">Register</button>
+			<div class="text-centered">Already registrated? Log in <a routerLink="/users/login">here!</a></div>
 		</div>
-	</div>
+	</form>
 
-	<div class="form__row">
-		<label for="email">Email</label>
-		<input type="email" id="email" class="form__control" [(ngModel)]="model.email" name="email" required email
-			#email="ngModel" />
-		<div *ngIf="submitted && email.invalid" class="form__hint">
-			<!-- <div *ngIf="email.errors?.required">Email is required</div> -->
-			<!-- <div *ngIf="email.errors?.email">Enter a valid email</div> -->
-		</div>
-	</div>
-
-	<div class="form__row">
-		<label for="password">Password</label>
-		<input type="password" id="password" class="form__control" [(ngModel)]="model.password" name="password" required
-			minlength="6" #password="ngModel" />
-		<div *ngIf="submitted && password.invalid" class="form__hint">
-			<!-- <div *ngIf="password.errors?.required">Password is required</div> -->
-			<!-- <div *ngIf="password.errors?.minlength">Password must be at least 6 characters</div> -->
-		</div>
-	</div>
-
-	<div class="form__row">
-		<button type="submit" class="btn btn-primary mb-20" [disabled]="registerForm.invalid">Register</button>
-		<div class="text-centered">Already registrated? Log in <a routerLink="/users/login">here!</a></div>
-	</div>
-</form>
+</div>

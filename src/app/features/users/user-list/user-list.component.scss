@@ -1,11 +1,5 @@
 @import "app-variables";
 
-:host {
-	display: flex;
-	flex-flow: column nowrap;
-	align-items: center;
-	gap: 50px;
-}
 .account {
 	width: fit-content;
 	box-shadow: $shadow-pri;

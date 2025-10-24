@@ -1,0 +1,34 @@
+@if (label){
+	<label [for]="modelName">{{ label | titlecase }}</label>
+}
+
+<input #inpField="ngModel"
+	class="form__control"
+	[id]="modelName"
+	[name]="modelName"
+	[type]="inpType"
+	[pattern]="pattern"
+	[minlength]="minLength"
+	[maxlength]="maxLength"
+	[ngModel]="inpValue"
+	(ngModelChange)="onInpChanged.emit(inpField.value)"
+	(focusin)="onInpFocusedIn.emit(inpField.value)"
+	(focusout)="onInpFocusedOut.emit(inpField.value)"
+	[required]="isRequired" />
+
+@if(inpField.invalid && !inpField.pristine) {
+	<div class="hint">
+		@if (inpField.errors?.['required']) {
+			⚠️ {{ modelName | titlecase }} is required<br/>
+		}
+		@if (inpField.errors?.['pattern']) {
+			⚠️ Enter a valid {{modelName}}<br/>
+		}
+		@if (inpField.errors?.['minlength']) {
+			⚠️ Enter minimum {{minLength}} characters<br/>
+		}
+		@if (inpField.errors?.['maxlength']) {
+			⚠️ Enter maximum {{maxLength}} characters<br/>
+		}
+	</div>
+}

@@ -22,12 +22,13 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
 				switch (error.status) {
 					case 400:
 						this.alertService.showAlert({
-							alert: 'Invalid information.',
+							alert: error.error?.errorMsg ?? 'Invalid information.',
 							type: 'danger',
 						});
 						break;
 					case 401:
-						this.router.navigateByUrl('/login');
+						this.router.navigateByUrl('/users/login');
+
 						this.alertService.showAlert({
 							alert:'You are not authentificated. Please login!',
 							type: 'danger',

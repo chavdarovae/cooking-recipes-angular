@@ -2,97 +2,53 @@
 
 
 .recipe {
-	background: white;
-	display: grid;
-	grid-template-columns: minmax(300px, 500px) 500px;
-	column-gap: 30px;
+	background: $bg-ter;
+	border-radius: $rounding-pri;
+	box-shadow: $shadow-pri;
 	padding: 2em;
-	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin: 2em auto;
+	width: fit-content;
 	transition:
 		transform 0.3s,
 		box-shadow 0.3s;
-	margin: 2em auto;
-	text-align: center;
+
+
+	&:hover {
+		transform: translateY(-10px);
+		box-shadow: $shadow-hover;
+	}
+
+	&:hover img {
+		transform: scale(1.05);
+	}
+
+
+	h2 {
+		background-color: $app;
+		color: $text-color-sec;
+		padding: 0.5em;
+		border-radius: $rounding-pri;
+		text-align: center;
+	}
+
+	h3 {
+		// color: $text-color-pri;
+
+	}
+
+	&__block {
+		width: min(500px, calc(100%));
+	}
+
+
+	img {
+		width: 100%;
+		border-radius: 8px;
+		margin-bottom: 1em;
+		transition: transform 0.3s;
+	}
 }
 
-.recipe:hover {
-	transform: translateY(-10px);
-	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
 
-.recipe img {
-	width: 100%;
-	border-radius: 8px;
-	margin-bottom: 1em;
-	transition: transform 0.3s;
-}
 
-.recipe:hover img {
-	transform: scale(1.05);
-}
 
-.recipe h2 {
-	background-color: #2c3e50;
-	color: white;
-	padding: 0.5em;
-	border-radius: 4px;
-	font-size: 1.5em;
-	margin-bottom: 1em;
-}
-
-.recipe h3 {
-	color: #2c3e50;
-	margin-top: 1em;
-	font-size: 1.2em;
-	font-weight: 700;
-}
-
-.recipe ul,
-.recipe ol {
-	text-align: left;
-	margin: 1em 0;
-	padding: 0 1em;
-	color: #555;
-}
-
-.recipe ul li,
-.recipe ol li {
-	margin-bottom: 0.5em;
-}
-
-.command {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.command a {
-	background-color: #3498db;
-	color: white;
-	padding: 0.5em 1em;
-	text-decoration: none;
-	border-radius: 4px;
-	display: inline-block;
-	transition:
-		background 0.3s,
-		transform 0.3s;
-	font-weight: 700;
-	margin-top: 1em;
-	margin-left: 20px;
-}
-
-.command p {
-	background-color: #3498db;
-	color: white;
-	padding: 0.5em 1em;
-	text-decoration: none;
-	border-radius: 4px;
-	display: inline-block;
-	transition:
-		background 0.3s,
-		transform 0.3s;
-	font-weight: 700;
-	margin-top: 1em;
-	margin-left: 20px;
-}

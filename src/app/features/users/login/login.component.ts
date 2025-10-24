@@ -1,3 +1,4 @@
+import { InputFieldComponent } from './../../../ui/index';
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -11,6 +12,7 @@ import { AuthService } from '../../../data-access/auth.service';
 		CommonModule,
 		FormsModule,
 		RouterModule,
+		InputFieldComponent
 	],
 	templateUrl: './login.component.html',
 	styleUrl: './login.component.scss'
@@ -23,17 +25,17 @@ export class LoginComponent implements OnInit {
 		email: '',
 		password: ''
 	};
-	submitted = false;
 
 	ngOnInit(): void {
 		if (this.authService.currUserSig()) {
-			this.router.navigateByUrl('/home');
+			this.router.navigateByUrl('/');
 		}
 	}
 
 
 	onSubmit() {
-		this.submitted = true;
+		console.log(this.model);
+
 		if (!this.model.email || !this.model.password) {
 			return;
 		}

@@ -1,9 +1,18 @@
 import { UserRolesEnum } from "./user.enums";
 
-export interface IAccount {
+export interface IUser {
 	_id?: string,
 	username?: string,
 	email: string,
-	password: string,
 	role: UserRolesEnum,
 }
+
+export interface IAccount extends IUser {
+	password: string;
+}
+
+export interface IUserQuery {
+	search?: string;
+	role?: UserRolesEnum;
+}
+

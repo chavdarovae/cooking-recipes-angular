@@ -1,13 +1,25 @@
 import { Component, inject, OnInit, Signal } from '@angular/core';
 import { AuthService } from 'src/app/data-access/auth.service';
 import { IAccount } from '../user.interface';
+import { RouterLink } from '@angular/router';
+import { InputFieldComponent, InputSelectComponent } from "src/app/ui";
+import { UserQuery } from '../user.models';
+import { NgForm } from '@angular/forms';
+import { UserRolesEnum } from '../user.enums';
 
 @Component({
-  selector: 'app-user-list',
-  standalone: true,
-  imports: [],
-  templateUrl: './user-list.component.html',
-  styleUrl: './user-list.component.scss'
+	selector: 'app-user-list',
+	standalone: true,
+	templateUrl: './user-list.component.html',
+	styleUrl: './user-list.component.scss',
+	imports: [
+    RouterLink,
+    InputFieldComponent,
+    InputSelectComponent
+],
+	providers: [
+		NgForm
+	]
 })
 export class UserListComponent implements OnInit {
 	// services
@@ -16,7 +28,16 @@ export class UserListComponent implements OnInit {
 	// main entity
 	accountsSig: Signal<IAccount[]> = this.authService.accountsSig;
 
+	// auxiliary variables
+	query!: UserQuery;
+	userRolesEnum = UserRolesEnum;
+
 	ngOnInit(): void {
-		this.authService.relaodAccountList();
+		this.query = new UserQuery('');
+		this.authService.relaodAccountList(this.query);
+	}
+
+	onSearchQueryChange() {
+		this.authService.relaodAccountList(this.query);
 	}
 }

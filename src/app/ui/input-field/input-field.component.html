@@ -14,7 +14,8 @@
 	[ngModel]="inpValue"
 	(focusin)="onInpFocusedIn.emit(inpField.value)"
 	(focusout)="onInpFocusedOut.emit(inpField.value)"
-	[required]="isRequired" />
+	[required]="isRequired"
+	[disabled]="isDisabled" />
 
 @if(inpField.invalid && !inpField.pristine) {
 	<div class="hint">

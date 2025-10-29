@@ -18,4 +18,8 @@ export const USER_ROUTES: Routes = [
 		path: 'logout',
 		loadComponent: () => import('./logout/logout.component').then(c => c.LogoutComponent),
 	},
+	{
+		path: ':id',
+		loadComponent: () => import('./user-edit/user-edit.component').then(c => c.UserEditComponent),
+	},
 ];

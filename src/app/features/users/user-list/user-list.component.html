@@ -1,18 +1,47 @@
 <div class="container">
-	<h2>There are {{accountsSig().length}} accounts at the moment!</h2>
 
-	<div class="row gap-30">
-		@for(account of accountsSig(); track account) {
-		<article class="account jumpy-card row row--no-wrap gap-30">
+	<form class="form form--filter">
+		<i class="fa-solid fa-magnifying-glass"></i>
+
+		<clt-input-field
+			modelName="searchString"
+			inpType="text"
+			placeholder="Username or Email"
+			[isTypeAhead]="true"
+			[inpValue]="query.search ?? ''"
+			(onInpChanged)="query.search = $event; onSearchQueryChange()">
+		</clt-input-field>
+
+		<clt-input-select
+			modelName="role"
+			placeholder="All roles"
+			[selectList]="userRolesEnum"
+			[selectListValue]="query.role"
+			[selectEcceptions]="[userRolesEnum.GUEST]"
+			(onSelectChanged)="query.role = $event; onSearchQueryChange()">
+		</clt-input-select>
+	</form>
+
+	<div class="card-container">
+		@for(account of accountsSig(); track account._id) {
+		<article class="account jumpy-card row row--no-wrap gap-20">
 			<i class="fa-solid fa-user"></i>
+
 			<div class="account__body col col--no-wrap gap-10">
 				<span>Username:</span> <span class="text-accent">{{account.username}}</span>
 				<span>Email:</span> <a class="text-accent" [href]="'mailto:' + account.email">{{account.email}}</a>
 				<span>Role:</span> <span class="text-accent">{{account.role}}</span>
+				<button class="accent span-2 w100 mt-10"
+					[routerLink]="['/users/', account?._id]"
+					routerLinkActive="router-link-active"
+					[state]="{ user: account }">
+					Read More
+				</button>
 			</div>
+
 		</article>
 		} @empty {
-		<div>No awailable accounts to see!</div>
+			<h5 class="row row--centered row--middle">No results found!</h5>
 		}
 	</div>
 

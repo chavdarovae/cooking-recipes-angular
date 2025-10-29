@@ -1,3 +1,4 @@
+import { AlertService } from './../../../core/services/alert.service';
 import { AuthService } from './../../../data-access/auth.service';
 import { Component, inject, Input, OnInit, Signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
@@ -20,13 +21,13 @@ type RecipeUserInteractionType = 'deleteDialog' | 'delete' | 'recommend';
 		RouterLink,
 		ModalComponent,
 		NgIf,
-		AsyncPipe,
-		JsonPipe
+		AsyncPipe
 	],
 })
 export class RecipeDetailComponent implements OnInit {
 	// services
 	private recipeService = inject(RecipeService);
+	private alertService = inject(AlertService);
 	private router = inject(Router);
 	public authService = inject(AuthService);
 
@@ -36,12 +37,14 @@ export class RecipeDetailComponent implements OnInit {
 	// user interaction
 	userIteractionSubj: Subject<RecipeUserInteractionType> = new Subject();
 	userIteraction$!: Observable<IRecipe>;
+	currInteraction!: RecipeUserInteractionType;
 
 	// main entity
 	selectedRecipeSig: Signal<IRecipe | null> = this.recipeService.selectedRecipeSig;
 
 	// aucxiliary variables
 	showModal = false;
+
 
 	ngOnInit(): void {
 		this.recipeService.selectRecipe(this.id);
@@ -60,6 +63,7 @@ export class RecipeDetailComponent implements OnInit {
 			distinctUntilChanged((prev, curr) => {
 				return curr.includes('Dialog') ? false : prev === curr;
 			}),
+			tap((action) => this.currInteraction = action),
 			switchMap((action) => {
 				switch (action) {
 					case 'deleteDialog':
@@ -73,6 +77,10 @@ export class RecipeDetailComponent implements OnInit {
 					case 'recommend':
 						return this.recipeService.recommend(this.selectedRecipeSig()?._id);
 				}
+			}),
+			tap(() => {
+				this.router.navigateByUrl('/recipes');
+				this.alertService.showAlert({alert: `The recipe was successfully ${this.currInteraction}d!`, type: 'success'})
 			}),
 			catchError((err: HttpErrorResponse) => {
 				console.error('Recipe operation failed:', err);

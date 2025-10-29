@@ -7,6 +7,10 @@
 				<h2>{{selectedRecipeSig()?.title}}</h2>
 
 				<div class="recipe__block">
+					<div class="likes">
+						<span>{{selectedRecipeSig()?.recommendList?.length}}</span>
+						<i class="fa-solid fa-heart"></i>
+					</div>
 					<img src="{{selectedRecipeSig()?.image}}" alt="{{selectedRecipeSig()?.title}}">
 				</div>
 
@@ -25,16 +29,18 @@
 
 					<hr/>
 
-					<!-- <h3>People Who Recommend:</h3> -->
-
-					<div class="row row--no-wrap row--space-btw w100">
+					<div class="row row--no-wrap row--space-btw w100 mt-20">
 
 						@if(authService.currUserSig()?._id === selectedRecipeSig()?.owner) {
 							<button class="danger" (click)="userIteractionSubj.next('deleteDialog')">Delete</button>
 							<button [routerLink]="['/recipes/' + selectedRecipeSig()?._id + '/edit']" [state]="{ recipe: selectedRecipeSig() }">Edit</button>
 						} @else {
-							<button [routerLink]="['/recipes/']" >Back to Recipes</button>
-							<button class="accent" (click)="userIteractionSubj.next('recommend')">Recommend</button>
+							<button [routerLink]="['/recipes/']">Back to Recipes</button>
+							<button class="accent"
+								(click)="userIteractionSubj.next('recommend')"
+								[disabled]="!selectedRecipeSig()?.recommendList?.includes(authService.currUserSig()?._id ?? '')">
+								Recommend
+							</button>
 						}
 
 					</div>

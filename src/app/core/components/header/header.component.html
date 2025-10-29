@@ -6,7 +6,7 @@
 		</span>
 
 		<!-- navgation -->
-		@for (item of menuItems | appListFilterPipe: filterMenuMainMenu('account', false); track $index) {
+		@for (item of menuItems | appListFilterPipe: filterMenuMainMenu('account', false); track item.title) {
 			<ng-container *ngTemplateOutlet="navItem; context: {item}"></ng-container>
 		}
 
@@ -23,7 +23,7 @@
 			</button>
 
 			<div popover id="userMenu"  class="popover__panel" anchor="userMenuTrigger">
-				@for (item of menuItems | appListFilterPipe: filterMenuMainMenu('account', true); track $index) {
+				@for (item of menuItems | appListFilterPipe: filterMenuMainMenu('account', true); track item.title) {
 					<ng-container *ngTemplateOutlet="navItem; context: {item}"></ng-container>
 				}
 			</div>

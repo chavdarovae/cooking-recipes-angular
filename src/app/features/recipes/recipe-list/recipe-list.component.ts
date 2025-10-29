@@ -26,7 +26,7 @@ export class RecipeListComponent implements OnInit {
 	recipes: Signal<IRecipe[]>= this.recipeService.recipesSig;
 
 	// auxiliary variables
-	query!: RecipeQuery               ;
+	query!: RecipeQuery;
 
 	ngOnInit(): void {
 		this.query = new RecipeQuery('');
@@ -35,6 +35,6 @@ export class RecipeListComponent implements OnInit {
 
 	onSearchStringChange(searchStr: string) {
 		this.query.search = searchStr;
-		this.recipeService.reloadRecipes(this.query)
+		this.recipeService.reloadRecipes(this.query);
 	}
 }

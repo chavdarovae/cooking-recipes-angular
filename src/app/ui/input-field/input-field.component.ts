@@ -23,6 +23,7 @@ import { debounceTime, distinctUntilChanged, fromEvent, map, Observable, tap } f
 })
 export class InputFieldComponent implements AfterViewInit {
 	@Input() isTypeAhead!: boolean;
+	@Input() isDisabled!: boolean;
 	@Input() label!: string;
 	@Input() modelName!: string;
 	@Input() inpValue!: string;

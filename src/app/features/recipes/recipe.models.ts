@@ -1,4 +1,4 @@
-import { IRecipe } from "./recipe.interface";
+import { IRecipe, IRecipeQuery } from "./recipe.interface";
 
 export class RecipeCreateItem implements IRecipe {
 	title: string;
@@ -24,6 +24,20 @@ export class RecipeCreateItem implements IRecipe {
 		this.description = description;
 		this.image = image;
 		this.recommendList = recommendList;
+		this.owner = owner;
+	}
+}
+
+
+export class RecipeQuery implements IRecipeQuery {
+	search?: string;
+	owner?: string;
+
+	constructor(
+		search?: string,
+		owner?: string,
+	) {
+		this.search = search;
 		this.owner = owner;
 	}
 }

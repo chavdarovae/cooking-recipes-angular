@@ -1,7 +1,19 @@
 <div class="container">
-	<h2>Find your favourie recipe among {{recipes().length}}</h2>
 
-	<div class="row row--centered gap-50">
+	<form class="form">
+		<h5>Find your favourite recipe:{{ query.search}} </h5>
+		<clt-input-field
+			modelName="searchString"
+			inpType="text"
+			placeholder="Search here"
+			[isTypeAhead]="true"
+			[inpValue]="query.search ?? ''"
+			(onInpChanged)="onSearchStringChange($event)">
+		</clt-input-field>
+	</form>
+
+
+	<div class="card-container">
 		@for (recipe of recipes(); track $index) {
 			<clt-card [recipe]="recipe"></clt-card>
 		}

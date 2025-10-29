@@ -2,16 +2,16 @@
 	<label [for]="modelName">{{ label | titlecase }}</label>
 }
 
-<input #inpField="ngModel"
+<input #inpFieldRef #inpField="ngModel"
 	class="form__control"
 	[id]="modelName"
 	[name]="modelName"
 	[type]="inpType"
+	[placeholder]="placeholder"
 	[pattern]="pattern"
 	[minlength]="minLength"
 	[maxlength]="maxLength"
 	[ngModel]="inpValue"
-	(ngModelChange)="onInpChanged.emit(inpField.value)"
 	(focusin)="onInpFocusedIn.emit(inpField.value)"
 	(focusout)="onInpFocusedOut.emit(inpField.value)"
 	[required]="isRequired" />

@@ -63,7 +63,10 @@ export class AuthService {
 
 	logout(): Observable<any> {
 		return this.http.get<IAccount>(this.accountApi + '/logout').pipe(
-			tap(() => this.setCurrUserAsGuest()),
+			tap(() => {
+				this.setCurrUserAsGuest();
+				this.router.navigateByUrl('/')
+			}),
 			first()
 		);
 	}

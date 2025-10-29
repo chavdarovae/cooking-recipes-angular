@@ -2,21 +2,19 @@
 @import "settings-breakpoints";
 
 .carousel {
-	width: calc(100% - 6vmin);
+	$button-size: 6vmin;
+
+	width: calc(100% - calc($button-size + 1vmin));
+	height: 400px;
 	margin: 0 auto;
-	overflow-x: auto;
-	height: 300px;
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: flex-start;
-	gap: 3vmin;
+	gap: calc($button-size / 5);
+	overflow-x: auto;
 	scroll-behavior: smooth;
 	scroll-snap-type: x mandatory;
 	anchor-name: --carousel;
-
-	@include tablet-landscape{
-		height: 500px;;
-	}
 
 	&::-webkit-scrollbar {
 		display: none;
@@ -37,8 +35,8 @@
 	&::scroll-button(right),
 	&::scroll-button(left) {
 		border: none;
-		font-size: 5vmin;
-		height: 15%;
+		font-size: calc($button-size - 2vmin);
+		min-height: $button-size;
 		aspect-ratio: 1;
 		border-radius: 50%;
 		background-color: $app;
@@ -54,22 +52,15 @@
 		}
 	}
 
-	clt-card {
-		scroll-snap-align: start;
-		flex: 0 0 100px;
-	}
-
 	img  {
 		scroll-snap-align: start;
-		width: clamp(150px, 150px, 150px);
+		width: 25%;
+		min-width: 25%;
+		max-width: 25%;
 		object-fit: cover;
 		object-position: center;
 		border-radius: $rounding-pri;
 		transition: transform 300ms ease;
-
-		@include tablet-landscape{
-			width: clamp(300px, 300px, 300px);
-		}
 
 		&:hover {
 			transform: translateY(10px);

@@ -31,11 +31,6 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
 					case 401:
 						this.authService.setCurrUserAsGuest();
 						this.router.navigateByUrl('/users/login');
-
-						this.alertService.showAlert({
-							alert:'You are not authentificated. Please login!',
-							type: 'danger',
-						});
 						break;
 					case 403:
 						this.alertService.showAlert({

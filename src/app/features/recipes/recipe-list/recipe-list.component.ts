@@ -1,9 +1,9 @@
-import { AsyncPipe, NgIf } from '@angular/common';
 import { Component, inject, OnInit, Signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { IRecipe } from '../recipe.interface';
 import { RecipeService } from '../recipe.service';
-import { CardComponent } from 'src/app/ui';
+import { CardComponent, InputFieldComponent } from 'src/app/ui';
+import { NgForm } from '@angular/forms';
+import { RecipeQuery } from '../recipe.models';
 
 @Component({
 	selector: 'app-recipe-list',
@@ -11,8 +11,11 @@ import { CardComponent } from 'src/app/ui';
 	templateUrl: './recipe-list.component.html',
 	styleUrl: './recipe-list.component.scss',
 	imports: [
-		RouterLink,
-		CardComponent
+		CardComponent,
+		InputFieldComponent,
+	],
+	providers: [
+		NgForm
 	]
 })
 export class RecipeListComponent implements OnInit {
@@ -22,7 +25,16 @@ export class RecipeListComponent implements OnInit {
 	// main entity
 	recipes: Signal<IRecipe[]>= this.recipeService.recipesSig;
 
+	// auxiliary variables
+	query!: RecipeQuery               ;
+
 	ngOnInit(): void {
-		this.recipeService.reloadRecipes();
+		this.query = new RecipeQuery('');
+		this.recipeService.reloadRecipes(this.query);
+	}
+
+	onSearchStringChange(searchStr: string) {
+		this.query.search = searchStr;
+		this.recipeService.reloadRecipes(this.query)
 	}
 }

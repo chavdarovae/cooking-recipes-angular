@@ -8,3 +8,8 @@ export interface IRecipe {
 	recommendList: string[],
 	owner: string,
 }
+
+export interface IRecipeQuery {
+	search?: string,
+	owner?: string
+}

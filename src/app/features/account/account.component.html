@@ -6,7 +6,7 @@
 		<div><strong>Email:</strong> {{authService.currUserSig()?.email}}</div>
 		<hr/>
 
-		<div><strong>Role:</strong> {{authService.currUserSig()?.role}}</div>
+		<div><strong>Role:</strong> {{authService.currUserSig()?.role | lowercase }}</div>
 		<hr/>
 
 		<div><strong>My recepies:</strong></div>
@@ -17,8 +17,8 @@
 			<!-- <clt-card [recipe]="recipe"></clt-card> -->
 			<img [src]="recipe.image" [alt]="recipe.title" [routerLink]="['/recipes', recipe?._id]"/>
 
+		} @empty {
+			<h5 class="row row--centered row--middle">You don't have any recipes yet!</h5>
 		}
 	</div>
-
-
 </div>

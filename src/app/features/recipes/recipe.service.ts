@@ -1,23 +1,25 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { filter, first, Observable, shareReplay, Subject, switchMap, tap } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { filter, Observable, shareReplay, Subject, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IRecipe } from './recipe.interface';
+import { IRecipe, IRecipeQuery } from './recipe.interface';
+import { UtilService } from 'src/app/utils';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class RecipeService {
 	private http = inject(HttpClient);
+	private utilService = inject(UtilService);
 
 	//auxiliary variables
 	accountApi = environment.backendUrl + '/api/recipes';
 
 	// service state recipe list
-	private relaodRecipesSubj: Subject<boolean> = new Subject();
+	private relaodRecipesSubj: Subject<IRecipeQuery> = new Subject();
 	private recipes$: Observable<IRecipe[]> = this.relaodRecipesSubj.asObservable().pipe(
-		switchMap(() =>this.http.get<IRecipe[]>(this.accountApi)),
+		switchMap((query: IRecipeQuery) => this.http.get<IRecipe[]>(this.accountApi + this.utilService.transformQueryIntoString(query as Record<string, string>))),
 		shareReplay(),
 	);
 	recipesSig = toSignal(this.recipes$, {initialValue: [] as IRecipe[]});
@@ -30,8 +32,8 @@ export class RecipeService {
 	);
 	selectedRecipeSig = toSignal(this.selectedRecipe$, {initialValue: null});
 
-	reloadRecipes() {
-		this.relaodRecipesSubj.next(true);
+	reloadRecipes(query: IRecipeQuery) {
+		this.relaodRecipesSubj.next(query);
 	}
 
 	selectRecipe(id: string) {

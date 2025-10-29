@@ -1,9 +1,8 @@
 @import "app-variables";
 @import "settings/settings-breakpoints";
 
-
 .card {
-	width: clamp(300px, 350px, 400px);
+	width: 100%;
 	padding: 15px;
 	text-align: center;
 	overflow: hidden;

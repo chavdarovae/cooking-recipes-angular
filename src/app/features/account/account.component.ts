@@ -9,9 +9,8 @@ import { RouterLink } from "@angular/router";
   selector: 'app-account',
   standalone: true,
   imports: [
-    TitleCasePipe,
-    CardComponent,
-    RouterLink
+    RouterLink,
+	LowerCasePipe
 ],
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss'
@@ -25,6 +24,6 @@ export class AccountComponent implements OnInit {
 	ownRecipesSig = this.accountService.ownRecipesSig;
 
 	ngOnInit(): void {
-		this.accountService.reloadHomeInfo();
+		this.accountService.reloadHomeInfo(this.authService.currUserSig()?._id);
 	}
 }

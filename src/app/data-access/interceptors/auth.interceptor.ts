@@ -2,9 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpXsrfTokenExtr
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-@Injectable({
-	providedIn: 'root'
-})
+@Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 	private tokenService = inject(HttpXsrfTokenExtractor);
 

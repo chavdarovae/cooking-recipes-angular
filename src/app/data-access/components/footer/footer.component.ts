@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { LoaderService } from './../../services/loader-service';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -11,4 +12,6 @@ import { RouterModule } from '@angular/router';
 	styleUrl: './footer.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FooterComponent {}
+export class FooterComponent {
+	loaderService = inject(LoaderService);
+}

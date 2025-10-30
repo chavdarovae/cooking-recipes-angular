@@ -1,11 +1,10 @@
 import { Component, inject, OnInit, Signal } from '@angular/core';
-import { AuthService } from 'src/app/data-access/auth.service';
-import { IAccount } from '../user.interface';
+import { AuthService } from 'src/app/data-access/services/auth.service';
 import { RouterLink } from '@angular/router';
 import { InputFieldComponent, InputSelectComponent } from "src/app/ui";
-import { UserQuery } from '../user.models';
 import { NgForm } from '@angular/forms';
-import { UserRolesEnum } from '../user.enums';
+import { UserQuery } from '../user.models';
+import { IAccount, UserRolesEnum } from 'src/app/utils';
 
 @Component({
 	selector: 'app-user-list',
@@ -13,10 +12,10 @@ import { UserRolesEnum } from '../user.enums';
 	templateUrl: './user-list.component.html',
 	styleUrl: './user-list.component.scss',
 	imports: [
-    RouterLink,
-    InputFieldComponent,
-    InputSelectComponent
-],
+		RouterLink,
+		InputFieldComponent,
+		InputSelectComponent
+	],
 	providers: [
 		NgForm
 	]

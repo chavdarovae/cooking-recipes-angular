@@ -1,12 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../data-access/auth.service';
+import { AuthService } from 'src/app/data-access';
 
 @Component({
-  selector: 'app-logout',
-  standalone: true,
-  imports: [],
-  template: '',
+	selector: 'app-logout',
+	standalone: true,
+	imports: [],
+	template: '',
 })
 export class LogoutComponent implements OnInit {
 	authService = inject(AuthService);

@@ -1,11 +1,10 @@
-import { UtilService } from './../utils/util.service';
 import { HttpClient } from '@angular/common/http';
 import { computed, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { first, Observable, shareReplay, Subject, switchMap, tap } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { IAccount, IUser, IUserQuery } from '../features/users/user.interface';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { IAccount, IUser, IUserQuery, UtilService } from 'src/app/utils';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
 	providedIn: 'root'

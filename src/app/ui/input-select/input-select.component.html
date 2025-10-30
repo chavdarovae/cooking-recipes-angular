@@ -6,7 +6,7 @@
 	class="form__control"
 	[id]="modelName"
 	[name]="modelName"
-	[ngModel]="selectListValue ?? null"
+	[ngModel]="inpValue ?? null"
 	(ngModelChange)="onSelectChanged.emit(inpSelect.value)"
 	(focusin)="onSelectFocusedIn.emit(inpSelect.value)"
 	(focusout)="onSelectFocusedOut.emit(inpSelect.value)"

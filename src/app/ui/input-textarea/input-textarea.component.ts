@@ -4,7 +4,7 @@ import { ControlContainer, FormsModule, NgForm } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, fromEvent, map, Observable, tap } from 'rxjs';
 
 @Component({
-	selector: 'clt-input-field',
+	selector: 'clt-input-textarea',
 	standalone: true,
 	imports: [
 		FormsModule,
@@ -16,11 +16,11 @@ import { debounceTime, distinctUntilChanged, fromEvent, map, Observable, tap } f
 			useExisting: NgForm
 		},
 	],
-	templateUrl: './input-field.component.html',
-	styleUrl: './input-field.component.scss',
+	templateUrl: './input-textarea.component.html',
+	styleUrl: './input-textarea.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputFieldComponent implements AfterViewInit {
+export class InputTextareaComponent implements AfterViewInit {
 	@Input() isTypeAhead!: boolean;
 	@Input() isDisabled!: boolean;
 	@Input() label!: string;

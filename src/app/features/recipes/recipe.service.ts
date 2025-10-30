@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { filter, Observable, shareReplay, Subject, switchMap, tap } from 'rxjs';
+import { filter, Observable, shareReplay, Subject, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IRecipe, IRecipeQuery } from './recipe.interface';
 import { UtilService } from 'src/app/utils';

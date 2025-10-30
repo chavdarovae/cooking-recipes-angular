@@ -1,14 +1,15 @@
-import { AlertService } from './../../../core/services/alert.service';
-import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
-import { RecipeCreateItem } from '../recipe.models';
-import { RecipeService } from '../recipe.service';
-import { catchError, distinctUntilChanged, EMPTY, Observable, Subject, switchMap, tap } from 'rxjs';
-import { IRecipe } from '../recipe.interface';
-import { HttpErrorResponse } from '@angular/common/http';
-import { InputFieldComponent } from 'src/app/ui';
+import { CommonModule } from "@angular/common";
+import { Component, inject, OnInit } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { Router, RouterModule } from "@angular/router";
+import { InputFieldComponent, InputTextareaComponent } from "src/app/ui";
+import { RecipeService } from "../recipe.service";
+import { AlertService } from "src/app/data-access";
+import { catchError, distinctUntilChanged, EMPTY, Observable, Subject, switchMap, tap } from "rxjs";
+import { IRecipe } from "../recipe.interface";
+import { RecipeCreateItem } from "../recipe.models";
+import { HttpErrorResponse } from "@angular/common/http";
+
 
 type RecipeUserInteractionType = 'create' | 'update';
 
@@ -21,7 +22,8 @@ type RecipeUserInteractionType = 'create' | 'update';
 		CommonModule,
 		FormsModule,
 		RouterModule,
-		InputFieldComponent
+		InputFieldComponent,
+		InputTextareaComponent
 	],
 })
 export class RecipeCreateComponent implements OnInit {
@@ -49,7 +51,7 @@ export class RecipeCreateComponent implements OnInit {
 		this.userIteraction$ = this.userIteractionSubj.asObservable().pipe(
 			distinctUntilChanged(),
 			tap((action) => this.currInteraction = action),
-			switchMap((action) => {
+			switchMap((action: RecipeUserInteractionType) => {
 				switch (action) {
 					case 'create':
 						return this.recipeService.create(this.recipe);

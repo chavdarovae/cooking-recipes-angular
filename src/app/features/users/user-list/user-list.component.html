@@ -16,7 +16,7 @@
 			modelName="role"
 			placeholder="All roles"
 			[selectList]="userRolesEnum"
-			[selectListValue]="query.role"
+			[inpValue]="query.role"
 			[selectEcceptions]="[userRolesEnum.GUEST]"
 			(onSelectChanged)="query.role = $event; onSearchQueryChange()">
 		</clt-input-select>

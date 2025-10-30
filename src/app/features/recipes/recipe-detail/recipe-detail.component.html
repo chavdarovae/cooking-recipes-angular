@@ -48,7 +48,10 @@
 
 			</article>
 
-			<div *ngIf="false">You've already recommended this recipe!</div>
+			@if (false) {
+				<div>You've already recommended this recipe!</div>
+			}
+
 
 			<app-modal [show]="showModal" entity="recipe" (close)="onModalClosed($event)"></app-modal>
 		}

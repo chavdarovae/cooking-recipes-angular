@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IRecipe } from 'src/app/features/recipes/recipe.interface';
+import { IRecipe } from '../../recipe.interface';
 
 @Component({
 	selector: 'clt-card',

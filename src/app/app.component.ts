@@ -1,9 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FooterComponent } from './core/components/footer/footer.component';
-import { HeaderComponent } from './core/components/header/header.component';
-import { AuthService } from './data-access/auth.service';
-import { AlertComponent } from "./core/components/alert/alert.component";
+import { AuthService } from './data-access/services/auth.service';
+import { AlertComponent, FooterComponent, HeaderComponent } from './data-access';
 
 @Component({
   selector: 'app-root',
@@ -18,8 +16,7 @@ import { AlertComponent } from "./core/components/alert/alert.component";
 ]
 })
 export class AppComponent implements OnInit {
-	protected authService = inject(AuthService);
-  	title = 'cooking-recipes-angular';
+	public authService = inject(AuthService);
 
 	ngOnInit(): void {
 		this.authService.getOwnAccount().subscribe()

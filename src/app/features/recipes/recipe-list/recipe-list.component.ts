@@ -1,9 +1,10 @@
 import { Component, inject, OnInit, Signal } from '@angular/core';
-import { IRecipe } from '../recipe.interface';
-import { RecipeService } from '../recipe.service';
-import { CardComponent, InputFieldComponent } from 'src/app/ui';
+import { InputFieldComponent } from 'src/app/ui';
 import { NgForm } from '@angular/forms';
+import { RecipeService } from '../recipe.service';
+import { IRecipe } from '../recipe.interface';
 import { RecipeQuery } from '../recipe.models';
+import { CardComponent } from '../components/card/card.component';
 
 @Component({
 	selector: 'app-recipe-list',

@@ -1,5 +1,5 @@
 import { Directive, effect, ElementRef, input, Renderer2 } from '@angular/core';
-import { UserRolesEnum } from '../features/users/user.enums';
+import { UserRolesEnum } from 'src/app/utils';
 
 @Directive({
 	selector: '[appIsAuthorised]',

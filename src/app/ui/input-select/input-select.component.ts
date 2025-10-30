@@ -1,8 +1,6 @@
 import { TitleCasePipe } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { ControlContainer, FormsModule, NgForm } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, fromEvent, map, Observable, tap } from 'rxjs';
 import { EnumToListPipe } from 'src/app/utils';
 
 @Component({
@@ -24,7 +22,7 @@ import { EnumToListPipe } from 'src/app/utils';
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputSelectComponent<T> {
-	@Input() selectListValue!: T[keyof T] | undefined;
+	@Input() inpValue!: T[keyof T] | undefined;
 	@Input() selectList: T = {} as T;
 	@Input() selectEcceptions: string[] = [];
 	@Input() isDisabled!: boolean;

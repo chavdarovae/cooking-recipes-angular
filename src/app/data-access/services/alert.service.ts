@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 type AlertType = 'danger' | 'warning' | 'info' | 'success';
 interface IAlert {

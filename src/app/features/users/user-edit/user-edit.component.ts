@@ -1,4 +1,3 @@
-import { AlertService } from '../../../core/services/alert.service';
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -7,9 +6,9 @@ import { UserEditItem } from '../user.models';
 import { catchError, distinctUntilChanged, EMPTY, Observable, Subject, switchMap, tap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { InputFieldComponent, InputSelectComponent } from 'src/app/ui';
-import { IUser } from '../user.interface';
-import { AuthService } from 'src/app/data-access/auth.service';
-import { UserRolesEnum } from '../user.enums';
+import { AuthService } from 'src/app/data-access/services/auth.service';
+import { IUser, UserRolesEnum } from 'src/app/utils';
+import { AlertService } from 'src/app/data-access';
 
 type UserUserInteractionType = 'update';
 

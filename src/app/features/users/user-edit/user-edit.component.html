@@ -26,7 +26,7 @@
 				label="Role"
 				modelName="role"
 				[selectList]="userRolesEnum"
-				[selectListValue]="user.role"
+				[inpValue]="user.role"
 				[selectEcceptions]="[userRolesEnum.GUEST]"
 				(onSelectChanged)="user.role = $event">
 			</clt-input-select>

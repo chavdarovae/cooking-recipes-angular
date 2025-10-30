@@ -1,19 +1,19 @@
-import { AuthService } from 'src/app/data-access/auth.service';
+import { RouterLink } from '@angular/router';
+import { Component, inject, OnInit } from "@angular/core";
+import { LowerCasePipe } from '@angular/common';
 import { AccountService } from './account.service';
-import { Component, inject, OnInit } from '@angular/core';
-import { LowerCasePipe, TitleCasePipe } from '@angular/common';
-import { CardComponent } from 'src/app/ui';
-import { RouterLink } from "@angular/router";
+import { AuthService } from 'src/app/data-access/services/auth.service';
+
 
 @Component({
-  selector: 'app-account',
-  standalone: true,
-  imports: [
-    RouterLink,
-	LowerCasePipe
-],
-  templateUrl: './account.component.html',
-  styleUrl: './account.component.scss'
+	selector: 'app-account',
+	standalone: true,
+	imports: [
+		RouterLink,
+		LowerCasePipe
+	],
+	templateUrl: './account.component.html',
+	styleUrl: './account.component.scss'
 })
 export class AccountComponent implements OnInit {
 	// services

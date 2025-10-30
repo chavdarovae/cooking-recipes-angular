@@ -1,5 +1,5 @@
-import { UserRolesEnum } from "src/app/features/users/user.enums";
-import { IAppMenuItem } from "src/app/utils/general.interfaces";
+import { UserRolesEnum } from "../enums/user.enums";
+import { IAppMenuItem } from "../interfaces/general.interfaces";
 
 export const MENU_ITEMS: Record<string, IAppMenuItem> = {
 	recipes: {

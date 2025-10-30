@@ -1,9 +1,9 @@
-import { InputFieldComponent } from './../../../ui/index';
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../../data-access/auth.service';
+import { AuthService } from 'src/app/data-access/services/auth.service';
+import { InputFieldComponent } from 'src/app/ui';
 
 @Component({
 	selector: 'app-login',
@@ -34,8 +34,6 @@ export class LoginComponent implements OnInit {
 
 
 	onSubmit() {
-		console.log(this.model);
-
 		if (!this.model.email || !this.model.password) {
 			return;
 		}

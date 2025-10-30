@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from 'src/app/data-access';
 
 
 export const USER_ROUTES: Routes = [
@@ -21,5 +22,6 @@ export const USER_ROUTES: Routes = [
 	{
 		path: ':id',
 		loadComponent: () => import('./user-edit/user-edit.component').then(c => c.UserEditComponent),
+		canActivate: [AuthGuard]
 	},
 ];

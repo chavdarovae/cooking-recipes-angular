@@ -1,6 +1,4 @@
-import { NgFor } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { AlertService } from '../../services/alert.service';
 
 @Component({

@@ -1,4 +1,3 @@
-import { AuthService } from 'src/app/data-access/auth.service';
 import {
 	HttpErrorResponse,
 	HttpEvent,
@@ -10,6 +9,7 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, catchError, throwError as throwErrorObservable } from 'rxjs';
 import { AlertService } from '../services/alert.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class ErrorCatchingInterceptor implements HttpInterceptor {

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { AuthGuard } from 'src/app/core/components/guards/auth.guard';
+import { AuthGuard } from 'src/app/data-access';
 
 export const RECIPE_ROUTES: Routes = [
 	{

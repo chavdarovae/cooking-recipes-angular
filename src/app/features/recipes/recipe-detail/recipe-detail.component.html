@@ -38,7 +38,7 @@
 							<button [routerLink]="['/recipes/']">Back to Recipes</button>
 							<button class="accent"
 								(click)="userIteractionSubj.next('recommend')"
-								[disabled]="!selectedRecipeSig()?.recommendList?.includes(authService.currUserSig()?._id ?? '')">
+								[disabled]="isAlreadyRecommendedByCurrUser()">
 								Recommend
 							</button>
 						}

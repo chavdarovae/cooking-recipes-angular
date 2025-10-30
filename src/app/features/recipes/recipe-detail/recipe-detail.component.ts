@@ -21,7 +21,7 @@ type RecipeUserInteractionType = 'deleteDialog' | 'delete' | 'recommend';
 		RouterLink,
 		ModalComponent,
 		NgIf,
-		AsyncPipe
+		AsyncPipe,
 	],
 })
 export class RecipeDetailComponent implements OnInit {
@@ -58,6 +58,17 @@ export class RecipeDetailComponent implements OnInit {
 		this.showModal = false;
 	}
 
+	isAlreadyRecommendedByCurrUser(): boolean {
+		const recipe = this.selectedRecipeSig();
+		const currUserId = this.authService.currUserSig()?._id;
+
+		if (!recipe?.recommendList || !currUserId) {
+			return false;
+		}
+
+		return recipe.recommendList?.flatMap((x: {_id: string}) => x._id)?.includes(currUserId);
+	}
+
 	private initUserInteraction(): void {
 		this.userIteraction$ = this.userIteractionSubj.asObservable().pipe(
 			distinctUntilChanged((prev, curr) => {
@@ -79,7 +90,6 @@ export class RecipeDetailComponent implements OnInit {
 				}
 			}),
 			tap(() => {
-				this.router.navigateByUrl('/recipes');
 				this.alertService.showAlert({alert: `The recipe was successfully ${this.currInteraction}d!`, type: 'success'})
 			}),
 			catchError((err: HttpErrorResponse) => {

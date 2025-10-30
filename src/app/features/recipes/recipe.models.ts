@@ -6,7 +6,6 @@ export class RecipeCreateItem implements IRecipe {
 	instructions: string;
 	description: string;
 	image: string;
-	recommendList: string[];
 	owner: string;
 
 	constructor(
@@ -15,7 +14,6 @@ export class RecipeCreateItem implements IRecipe {
 		instructions: string = '',
 		description: string = '',
 		image: string = '',
-		recommendList: string[] = [],
 		owner: string = '',
 	) {
 		this.title = title;
@@ -23,7 +21,6 @@ export class RecipeCreateItem implements IRecipe {
 		this.instructions = instructions;
 		this.description = description;
 		this.image = image;
-		this.recommendList = recommendList;
 		this.owner = owner;
 	}
 }

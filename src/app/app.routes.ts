@@ -8,10 +8,6 @@ export const routes: Routes = [
 		pathMatch: 'full'
 	},
 	{
-		path: 'account',
-		loadChildren: () => import('./features/account/account.routes').then(r => r.ACCOUNT_ROUTES)
-	},
-	{
 		path: 'users',
 		loadChildren: () => import('./features/users/users.routes').then(r => r.USER_ROUTES)
 	},

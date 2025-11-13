@@ -8,6 +8,11 @@ export const RECIPE_ROUTES: Routes = [
 		canActivate: []
 	},
 	{
+		path: 'account',
+		loadComponent: () => import('./recipes-account/recipes-account.component').then(m => m.RecipesAccountComponent),
+		canActivate: [AuthGuard]
+	},
+	{
 		path: 'create',
 		loadComponent: () => import('./recipe-create/recipe-create.component').then(m => m.RecipeCreateComponent),
 		canActivate: [AuthGuard]

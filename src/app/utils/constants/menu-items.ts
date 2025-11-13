@@ -15,7 +15,7 @@ export const MENU_ITEMS: Record<string, IAppMenuItem> = {
 		roles: [ UserRolesEnum.ADMIN ]
 	},
 	account: {
-		path: 'account',
+		path: 'recipes/account',
 		roles: [ UserRolesEnum.ADMIN, UserRolesEnum.USER ],
 		underMainMenu: 'account'
 	},

@@ -1,0 +1,1 @@
+var s=class{title;ingredients;instructions;description;image;owner;constructor(i="",t="",e="",g="",o="",c=""){this.title=i,this.ingredients=t,this.instructions=e,this.description=g,this.image=o,this.owner=c}},r=class{search;owner;constructor(i,t){this.search=i,this.owner=t}};export{s as a,r as b};

@@ -1,43 +1,43 @@
-@import "app-variables";
+@import 'app-variables';
 
 .app {
-	$width: 100vw;
-	$gap: 30px;
+    $width: 100vw;
+    $gap: 30px;
 
-	min-height: 100vh;
-	width: $width;
-	display: flex;
-	flex-flow: column nowrap;
-	gap: $gap;
-	position: relative;
+    min-height: 100vh;
+    width: $width;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: $gap;
+    position: relative;
 
-	&__header {
-		width: $width;
-		height: $header-height;
-		z-index: 20;
-		background: $app;
-	}
+    &__header {
+        width: $width;
+        height: $header-height;
+        z-index: 20;
+        background: $app;
+    }
 
-	&__alert {
-		width: clamp(400px, 500px, 90%);
-		position: absolute;
-		right: 40px;
-		top: calc(10px + $header-height);
-		z-index: 20;
-	}
+    &__alert {
+        width: clamp(400px, 500px, 90%);
+        position: absolute;
+        right: 40px;
+        top: calc(10px + $header-height);
+        z-index: 20;
+    }
 
-	&__main {
-		width: $width;
-		height: calc(100vh - $header-height - $footer-height - 2 * $gap);
-		background: $bg-pri;
-		overflow-y: auto;
-	}
+    &__main {
+        width: $width;
+        height: calc(100vh - $header-height - $footer-height - 2 * $gap);
+        background: $bg-pri;
+        overflow-y: auto;
+    }
 
-	&__footer {
-		width: $width;
-		height: $footer-height;
-		margin-top: auto;
-		z-index: 20;
-		background: $app;
-	}
+    &__footer {
+        width: $width;
+        height: $footer-height;
+        margin-top: auto;
+        z-index: 20;
+        background: $app;
+    }
 }

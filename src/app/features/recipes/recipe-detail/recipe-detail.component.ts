@@ -1,102 +1,116 @@
-import { AsyncPipe } from "@angular/common";
-import { Component, inject, Input, OnInit, Signal } from "@angular/core";
-import { Router, RouterLink } from "@angular/router";
-import { ModalComponent } from "src/app/ui";
-import { RecipeService } from "../recipe.service";
-import { AlertService } from "src/app/data-access";
-import { AuthService } from "src/app/data-access/services/auth.service";
-import { catchError, distinctUntilChanged, EMPTY, Observable, of, Subject, switchMap, tap } from "rxjs";
-import { IRecipe } from "../recipe.interface";
-import { HttpErrorResponse } from "@angular/common/http";
-
-
+import { AsyncPipe } from '@angular/common';
+import { Component, inject, Input, OnInit, Signal } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { ModalComponent } from 'src/app/ui';
+import { RecipeService } from '../recipe.service';
+import { AlertService } from 'src/app/data-access';
+import { AuthService } from 'src/app/data-access/services/auth.service';
+import {
+    catchError,
+    distinctUntilChanged,
+    EMPTY,
+    Observable,
+    of,
+    Subject,
+    switchMap,
+    tap,
+} from 'rxjs';
+import { IRecipe } from '../recipe.interface';
+import { HttpErrorResponse } from '@angular/common/http';
 
 type RecipeUserInteractionType = 'deleteDialog' | 'delete' | 'recommend';
 
 @Component({
-	selector: 'app-recipe-detail',
-	standalone: true,
-	templateUrl: './recipe-detail.component.html',
-	styleUrl: './recipe-detail.component.scss',
-	imports: [
-		RouterLink,
-		ModalComponent,
-		AsyncPipe,
-	],
+    selector: 'app-recipe-detail',
+    standalone: true,
+    templateUrl: './recipe-detail.component.html',
+    styleUrl: './recipe-detail.component.scss',
+    imports: [RouterLink, ModalComponent, AsyncPipe],
 })
 export class RecipeDetailComponent implements OnInit {
-	// services
-	private recipeService = inject(RecipeService);
-	private alertService = inject(AlertService);
-	private router = inject(Router);
-	public authService = inject(AuthService);
+    // services
+    private recipeService = inject(RecipeService);
+    private alertService = inject(AlertService);
+    private router = inject(Router);
+    public authService = inject(AuthService);
 
-	// imlicit input from routing
-	@Input() id!: string;
+    // imlicit input from routing
+    @Input() id!: string;
 
-	// user interaction
-	userIteractionSubj: Subject<RecipeUserInteractionType> = new Subject();
-	userIteraction$!: Observable<IRecipe>;
-	currInteraction!: RecipeUserInteractionType;
+    // user interaction
+    userIteractionSubj: Subject<RecipeUserInteractionType> = new Subject();
+    userIteraction$!: Observable<IRecipe>;
+    currInteraction!: RecipeUserInteractionType;
 
-	// main entity
-	selectedRecipeSig: Signal<IRecipe | null> = this.recipeService.selectedRecipeSig;
+    // main entity
+    selectedRecipeSig: Signal<IRecipe | null> =
+        this.recipeService.selectedRecipeSig;
 
-	// aucxiliary variables
-	showModal = false;
+    // aucxiliary variables
+    showModal = false;
 
+    ngOnInit(): void {
+        this.recipeService.selectRecipe(this.id);
+        this.initUserInteraction();
+    }
 
-	ngOnInit(): void {
-		this.recipeService.selectRecipe(this.id);
-		this.initUserInteraction();
-	}
+    onModalClosed(confirmation: boolean) {
+        if (confirmation) {
+            this.userIteractionSubj.next('delete');
+        }
+        this.showModal = false;
+    }
 
-	onModalClosed(confirmation: boolean) {
-		if (confirmation) {
-			this.userIteractionSubj.next('delete');
-		}
-		this.showModal = false;
-	}
+    isAlreadyRecommendedByCurrUser(): boolean {
+        const recipe = this.selectedRecipeSig();
+        const currUserId = this.authService.currUserSig()?._id;
 
-	isAlreadyRecommendedByCurrUser(): boolean {
-		const recipe = this.selectedRecipeSig();
-		const currUserId = this.authService.currUserSig()?._id;
+        if (!recipe?.recommendList || !currUserId) {
+            return false;
+        }
 
-		if (!recipe?.recommendList || !currUserId) {
-			return false;
-		}
+        return recipe.recommendList
+            ?.flatMap((x: { _id: string }) => x._id)
+            ?.includes(currUserId);
+    }
 
-		return recipe.recommendList?.flatMap((x: {_id: string}) => x._id)?.includes(currUserId);
-	}
-
-	private initUserInteraction(): void {
-		this.userIteraction$ = this.userIteractionSubj.asObservable().pipe(
-			distinctUntilChanged((prev, curr) => {
-				return curr.includes('Dialog') ? false : prev === curr;
-			}),
-			tap((action) => this.currInteraction = action),
-			switchMap((action) => {
-				switch (action) {
-					case 'deleteDialog':
-						return of('deleteDialog').pipe(
-							tap(() => this.showModal = true),
-						);
-					case 'delete':
-						return this.recipeService.delete(this.selectedRecipeSig()?._id).pipe(
-							tap(() => this.router.navigateByUrl('/recipes')),
-						);
-					case 'recommend':
-						return this.recipeService.recommend(this.selectedRecipeSig()?._id);
-				}
-			}),
-			tap(() => {
-				this.alertService.showAlert({alert: `The recipe was successfully ${this.currInteraction}d!`, type: 'success'})
-			}),
-			catchError((err: HttpErrorResponse) => {
-				console.error('Recipe operation failed:', err);
-				this.initUserInteraction();
-				return EMPTY;
-			})
-		);
-	}
+    private initUserInteraction(): void {
+        this.userIteraction$ = this.userIteractionSubj.asObservable().pipe(
+            distinctUntilChanged((prev, curr) => {
+                return curr.includes('Dialog') ? false : prev === curr;
+            }),
+            tap((action) => (this.currInteraction = action)),
+            switchMap((action) => {
+                switch (action) {
+                    case 'deleteDialog':
+                        return of('deleteDialog').pipe(
+                            tap(() => (this.showModal = true)),
+                        );
+                    case 'delete':
+                        return this.recipeService
+                            .delete(this.selectedRecipeSig()?._id)
+                            .pipe(
+                                tap(() =>
+                                    this.router.navigateByUrl('/recipes'),
+                                ),
+                            );
+                    case 'recommend':
+                        return this.recipeService.recommend(
+                            this.selectedRecipeSig()?._id,
+                        );
+                }
+            }),
+            tap(() => {
+                this.alertService.showAlert({
+                    alert: `The recipe was successfully ${this.currInteraction}d!`,
+                    type: 'success',
+                });
+            }),
+            catchError((err: HttpErrorResponse) => {
+                console.error('Recipe operation failed:', err);
+                this.initUserInteraction();
+                return EMPTY;
+            }),
+        );
+    }
 }

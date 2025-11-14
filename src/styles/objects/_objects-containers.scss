@@ -1,59 +1,59 @@
-@import "../_app-variables.scss";
-@import "../settings/settings-breakpoints";
+@import '../_app-variables.scss';
+@import '../settings/settings-breakpoints';
 
 .container {
-	width: 90vw;
-	min-height: 100%;
-	margin: 0px auto;
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: flex-start;
-	align-items: center;
-	gap: 20px;
+    width: 90vw;
+    min-height: 100%;
+    margin: 0px auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
 
-	&--centerd-vert {
-		justify-content: center;
-	}
+    &--centerd-vert {
+        justify-content: center;
+    }
 
-	@include tablet-portrait {
-		width: 90vw;
-		gap: 40px;
-	}
+    @include tablet-portrait {
+        width: 90vw;
+        gap: 40px;
+    }
 
-	@include tablet-landscape {
-		width: 90vw;
-		width: 80vw;
-		gap: 40px;
-	}
+    @include tablet-landscape {
+        width: 90vw;
+        width: 80vw;
+        gap: 40px;
+    }
 
-	@include desktop-normal {
-		width: 80vw;
-		gap: 50px;
-	}
+    @include desktop-normal {
+        width: 80vw;
+        gap: 50px;
+    }
 
-	@include desktop-large {
-		width: 1600px;
-		gap: 60px;
-	}
+    @include desktop-large {
+        width: 1600px;
+        gap: 60px;
+    }
 }
 
 .card-container {
-	width: 100%;
-	display: grid;
-	grid-template-columns: repeat(auto-fit, 90%);
-	column-gap: 20px;
-	row-gap: 20px;
-	justify-content: center;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 90%);
+    column-gap: 20px;
+    row-gap: 20px;
+    justify-content: center;
 
-	@include tablet-portrait {
-		grid-template-columns: repeat(auto-fit, 400px);
-		column-gap: 30px;
-		row-gap: 30px;
-	}
+    @include tablet-portrait {
+        grid-template-columns: repeat(auto-fit, 400px);
+        column-gap: 30px;
+        row-gap: 30px;
+    }
 
-	@include desktop-normal {
-		grid-template-columns: repeat(auto-fit, 350px);
-		column-gap: 40px;
-		row-gap: 40px;
-	}
+    @include desktop-normal {
+        grid-template-columns: repeat(auto-fit, 350px);
+        column-gap: 40px;
+        row-gap: 40px;
+    }
 }

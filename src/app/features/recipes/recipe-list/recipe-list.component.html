@@ -1,23 +1,18 @@
 <div class="container">
+    <form class="form form--filter">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <clt-input-field
+            modelName="searchString"
+            inpType="text"
+            placeholder="Recipe title"
+            [isTypeAhead]="true"
+            [inpValue]="query.search ?? ''"
+            (onInpChanged)="onSearchStringChange($event)"></clt-input-field>
+    </form>
 
-	<form class="form form--filter">
-		<i class="fa-solid fa-magnifying-glass"></i>
-		<clt-input-field
-			modelName="searchString"
-			inpType="text"
-			placeholder="Recipe title"
-			[isTypeAhead]="true"
-			[inpValue]="query.search ?? ''"
-			(onInpChanged)="onSearchStringChange($event)">
-		</clt-input-field>
-	</form>
-
-
-	<div class="card-container">
-		@for (recipe of recipes(); track recipe._id) {
-			<clt-card [recipe]="recipe"></clt-card>
-		}
-	</div>
+    <div class="card-container">
+        @for (recipe of recipes(); track recipe._id) {
+            <clt-card [recipe]="recipe"></clt-card>
+        }
+    </div>
 </div>
-
-

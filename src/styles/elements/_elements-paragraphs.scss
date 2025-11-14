@@ -1,44 +1,44 @@
-@import "../_app-variables.scss";
-@import "../settings/settings-breakpoints";
+@import '../_app-variables.scss';
+@import '../settings/settings-breakpoints';
 
 p,
 li,
 p span,
 p strong {
-	$size: $font-size-base;
+    $size: $font-size-base;
 
     font-size: $size;
     line-height: calc($size + 2px);
 
-	@include tablet-portrait {
-		$amplyfier: calc(14 / 12);
-		font-size: calc($amplyfier * $size);
-    	line-height: calc($amplyfier * ($size + 2px));
-	}
+    @include tablet-portrait {
+        $amplyfier: calc(14 / 12);
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-	@include tablet-landscape {
-		$amplyfier: calc(14 / 12);
-		font-size: calc($amplyfier * $size);
-    	line-height: calc($amplyfier * ($size + 2px));
-	}
+    @include tablet-landscape {
+        $amplyfier: calc(14 / 12);
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-	@include desktop-normal {
-		$amplyfier: calc(16 / 12);
-		font-size: calc($amplyfier * $size);
-    	line-height: calc($amplyfier * ($size + 2px));
-	}
+    @include desktop-normal {
+        $amplyfier: calc(16 / 12);
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-	@include desktop-large {
-		$amplyfier: calc(18 / 12);
-		font-size: calc($amplyfier * $size);
-    	line-height: calc($amplyfier * ($size + 2px));
-	}
+    @include desktop-large {
+        $amplyfier: calc(18 / 12);
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 }
 
 p {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 
-	@include desktop-normal {
-		margin-bottom: 15px;
-	}
+    @include desktop-normal {
+        margin-bottom: 15px;
+    }
 }

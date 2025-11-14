@@ -1,28 +1,28 @@
-@import "app-variables";
+@import 'app-variables';
 
 .app {
-	$width: 100vw;
+    $width: 100vw;
 
-	width: $width;
-	min-height: 100vh;
-	position: relative;
-	display: flex;
-	flex-flow: column nowrap;
+    width: $width;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
 
-	& > * {
-		width: $width;
-	}
+    & > * {
+        width: $width;
+    }
 
-	&__header {
-		height: fit-content;
-		z-index: 20;
-	}
+    &__header {
+        height: fit-content;
+        z-index: 20;
+    }
 
-	&__main {
-	}
+    &__main {
+    }
 
-	&__footer {
-		margin-top: auto;
-		z-index: 20;
-	}
+    &__footer {
+        margin-top: auto;
+        z-index: 20;
+    }
 }

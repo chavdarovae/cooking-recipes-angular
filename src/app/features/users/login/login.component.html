@@ -1,31 +1,37 @@
 <div class="container container--centerd-vert">
+    <form
+        #loginForm="ngForm"
+        class="form w-500 p-50"
+        (ngSubmit)="onSubmit()">
+        <clt-input-field
+            label="email"
+            modelName="email"
+            inpType="email"
+            [isRequired]="true"
+            [inpValue]="model.email"
+            (onInpChanged)="model.email = $event"></clt-input-field>
 
-	<form #loginForm="ngForm" class="form w-500 p-50" (ngSubmit)="onSubmit()">
+        <clt-input-field
+            label="password"
+            modelName="password"
+            inpType="password"
+            [minLength]="4"
+            [maxLength]="10"
+            [isRequired]="true"
+            [inpValue]="model.password"
+            (onInpChanged)="model.password = $event"></clt-input-field>
 
-		<clt-input-field
-			label="email"
-			modelName="email"
-			inpType="email"
-			[isRequired]="true"
-			[inpValue]="model.email"
-			(onInpChanged)="model.email = $event">
-		</clt-input-field>
-
-		<clt-input-field
-			label="password"
-			modelName="password"
-			inpType="password"
-			[minLength]="4"
-			[maxLength]="10"
-			[isRequired]="true"
-			[inpValue]="model.password"
-			(onInpChanged)="model.password = $event">
-		</clt-input-field>
-
-		<div class="form__row">
-			<button type="submit" class="accent mb-20" [disabled]="loginForm.invalid">Login</button>
-			<div class="text-centered">Not registered yet? Register<a routerLink="/users/register"> here!</a></div>
-		</div>
-	</form>
-
+        <div class="form__row">
+            <button
+                type="submit"
+                class="accent mb-20"
+                [disabled]="loginForm.invalid">
+                Login
+            </button>
+            <div class="text-centered">
+                Not registered yet? Register
+                <a routerLink="/users/register">here!</a>
+            </div>
+        </div>
+    </form>
 </div>

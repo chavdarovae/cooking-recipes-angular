@@ -1,6 +1,11 @@
 @if (alertService.alertSig()) {
-	<div [class]="'messages ' + alertService.alertSig()?.type" data-testid="alertBox">
-		<span>{{alertService.alertSig()?.alert}}</span>
-		<span class="icon fa-solid fa-xmark" (click)="alertService.clearAlerts()" data-testid="alertBoxCloseBtn"></span>
-	</div>
+    <div
+        [class]="'messages ' + alertService.alertSig()?.type"
+        data-testid="alertBox">
+        <span>{{ alertService.alertSig()?.alert }}</span>
+        <span
+            class="icon fa-solid fa-xmark"
+            (click)="alertService.clearAlerts()"
+            data-testid="alertBoxCloseBtn"></span>
+    </div>
 }

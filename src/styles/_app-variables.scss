@@ -13,12 +13,11 @@ $text-color-pri: #2c3e50;
 $text-color-sec: whitesmoke;
 $text-color-ter: #555;
 
-
 // utility colors:
 $success: yellowgreen;
 $info: deepskyblue;
 $danger: crimson;
-$warning:  tomato;
+$warning: tomato;
 
 // button colors
 $button-pri: $app;
@@ -29,9 +28,9 @@ $button-hover: $app-sec;
 $font-size-base: 12px;
 $font-weight-normal: 400;
 $font-weight-bold: 600;
-$font-family-pri: "Helvetica Neue", "Arial", sans-serif;
-$font-family-sec: "Roboto", sans-serif;
-$font-family-icon: "Font Awesome 5 Free";
+$font-family-pri: 'Helvetica Neue', 'Arial', sans-serif;
+$font-family-sec: 'Roboto', sans-serif;
+$font-family-icon: 'Font Awesome 5 Free';
 
 // layout dimentions
 $header-height: 45px;

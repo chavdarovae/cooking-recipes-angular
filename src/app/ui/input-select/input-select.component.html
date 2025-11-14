@@ -1,32 +1,33 @@
-@if (label){
-	<label [for]="modelName">{{ label | titlecase }}</label>
+@if (label) {
+    <label [for]="modelName">{{ label | titlecase }}</label>
 }
 
-<select #inpSelectRef #inpSelect="ngModel"
-	class="form__control"
-	[id]="modelName"
-	[name]="modelName"
-	[ngModel]="inpValue ?? null"
-	(ngModelChange)="onSelectChanged.emit(inpSelect.value)"
-	(focusin)="onSelectFocusedIn.emit(inpSelect.value)"
-	(focusout)="onSelectFocusedOut.emit(inpSelect.value)"
-	[required]="isRequired"
-	[disabled]="isDisabled">
+<select
+    #inpSelectRef
+    #inpSelect="ngModel"
+    class="form__control"
+    [id]="modelName"
+    [name]="modelName"
+    [ngModel]="inpValue ?? null"
+    (ngModelChange)="onSelectChanged.emit(inpSelect.value)"
+    (focusin)="onSelectFocusedIn.emit(inpSelect.value)"
+    (focusout)="onSelectFocusedOut.emit(inpSelect.value)"
+    [required]="isRequired"
+    [disabled]="isDisabled">
+    <option [ngValue]="null">{{ placeholder }}</option>
 
-	<option [ngValue]="null">{{ placeholder }}</option>
-
-	@for (role of selectList | appEnumToList; track role) {
-		@if (!selectEcceptions.includes(role)) {
-			<option [ngValue]="role">{{ role.replace('_', ' ') | titlecase }}</option>
-		}
-	}
+    @for (role of selectList | appEnumToList; track role) {
+        @if (!selectEcceptions.includes(role)) {
+            <option [ngValue]="role">{{ role.replace('_', ' ') | titlecase }}</option>
+        }
+    }
 </select>
 
-
-@if(inpSelect.invalid && !inpSelect.pristine) {
-	<div class="hint">
-		@if (inpSelect.errors?.['required']) {
-			⚠️ {{ modelName | titlecase }} is required<br/>
-		}
-	</div>
+@if (inpSelect.invalid && !inpSelect.pristine) {
+    <div class="hint">
+        @if (inpSelect.errors?.['required']) {
+            ⚠️ {{ modelName | titlecase }} is required
+            <br />
+        }
+    </div>
 }

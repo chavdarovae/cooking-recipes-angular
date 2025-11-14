@@ -6,33 +6,27 @@ import { AuthService } from 'src/app/data-access';
 import { InputFieldComponent } from 'src/app/ui';
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [
-	CommonModule,
-	FormsModule,
-	RouterModule,
-	InputFieldComponent
-  ],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+    selector: 'app-register',
+    standalone: true,
+    imports: [CommonModule, FormsModule, RouterModule, InputFieldComponent],
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
-	authService = inject(AuthService);
+    authService = inject(AuthService);
 
-	model: any = {
-		username: '',
-		email: '',
-		password: ''
-	};
-	submitted = false;
+    model: any = {
+        username: '',
+        email: '',
+        password: '',
+    };
+    submitted = false;
 
-
-	onSubmit() {
-		this.submitted = true;
-		// if (!this.model.email || !this.model.password|| !this.model.username) {
-		// 	return;
-		// }
-		this.authService.register(this.model).subscribe()
-	}
+    onSubmit() {
+        this.submitted = true;
+        // if (!this.model.email || !this.model.password|| !this.model.username) {
+        // 	return;
+        // }
+        this.authService.register(this.model).subscribe();
+    }
 }

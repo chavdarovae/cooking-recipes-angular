@@ -1,46 +1,58 @@
 <div class="container">
-	<div class="nav">
-		<!-- logo  -->
-		<span [routerLink]="['/']" class="nav__logo mr-a" aria-label="Navigate to home">
-			<img src="../../../../assets/img/logo.png" alt="logo">
-		</span>
+    <div class="nav">
+        <!-- logo  -->
+        <span
+            [routerLink]="['/']"
+            class="nav__logo mr-a"
+            aria-label="Navigate to home">
+            <img
+                src="img/logo.png"
+                alt="logo" />
+        </span>
 
-		<!-- navgation -->
-		@for (item of menuItems | appListFilterPipe: filterMenuMainMenu('account', false); track item.title) {
-			<ng-container *ngTemplateOutlet="navItem; context: {item}"></ng-container>
-		}
+        <!-- navgation -->
+        @for (item of menuItems | appListFilterPipe: filterMenuMainMenu('account', false); track item.title) {
+            <ng-container *ngTemplateOutlet="navItem; context: { item }"></ng-container>
+        }
 
-		<!-- username  -->
-		<span id="userMenuTrigger" class=" popover">
-			<button
-				popovertarget="userMenu"
-				class="nav__item popover__trigger row row--no-wrap row--left-aligned gap-20">
-				<span class="fa-solid fa-user"></span>
+        <!-- username  -->
+        <span
+            id="userMenuTrigger"
+            class="popover">
+            <button
+                popovertarget="userMenu"
+                class="nav__item popover__trigger row row--no-wrap row--left-aligned gap-20">
+                <span class="fa-solid fa-user"></span>
 
-				@if (authService.currUserSig()) {
-					<span>Hello {{ authService.currUserSig()?.username | titlecase }}</span>
-				}
-			</button>
+                @if (authService.currUserSig()) {
+                    <span>Hello {{ authService.currUserSig()?.username | titlecase }}</span>
+                }
+            </button>
 
-			<div popover id="userMenu"  class="popover__panel" anchor="userMenuTrigger">
-				@for (item of menuItems | appListFilterPipe: filterMenuMainMenu('account', true); track item.title) {
-					<ng-container *ngTemplateOutlet="navItem; context: {item}"></ng-container>
-				}
-			</div>
-		</span>
-	</div>
+            <div
+                popover
+                id="userMenu"
+                class="popover__panel"
+                anchor="userMenuTrigger">
+                @for (item of menuItems | appListFilterPipe: filterMenuMainMenu('account', true); track item.title) {
+                    <ng-container *ngTemplateOutlet="navItem; context: { item }"></ng-container>
+                }
+            </div>
+        </span>
+    </div>
 </div>
 
-
-<ng-template #navItem let-item="item">
-	<button
-		popovertarget="userMenu"
-		popovertargetaction="hide"
-		[appIsAuthorised]="item.roles"
-		[role]="authService.currUserSig()?.role"
-		class="nav__item"
-		[routerLink]="'/'+ item.path"
-		[attr.aria-label]="'Navigate to section ' + item.title">
-		{{ item.title | uppercase }}
-	</button>
+<ng-template
+    #navItem
+    let-item="item">
+    <button
+        popovertarget="userMenu"
+        popovertargetaction="hide"
+        [appIsAuthorised]="item.roles"
+        [role]="authService.currUserSig()?.role"
+        class="nav__item"
+        [routerLink]="'/' + item.path"
+        [attr.aria-label]="'Navigate to section ' + item.title">
+        {{ item.title | uppercase }}
+    </button>
 </ng-template>

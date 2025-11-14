@@ -1,48 +1,50 @@
 @import './../settings/settings-breakpoints';
 
-
-
 @keyframes floating {
-    0% { transform: translate(0,  0px); }
-    50%  { transform: translate(0, 15px); }
-    100%   { transform: translate(0, -0px); }
+    0% {
+        transform: translate(0, 0px);
+    }
+    50% {
+        transform: translate(0, 15px);
+    }
+    100% {
+        transform: translate(0, -0px);
+    }
 }
 
 @keyframes shadow {
-	0% {
-		opacity: 0.3;
-		transform: scaleX(60%) scaleY(60%);
-	}
-    50%  {
-		opacity: 0.5;
-		transform: scaleX(80%) scaleY(100%);
-	}
-    100%   {
-		opacity: 0.3;
-		transform: scaleX(60%) scaleY(60%);
-	}
+    0% {
+        opacity: 0.3;
+        transform: scaleX(60%) scaleY(60%);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scaleX(80%) scaleY(100%);
+    }
+    100% {
+        opacity: 0.3;
+        transform: scaleX(60%) scaleY(60%);
+    }
 }
 
 @keyframes shorten {
     0% {
-		height: 100vh;
-		width: 100vw;
-	}
-    100%  {
-		height: 45vh;
-		width: 100vw;
-	}
+        height: 100vh;
+        width: 100vw;
+    }
+    100% {
+        height: 45vh;
+        width: 100vw;
+    }
 }
 
 @keyframes shorten-tablet {
-	0% {
-		height: 100vh;
-		width: 100vw;
-	}
-	100%  {
-		height: 40vh;
-		width: 100vw;
-	}
+    0% {
+        height: 100vh;
+        width: 100vw;
+    }
+    100% {
+        height: 40vh;
+        width: 100vw;
+    }
 }
-
-

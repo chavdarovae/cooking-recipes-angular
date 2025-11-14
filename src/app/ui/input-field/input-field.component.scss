@@ -1,15 +1,15 @@
-@import "app-variables";
-@import "settings-breakpoints";
+@import 'app-variables';
+@import 'settings-breakpoints';
 
 :host {
-	position: relative;
-	margin-bottom: 15px;
+    position: relative;
+    margin-bottom: 15px;
 }
 
 .hint {
-	position: absolute;
-	top: 100%;
-	left: 10px;
-	color: $danger;
-	font-size: 15px;
+    position: absolute;
+    top: 100%;
+    left: 10px;
+    color: $danger;
+    font-size: 15px;
 }

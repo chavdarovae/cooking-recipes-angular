@@ -1,17 +1,23 @@
-<div class="backdrop" *ngIf="show" (click)="onClose()">
+<div
+    class="backdrop"
+    *ngIf="show"
+    (click)="onClose()">
+    <div
+        class="modal col col--no-warp col--space-btw"
+        (click)="$event.stopPropagation()">
+        <h2>Delete {{ entity }}</h2>
 
-	<div class="modal col col--no-warp col--space-btw" (click)="$event.stopPropagation()">
-		<h2>Delete {{ entity }}</h2>
+        <h5>Do you really want to delete this {{ entity }}?</h5>
 
-		<h5>Do you really want to delete this {{entity}}?</h5>
+        <ng-content></ng-content>
 
-		<ng-content></ng-content>
-
-		<div class="row row--no-wrap row--space-btw">
-			<button (click)="onClose()">No</button>
-			<button class="accent" (click)="onClose(true)">Yes</button>
-		</div>
-
-	</div>
-
+        <div class="row row--no-wrap row--space-btw">
+            <button (click)="onClose()">No</button>
+            <button
+                class="accent"
+                (click)="onClose(true)">
+                Yes
+            </button>
+        </div>
+    </div>
 </div>

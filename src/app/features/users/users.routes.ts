@@ -1,27 +1,37 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/data-access';
 
-
 export const USER_ROUTES: Routes = [
-	{
-		path: '',
-		loadComponent: () => import('./user-list/user-list.component').then(c => c.UserListComponent),
-	},
-	{
-		path: 'register',
-		loadComponent: () => import('./register/register.component').then(c => c.RegisterComponent),
-	},
-	{
-		path: 'login',
-		loadComponent: () => import('./login/login.component').then(c => c.LoginComponent),
-	},
-	{
-		path: 'logout',
-		loadComponent: () => import('./logout/logout.component').then(c => c.LogoutComponent),
-	},
-	{
-		path: ':id',
-		loadComponent: () => import('./user-edit/user-edit.component').then(c => c.UserEditComponent),
-		canActivate: [AuthGuard]
-	},
+    {
+        path: '',
+        loadComponent: () =>
+            import('./user-list/user-list.component').then(
+                (c) => c.UserListComponent,
+            ),
+    },
+    {
+        path: 'register',
+        loadComponent: () =>
+            import('./register/register.component').then(
+                (c) => c.RegisterComponent,
+            ),
+    },
+    {
+        path: 'login',
+        loadComponent: () =>
+            import('./login/login.component').then((c) => c.LoginComponent),
+    },
+    {
+        path: 'logout',
+        loadComponent: () =>
+            import('./logout/logout.component').then((c) => c.LogoutComponent),
+    },
+    {
+        path: ':id',
+        loadComponent: () =>
+            import('./user-edit/user-edit.component').then(
+                (c) => c.UserEditComponent,
+            ),
+        canActivate: [AuthGuard],
+    },
 ];

@@ -1,7 +1,7 @@
-@import "../_app-variables.scss";
+@import '../_app-variables.scss';
 
 ::placeholder {
-  color: $text-color-pri !important;
-  padding-left: 5px !important;
-  text-align: start;
+    color: $text-color-pri !important;
+    padding-left: 5px !important;
+    text-align: start;
 }

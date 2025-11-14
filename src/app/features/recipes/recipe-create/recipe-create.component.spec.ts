@@ -3,21 +3,20 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RecipeCreateComponent } from './recipe-create.component';
 
 describe('RecipeCreateComponent', () => {
-  let component: RecipeCreateComponent;
-  let fixture: ComponentFixture<RecipeCreateComponent>;
+    let component: RecipeCreateComponent;
+    let fixture: ComponentFixture<RecipeCreateComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [RecipeCreateComponent]
-    })
-    .compileComponents();
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [RecipeCreateComponent],
+        }).compileComponents();
 
-    fixture = TestBed.createComponent(RecipeCreateComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        fixture = TestBed.createComponent(RecipeCreateComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

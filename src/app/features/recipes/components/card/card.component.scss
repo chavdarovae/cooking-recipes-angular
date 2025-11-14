@@ -1,39 +1,39 @@
-@import "app-variables";
-@import "settings/settings-breakpoints";
+@import 'app-variables';
+@import 'settings/settings-breakpoints';
 
 .card {
-	width: 100%;
-	padding: 15px;
-	text-align: center;
-	overflow: hidden;
-	display: flex;
-	flex-flow: column nowrap;
-	align-items: center;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 
-	img {
-		width: 100%;
-		border-radius: 8px;
-		margin-bottom: 1em;
-		transition: transform 0.3s;
-	}
+    img {
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 1em;
+        transition: transform 0.3s;
+    }
 
-	&:hover img {
-		transform: scale(1.05);
-	}
+    &:hover img {
+        transform: scale(1.05);
+    }
 
-	h4 {
-		width: 100%;
-		height: 80px;
-		background-color: $bg-sec;
-		color: $text-color-sec;
-		border-radius: $rounding-sec;
-		padding: 10px;
-	}
+    h4 {
+        width: 100%;
+        height: 80px;
+        background-color: $bg-sec;
+        color: $text-color-sec;
+        border-radius: $rounding-sec;
+        padding: 10px;
+    }
 
-	p {
-		color: $text-color-pri;
-		height: 60px;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
+    p {
+        color: $text-color-pri;
+        height: 60px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }

@@ -1,33 +1,32 @@
-@import "app-variables.scss";
-@import "settings-breakpoints";
+@import 'app-variables.scss';
+@import 'settings-breakpoints';
 
 .messages {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 10px 20px;
-	font-family: $font-family-sec;
-	border-radius: $rounding-pri;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    font-family: $font-family-sec;
+    border-radius: $rounding-pri;
 
-	span {
-		color: $text-color-sec;
-		font-size: calc(1.4 * $font-size-base);
-	}
+    span {
+        color: $text-color-sec;
+        font-size: calc(1.4 * $font-size-base);
+    }
 
-	&.danger {
-		background-color: $danger;
-	}
+    &.danger {
+        background-color: $danger;
+    }
 
-	&.warning {
-		background-color: $warning;
-	}
+    &.warning {
+        background-color: $warning;
+    }
 
-	&.info {
-		background-color: $info;
-	}
+    &.info {
+        background-color: $info;
+    }
 
-	&.success {
-		background-color: $success;
-	}
+    &.success {
+        background-color: $success;
+    }
 }
-

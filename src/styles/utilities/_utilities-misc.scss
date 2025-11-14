@@ -1,28 +1,24 @@
-@import "../_app-variables.scss";
-
-
+@import '../_app-variables.scss';
 
 .jumpy-card {
-	position: relative;
-	background: $bg-ter;
-	border-radius:  $rounding-pri;
-	box-shadow: $shadow-pri;
-	transition:
-		transform 0.3s,
-		box-shadow 0.3s;
+    position: relative;
+    background: $bg-ter;
+    border-radius: $rounding-pri;
+    box-shadow: $shadow-pri;
+    transition:
+        transform 0.3s,
+        box-shadow 0.3s;
 
-	&:hover {
-		transform: translateY(-10px);
-		box-shadow: $shadow-hover;
-	}
+    &:hover {
+        transform: translateY(-10px);
+        box-shadow: $shadow-hover;
+    }
 }
 
-
 .span-2 {
-	grid-column: span 2;
+    grid-column: span 2;
 }
 
 .span-3 {
-	grid-column: span 3;
+    grid-column: span 3;
 }
-

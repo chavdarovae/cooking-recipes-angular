@@ -1,35 +1,40 @@
-@if (label){
-	<label [for]="modelName">{{ label | titlecase }}</label>
+@if (label) {
+    <label [for]="modelName">{{ label | titlecase }}</label>
 }
 
-<textarea #inpTextareaRef #inpTextarea="ngModel"
-	class="form__control"
-	[id]="modelName"
-	[name]="modelName"
-	[placeholder]="placeholder"
-	[pattern]="pattern"
-	[minlength]="minLength"
-	[maxlength]="maxLength"
-	[ngModel]="inpValue"
-	(focusin)="onInpFocusedIn.emit(inpTextarea.value)"
-	(focusout)="onInpFocusedOut.emit(inpTextarea.value)"
-	[required]="isRequired"
-	[disabled]="isDisabled">
-</textarea>
+<textarea
+    #inpTextareaRef
+    #inpTextarea="ngModel"
+    class="form__control"
+    [id]="modelName"
+    [name]="modelName"
+    [placeholder]="placeholder"
+    [pattern]="pattern"
+    [minlength]="minLength"
+    [maxlength]="maxLength"
+    [ngModel]="inpValue"
+    (focusin)="onInpFocusedIn.emit(inpTextarea.value)"
+    (focusout)="onInpFocusedOut.emit(inpTextarea.value)"
+    [required]="isRequired"
+    [disabled]="isDisabled"></textarea>
 
-@if(inpTextarea.invalid && !inpTextarea.pristine) {
-	<div class="hint">
-		@if (inpTextarea.errors?.['required']) {
-			⚠️ {{ modelName | titlecase }} is required<br/>
-		}
-		@if (inpTextarea.errors?.['pattern']) {
-			⚠️ Enter a valid {{modelName}}<br/>
-		}
-		@if (inpTextarea.errors?.['minlength']) {
-			⚠️ Enter minimum {{minLength}} characters<br/>
-		}
-		@if (inpTextarea.errors?.['maxlength']) {
-			⚠️ Enter maximum {{maxLength}} characters<br/>
-		}
-	</div>
+@if (inpTextarea.invalid && !inpTextarea.pristine) {
+    <div class="hint">
+        @if (inpTextarea.errors?.['required']) {
+            ⚠️ {{ modelName | titlecase }} is required
+            <br />
+        }
+        @if (inpTextarea.errors?.['pattern']) {
+            ⚠️ Enter a valid {{ modelName }}
+            <br />
+        }
+        @if (inpTextarea.errors?.['minlength']) {
+            ⚠️ Enter minimum {{ minLength }} characters
+            <br />
+        }
+        @if (inpTextarea.errors?.['maxlength']) {
+            ⚠️ Enter maximum {{ maxLength }} characters
+            <br />
+        }
+    </div>
 }

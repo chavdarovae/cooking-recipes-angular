@@ -1,69 +1,68 @@
-@import "app-variables";
-@import "settings-breakpoints";
+@import 'app-variables';
+@import 'settings-breakpoints';
 
 .carousel {
-	$button-size: 6vmin;
+    $button-size: 6vmin;
 
-	width: calc(100% - calc($button-size + 1vmin));
-	height: 400px;
-	margin: 0 auto;
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: flex-start;
-	gap: calc($button-size / 5);
-	overflow-x: auto;
-	scroll-behavior: smooth;
-	scroll-snap-type: x mandatory;
-	anchor-name: --carousel;
+    width: calc(100% - calc($button-size + 1vmin));
+    height: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    gap: calc($button-size / 5);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    anchor-name: --carousel;
 
-	&::-webkit-scrollbar {
-		display: none;
-	}
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
-	&::scroll-button(left) {
-		content: "⮕";
-		transform: translateX(-50%);
-		position-area: right center;
-	}
+    &::scroll-button(left) {
+        content: '⮕';
+        transform: translateX(-50%);
+        position-area: right center;
+    }
 
-	&::scroll-button(right) {
-		content: "⬅︎";
-		transform: translateX(50%);
-		position-area: left center;
-	}
+    &::scroll-button(right) {
+        content: '⬅︎';
+        transform: translateX(50%);
+        position-area: left center;
+    }
 
-	&::scroll-button(right),
-	&::scroll-button(left) {
-		border: none;
-		font-size: calc($button-size - 2vmin);
-		min-height: $button-size;
-		aspect-ratio: 1;
-		border-radius: 50%;
-		background-color: $app;
-		color: $text-color-sec;
-		position: fixed;
-		cursor: pointer;
-		position-anchor: --carousel;
+    &::scroll-button(right),
+    &::scroll-button(left) {
+        border: none;
+        font-size: calc($button-size - 2vmin);
+        min-height: $button-size;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background-color: $app;
+        color: $text-color-sec;
+        position: fixed;
+        cursor: pointer;
+        position-anchor: --carousel;
 
+        &:disabled {
+            opacity: 0.5;
+            cursor: auto;
+        }
+    }
 
-		&:disabled {
-			opacity: 0.5;
-			cursor: auto;
-		}
-	}
+    img {
+        scroll-snap-align: start;
+        width: 25%;
+        min-width: 25%;
+        max-width: 25%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: $rounding-pri;
+        transition: transform 300ms ease;
 
-	img  {
-		scroll-snap-align: start;
-		width: 25%;
-		min-width: 25%;
-		max-width: 25%;
-		object-fit: cover;
-		object-position: center;
-		border-radius: $rounding-pri;
-		transition: transform 300ms ease;
-
-		&:hover {
-			transform: translateY(10px);
-		}
-	}
+        &:hover {
+            transform: translateY(10px);
+        }
+    }
 }

@@ -1,75 +1,67 @@
-@if({ ui: userIteraction$ | async }; as subs) {
-<div class="container">
-	@if (selectedRecipeSig()) {
-	<article class="recipe">
-		<h2>{{ selectedRecipeSig()?.title }}</h2>
+@if ({ ui: userIteraction$ | async }; as subs) {
+    <div class="container">
+        @if (selectedRecipeSig()) {
+            <article class="recipe">
+                <h2>{{ selectedRecipeSig()?.title }}</h2>
 
-		<div class="recipe__block">
-			<div class="likes">
-				<span>{{ selectedRecipeSig()?.recommendList?.length }}</span>
-				<i class="fa-solid fa-heart"></i>
-			</div>
-			<img
-				src="{{ selectedRecipeSig()?.image }}"
-				alt="{{ selectedRecipeSig()?.title }}"
-			/>
-		</div>
+                <div class="recipe__block">
+                    <div class="likes">
+                        <span>{{ selectedRecipeSig()?.recommendList?.length }}</span>
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <img
+                        src="{{ selectedRecipeSig()?.image }}"
+                        alt="{{ selectedRecipeSig()?.title }}" />
+                </div>
 
-		<div class="recipe__block col col--space-btw">
-			<p>{{ selectedRecipeSig()?.description }}</p>
+                <div class="recipe__block col col--space-btw">
+                    <p>{{ selectedRecipeSig()?.description }}</p>
 
-			<hr />
+                    <hr />
 
-			<h3>Ingredients:</h3>
-			<p>{{ selectedRecipeSig()?.ingredients }}</p>
+                    <h3>Ingredients:</h3>
+                    <p>{{ selectedRecipeSig()?.ingredients }}</p>
 
-			<hr />
+                    <hr />
 
-			<h3>Instructions:</h3>
-			<p>{{ selectedRecipeSig()?.instructions }}</p>
+                    <h3>Instructions:</h3>
+                    <p>{{ selectedRecipeSig()?.instructions }}</p>
 
-			<hr />
+                    <hr />
 
-			<div class="row row--no-wrap row--space-btw w100 mt-20">
-				@if(authService.currUserSig()?._id ===
-				selectedRecipeSig()?.owner) {
-				<button
-					class="danger"
-					(click)="userIteractionSubj.next('deleteDialog')"
-				>
-					Delete
-				</button>
-				<button
-					[routerLink]="[
-						'/recipes/' + selectedRecipeSig()?._id + '/edit'
-					]"
-					[state]="{ recipe: selectedRecipeSig() }"
-				>
-					Edit
-				</button>
-				} @else {
-				<button [routerLink]="['/recipes/']">Back to Recipes</button>
-				<button
-					class="accent"
-					(click)="userIteractionSubj.next('recommend')"
-					[disabled]="isAlreadyRecommendedByCurrUser()"
-				>
-					Recommend
-				</button>
-				}
-			</div>
-		</div>
-	</article>
+                    <div class="row row--no-wrap row--space-btw w100 mt-20">
+                        @if (authService.currUserSig()?._id === selectedRecipeSig()?.owner) {
+                            <button
+                                class="danger"
+                                (click)="userIteractionSubj.next('deleteDialog')">
+                                Delete
+                            </button>
+                            <button
+                                [routerLink]="['/recipes/' + selectedRecipeSig()?._id + '/edit']"
+                                [state]="{ recipe: selectedRecipeSig() }">
+                                Edit
+                            </button>
+                        } @else {
+                            <button [routerLink]="['/recipes/']">Back to Recipes</button>
+                            <button
+                                class="accent"
+                                (click)="userIteractionSubj.next('recommend')"
+                                [disabled]="isAlreadyRecommendedByCurrUser()">
+                                Recommend
+                            </button>
+                        }
+                    </div>
+                </div>
+            </article>
 
-	@if (false) {
-	<div>You've already recommended this recipe!</div>
-	}
+            @if (false) {
+                <div>You've already recommended this recipe!</div>
+            }
 
-	<app-modal
-		[show]="showModal"
-		entity="recipe"
-		(close)="onModalClosed($event)"
-	></app-modal>
-	}
-</div>
+            <app-modal
+                [show]="showModal"
+                entity="recipe"
+                (close)="onModalClosed($event)"></app-modal>
+        }
+    </div>
 }

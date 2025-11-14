@@ -1,70 +1,66 @@
-@import "app-variables";
-@import "settings-breakpoints";
-
+@import 'app-variables';
+@import 'settings-breakpoints';
 
 .recipe {
-	$width: 1000px;
-	$gap: 2rem;
-	$padding: 2rem;
+    $width: 1000px;
+    $gap: 2rem;
+    $padding: 2rem;
 
-	display: flex;
-	flex-flow: row wrap;
-	gap: $gap;
+    display: flex;
+    flex-flow: row wrap;
+    gap: $gap;
 
-	width: min($width, 100%);
-	height: fit-content;
+    width: min($width, 100%);
+    height: fit-content;
 
-	background: $bg-ter;
-	border-radius: $rounding-pri;
-	box-shadow: $shadow-pri;
-	padding: $padding;
-	margin: auto;
-	transition:
-		transform 0.3s,
-		box-shadow 0.3s;
+    background: $bg-ter;
+    border-radius: $rounding-pri;
+    box-shadow: $shadow-pri;
+    padding: $padding;
+    margin: auto;
+    transition:
+        transform 0.3s,
+        box-shadow 0.3s;
 
+    &__block {
+        width: 100%;
+        aspect-ratio: 1;
+        overflow: hidden;
+        position: relative;
 
-	&__block {
-		width: 100%;
-		aspect-ratio: 1;
-		overflow: hidden;
-		position: relative;
+        @include tablet-landscape {
+            width: calc(0.5 * $width - 0.5 * $gap - $padding);
+        }
+    }
 
-		@include tablet-landscape{
-			width: calc(0.5 * $width - 0.5 * $gap - $padding);
-		}
-	}
-
-	h2 {
-		width: 100%;
-		background-color: $app;
-		color: $text-color-sec;
-		padding: 0.5em;
-		border-radius: $rounding-pri;
-		text-align: center;
-		margin-bottom: 0;
-	}
+    h2 {
+        width: 100%;
+        background-color: $app;
+        color: $text-color-sec;
+        padding: 0.5em;
+        border-radius: $rounding-pri;
+        text-align: center;
+        margin-bottom: 0;
+    }
 }
-
 
 .likes {
-	position: absolute;
-	top: 10px;
-	right: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 
-	i {
-		color: $danger;
-		font-size: 50px;
-	}
+    i {
+        color: $danger;
+        font-size: 50px;
+    }
 
-	span {
-		position: absolute;
-		color: $text-color-sec;
-		font-size: 20px;
-		font-weight: 600;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -60%);
-	}
+    span {
+        position: absolute;
+        color: $text-color-sec;
+        font-size: 20px;
+        font-weight: 600;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -60%);
+    }
 }
-

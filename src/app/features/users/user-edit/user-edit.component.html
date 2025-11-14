@@ -1,54 +1,52 @@
 @if ({ ui: userIteraction$ | async }; as subs) {
+    <div class="container">
+        <form
+            #userEditForm="ngForm"
+            class="form w50 pt-30 pb-30 pl-50 pr-50">
+            <clt-input-field
+                label="Username"
+                modelName="usesrname"
+                inpType="text"
+                [minLength]="5"
+                [isRequired]="true"
+                [inpValue]="user.username ?? ''"
+                (onInpChanged)="user.username = $event"></clt-input-field>
 
-	<div class="container">
-		<form  #userEditForm="ngForm" class="form w50 pt-30 pb-30 pl-50 pr-50">
+            <clt-input-field
+                label="Email"
+                modelName="email"
+                inpType="text"
+                [isDisabled]="true"
+                [inpValue]="user.email"></clt-input-field>
 
-			<clt-input-field
-				label="Username"
-				modelName="usesrname"
-				inpType="text"
-				[minLength]="5"
-				[isRequired]="true"
-				[inpValue]="user.username ?? ''"
-				(onInpChanged)="user.username = $event">
-			</clt-input-field>
+            <clt-input-select
+                label="Role"
+                modelName="role"
+                [selectList]="userRolesEnum"
+                [inpValue]="user.role"
+                [selectEcceptions]="[userRolesEnum.GUEST]"
+                (onSelectChanged)="user.role = $event"></clt-input-select>
 
-			<clt-input-field
-				label="Email"
-				modelName="email"
-				inpType="text"
-				[isDisabled]="true"
-				[inpValue]="user.email">
-			</clt-input-field>
-
-
-			<clt-input-select
-				label="Role"
-				modelName="role"
-				[selectList]="userRolesEnum"
-				[inpValue]="user.role"
-				[selectEcceptions]="[userRolesEnum.GUEST]"
-				(onSelectChanged)="user.role = $event">
-			</clt-input-select>
-
-			<div>
-				<button
-					type="submit"
-					class="accent"
-					(click)="userIteractionSubj.next('update')"
-					[disabled]="userEditForm.invalid || !userEditForm.dirty">
-					{{'update' | titlecase}} User
-				</button>
-			</div>
-
-		</form>
-	</div>
+            <div>
+                <button
+                    type="submit"
+                    class="accent"
+                    (click)="userIteractionSubj.next('update')"
+                    [disabled]="userEditForm.invalid || !userEditForm.dirty">
+                    {{ 'update' | titlecase }} User
+                </button>
+            </div>
+        </form>
+    </div>
 }
 
-<ng-template #hintRef let-field="field" let-fieldName="fieldName">
-	<div *ngIf="field.invalid && !field.pristine" class="form__hint">
-		<ng-container *ngIf="field?.errors?.['required']">
-			{{ fieldName }} is required field
-		</ng-container>
-	</div>
+<ng-template
+    #hintRef
+    let-field="field"
+    let-fieldName="fieldName">
+    <div
+        *ngIf="field.invalid && !field.pristine"
+        class="form__hint">
+        <ng-container *ngIf="field?.errors?.['required']">{{ fieldName }} is required field</ng-container>
+    </div>
 </ng-template>

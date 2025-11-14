@@ -3,16 +3,16 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/data-access';
 
 @Component({
-	selector: 'app-logout',
-	standalone: true,
-	imports: [],
-	template: '',
+    selector: 'app-logout',
+    standalone: true,
+    imports: [],
+    template: '',
 })
 export class LogoutComponent implements OnInit {
-	authService = inject(AuthService);
-	router = inject(Router);
+    authService = inject(AuthService);
+    router = inject(Router);
 
-	ngOnInit(): void {
-		this.authService.logout().subscribe();
-	}
+    ngOnInit(): void {
+        this.authService.logout().subscribe();
+    }
 }

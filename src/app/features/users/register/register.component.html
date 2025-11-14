@@ -1,51 +1,55 @@
 <div class="container container--centerd-vert">
-	<form #registerForm="ngForm" class="form w-500 p-50" (ngSubmit)="onSubmit()">
+    <form
+        #registerForm="ngForm"
+        class="form w-500 p-50"
+        (ngSubmit)="onSubmit()">
+        <clt-input-field
+            label="username"
+            modelName="username"
+            inpType="text"
+            [isRequired]="true"
+            [inpValue]="model.username"
+            (onInpChanged)="model.username = $event"></clt-input-field>
 
-		<clt-input-field
-			label="username"
-			modelName="username"
-			inpType="text"
-			[isRequired]="true"
-			[inpValue]="model.username"
-			(onInpChanged)="model.username = $event">
-		</clt-input-field>
+        <clt-input-field
+            label="email"
+            modelName="email"
+            inpType="email"
+            [isRequired]="true"
+            [inpValue]="model.email"
+            (onInpChanged)="model.email = $event"></clt-input-field>
 
-		<clt-input-field
-			label="email"
-			modelName="email"
-			inpType="email"
-			[isRequired]="true"
-			[inpValue]="model.email"
-			(onInpChanged)="model.email = $event">
-		</clt-input-field>
+        <clt-input-field
+            label="password"
+            modelName="password"
+            inpType="password"
+            [isRequired]="true"
+            [minLength]="4"
+            [maxLength]="10"
+            [inpValue]="model.password"
+            (onInpChanged)="model.password = $event"></clt-input-field>
 
+        <clt-input-field
+            label="repeat password"
+            modelName="rePassword"
+            inpType="password"
+            [isRequired]="true"
+            [minLength]="4"
+            [maxLength]="10"
+            [inpValue]="model.rePassword"
+            (onInpChanged)="model.rePassword = $event"></clt-input-field>
 
-		<clt-input-field
-			label="password"
-			modelName="password"
-			inpType="password"
-			[isRequired]="true"
-			[minLength]="4"
-			[maxLength]="10"
-			[inpValue]="model.password"
-			(onInpChanged)="model.password = $event">
-		</clt-input-field>
-
-		<clt-input-field
-			label="repeat password"
-			modelName="rePassword"
-			inpType="password"
-			[isRequired]="true"
-			[minLength]="4"
-			[maxLength]="10"
-			[inpValue]="model.rePassword"
-			(onInpChanged)="model.rePassword = $event">
-		</clt-input-field>
-
-		<div class="form__row">
-			<button type="submit" class="accent mb-20" [disabled]="registerForm.invalid">Register</button>
-			<div class="text-centered">Already registrated? Log in <a routerLink="/users/login">here!</a></div>
-		</div>
-	</form>
-
+        <div class="form__row">
+            <button
+                type="submit"
+                class="accent mb-20"
+                [disabled]="registerForm.invalid">
+                Register
+            </button>
+            <div class="text-centered">
+                Already registrated? Log in
+                <a routerLink="/users/login">here!</a>
+            </div>
+        </div>
+    </form>
 </div>

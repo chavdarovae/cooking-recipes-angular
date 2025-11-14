@@ -1,44 +1,44 @@
-@import "../_app-variables.scss";
+@import '../_app-variables.scss';
 
 .row {
-	width: 100%;
-	display: flex;
-	flex-flow: row wrap;
-	align-items: center;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
 
-	&--centered {
-		justify-content: center;
-	}
+    &--centered {
+        justify-content: center;
+    }
 
-	&--middle {
-		align-items: center;
-	}
+    &--middle {
+        align-items: center;
+    }
 
-	&--top-aligned {
-		align-items: flex-start;
-	}
+    &--top-aligned {
+        align-items: flex-start;
+    }
 
-	&--bottom-aligned {
-		align-items: flex-end;
-	}
+    &--bottom-aligned {
+        align-items: flex-end;
+    }
 
-	&--right-aligned {
-		justify-content: flex-end;
-	}
+    &--right-aligned {
+        justify-content: flex-end;
+    }
 
-	&--left-aligned {
-		justify-content: flex-start;
-	}
+    &--left-aligned {
+        justify-content: flex-start;
+    }
 
-	&--space-btw {
-		justify-content: space-between;
-	}
+    &--space-btw {
+        justify-content: space-between;
+    }
 
-	&--space-around {
-		justify-content: space-around;
-	}
+    &--space-around {
+        justify-content: space-around;
+    }
 
-	&--no-wrap {
-		flex-flow: row nowrap;
-	}
+    &--no-wrap {
+        flex-flow: row nowrap;
+    }
 }

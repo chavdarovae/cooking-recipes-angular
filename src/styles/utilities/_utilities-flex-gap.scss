@@ -1,26 +1,26 @@
-@import "../settings/settings-breakpoints.scss";
+@import '../settings/settings-breakpoints.scss';
 
 @for $i from 0 through 10 {
-	.flex-gap-#{5*$i} {
-		gap: 5px*$i !important;
-	}
+    .flex-gap-#{5*$i} {
+        gap: 5px * $i !important;
+    }
 }
 
 .card-gap {
-	gap: 20px;
+    gap: 20px;
 
-	@include tablet-portrait {
-		gap: 30px;
-	}
+    @include tablet-portrait {
+        gap: 30px;
+    }
 
-	@include tablet-landscape {
-		gap: 45px;
-	}
+    @include tablet-landscape {
+        gap: 45px;
+    }
 
-	@include desktop-normal {
-		gap: 40px;
-	}
-	@include desktop-large {
-		gap: 30px;
-	}
+    @include desktop-normal {
+        gap: 40px;
+    }
+    @include desktop-large {
+        gap: 30px;
+    }
 }

@@ -1,5 +1,5 @@
-@import "../_app-variables.scss";
-@import "../../styles/settings/settings-breakpoints";
+@import '../_app-variables.scss';
+@import '../../styles/settings/settings-breakpoints';
 
 h1,
 h2,
@@ -7,216 +7,216 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $font-family-pri;
-  padding: 0;
-  margin: 0 0 10px 0;
+    font-family: $font-family-pri;
+    padding: 0;
+    margin: 0 0 10px 0;
 
-  @include tablet-portrait {
-    margin: 0 0 15px 0;
-  }
+    @include tablet-portrait {
+        margin: 0 0 15px 0;
+    }
 
-  @include tablet-landscape {
-    margin: 0 0 15px 0;
-  }
+    @include tablet-landscape {
+        margin: 0 0 15px 0;
+    }
 
-  @include desktop-normal {
-    margin: 0 0 20px 0;
-  }
+    @include desktop-normal {
+        margin: 0 0 20px 0;
+    }
 
-  @include desktop-large {
-    margin: 0 0 30px 0;
-  }
+    @include desktop-large {
+        margin: 0 0 30px 0;
+    }
 }
 
 h5,
 h6 {
-  font-family: $font-family-sec;
+    font-family: $font-family-sec;
 }
 
 h1 {
-  $size: 25px;
+    $size: 25px;
 
-  font-size: $size;
-  line-height: calc($size + 2px);
+    font-size: $size;
+    line-height: calc($size + 2px);
 
-  @include tablet-portrait {
-    $amplyfier: 1.2;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include tablet-portrait {
+        $amplyfier: 1.2;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-  @include tablet-landscape {
-    $amplyfier: 1.2;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include tablet-landscape {
+        $amplyfier: 1.2;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-  @include desktop-normal {
-    $amplyfier: 1.5;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include desktop-normal {
+        $amplyfier: 1.5;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-  @include desktop-large {
-    $amplyfier: 1.8;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include desktop-large {
+        $amplyfier: 1.8;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 }
 
 h2 {
-  $size: 23px;
+    $size: 23px;
 
-  font-size: $size;
-  line-height: calc($size + 2px);
+    font-size: $size;
+    line-height: calc($size + 2px);
 
-  @include tablet-portrait {
-    $amplyfier: 1.2;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include tablet-portrait {
+        $amplyfier: 1.2;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-  @include tablet-landscape {
-    $amplyfier: 1.2;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include tablet-landscape {
+        $amplyfier: 1.2;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-  @include desktop-normal {
-    $amplyfier: 1.5;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include desktop-normal {
+        $amplyfier: 1.5;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-  @include desktop-large {
-    $amplyfier: 1.8;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include desktop-large {
+        $amplyfier: 1.8;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 }
 
 h3 {
-  $size: 20px;
+    $size: 20px;
 
-  font-size: $size;
-  line-height: calc($size + 2px);
+    font-size: $size;
+    line-height: calc($size + 2px);
 
-  @include tablet-portrait {
-    $amplyfier: 1.2;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include tablet-portrait {
+        $amplyfier: 1.2;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-  @include tablet-landscape {
-    $amplyfier: 1.2;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include tablet-landscape {
+        $amplyfier: 1.2;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-  @include desktop-normal {
-    $amplyfier: 1.5;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include desktop-normal {
+        $amplyfier: 1.5;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-  @include desktop-large {
-    $amplyfier: 1.8;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include desktop-large {
+        $amplyfier: 1.8;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 }
 
 h4 {
-  $size: 18px;
+    $size: 18px;
 
-  font-size: $size;
-  line-height: calc($size + 2px);
+    font-size: $size;
+    line-height: calc($size + 2px);
 
-  @include tablet-portrait {
-    $amplyfier: 1.2;
-    font-size: calc($amplyfier * $size);
-    line-height: calc(($amplyfier * ($size + 2px)));
-  }
+    @include tablet-portrait {
+        $amplyfier: 1.2;
+        font-size: calc($amplyfier * $size);
+        line-height: calc(($amplyfier * ($size + 2px)));
+    }
 
-  @include tablet-landscape {
-    $amplyfier: 1.2;
-    font-size: calc($amplyfier * $size);
-    line-height: calc(($amplyfier * ($size + 2px)));
-  }
+    @include tablet-landscape {
+        $amplyfier: 1.2;
+        font-size: calc($amplyfier * $size);
+        line-height: calc(($amplyfier * ($size + 2px)));
+    }
 
-  @include desktop-normal {
-    $amplyfier: 1.5;
-    font-size: calc($amplyfier * $size);
-    line-height: calc(($amplyfier * ($size + 2px)));
-  }
+    @include desktop-normal {
+        $amplyfier: 1.5;
+        font-size: calc($amplyfier * $size);
+        line-height: calc(($amplyfier * ($size + 2px)));
+    }
 
-  @include desktop-large {
-    $amplyfier: 1.8;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include desktop-large {
+        $amplyfier: 1.8;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 }
 
 h5 {
-  $size: 16px;
+    $size: 16px;
 
-  font-size: $size;
-  line-height: calc($size + 2px);
-  font-weight: 300;
+    font-size: $size;
+    line-height: calc($size + 2px);
+    font-weight: 300;
 
-  @include tablet-portrait {
-    $amplyfier: 1.2;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include tablet-portrait {
+        $amplyfier: 1.2;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-  @include tablet-landscape {
-    $amplyfier: 1.2;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include tablet-landscape {
+        $amplyfier: 1.2;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-  @include desktop-normal {
-    $amplyfier: 1.5;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include desktop-normal {
+        $amplyfier: 1.5;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-  @include desktop-large {
-    $amplyfier: 1.8;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include desktop-large {
+        $amplyfier: 1.8;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 }
 
 h6 {
-  $size: 25px;
+    $size: 25px;
 
-  font-size: $size;
-  line-height: calc($size + 2px);
-  font-weight: 300;
+    font-size: $size;
+    line-height: calc($size + 2px);
+    font-weight: 300;
 
-  @include tablet-portrait {
-    $amplyfier: 1.2;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include tablet-portrait {
+        $amplyfier: 1.2;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-  @include tablet-landscape {
-    $amplyfier: 1.2;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include tablet-landscape {
+        $amplyfier: 1.2;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-  @include desktop-normal {
-    $amplyfier: 1.5;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include desktop-normal {
+        $amplyfier: 1.5;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 
-  @include desktop-large {
-    $amplyfier: 1.8;
-    font-size: calc($amplyfier * $size);
-    line-height: calc($amplyfier * ($size + 2px));
-  }
+    @include desktop-large {
+        $amplyfier: 1.8;
+        font-size: calc($amplyfier * $size);
+        line-height: calc($amplyfier * ($size + 2px));
+    }
 }

@@ -7,112 +7,112 @@ import { IAccount, IUser, IUserQuery, UtilService } from 'src/app/utils';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-	providedIn: 'root',
+    providedIn: 'root',
 })
 export class AuthService {
-	// services
-	private http = inject(HttpClient);
-	private router = inject(Router);
-	private utilService = inject(UtilService);
+    // services
+    private http = inject(HttpClient);
+    private router = inject(Router);
+    private utilService = inject(UtilService);
 
-	// main entity
-	private currUser = signal<IAccount | null | undefined>(undefined);
-	currUserSig = computed(() => this.currUser());
+    // main entity
+    private currUser = signal<IAccount | null | undefined>(undefined);
+    currUserSig = computed(() => this.currUser());
 
-	// service state account list
-	private relaodAccountsSubj: Subject<IUserQuery> = new Subject();
-	private accounts$: Observable<IAccount[]> = this.relaodAccountsSubj
-		.asObservable()
-		.pipe(
-			switchMap((query: IUserQuery) => this.getAllAccounts(query)),
-			shareReplay()
-		);
-	accountsSig = toSignal(this.accounts$, { initialValue: [] as IAccount[] });
+    // service state account list
+    private relaodAccountsSubj: Subject<IUserQuery> = new Subject();
+    private accounts$: Observable<IAccount[]> = this.relaodAccountsSubj
+        .asObservable()
+        .pipe(
+            switchMap((query: IUserQuery) => this.getAllAccounts(query)),
+            shareReplay(),
+        );
+    accountsSig = toSignal(this.accounts$, { initialValue: [] as IAccount[] });
 
-	// auxiliary varibles
-	private accountApi = environment.backendUrl + '/api/users';
-	private currUserSotrageKey = 'currUser';
+    // auxiliary varibles
+    private accountApi = environment.backendUrl + '/api/users';
+    private currUserSotrageKey = 'currUser';
 
-	constructor() {
-		const storedCurrUser = JSON.parse(
-			localStorage.getItem(this.currUserSotrageKey) as string
-		);
-		this.setCurrUser(storedCurrUser);
-	}
+    constructor() {
+        const storedCurrUser = JSON.parse(
+            localStorage.getItem(this.currUserSotrageKey) as string,
+        );
+        this.setCurrUser(storedCurrUser);
+    }
 
-	relaodAccountList(query: IUserQuery) {
-		this.relaodAccountsSubj.next(query);
-	}
+    relaodAccountList(query: IUserQuery) {
+        this.relaodAccountsSubj.next(query);
+    }
 
-	getOwnAccount(): Observable<IAccount> {
-		return this.http.get<IAccount>(this.accountApi + '/ownAccount').pipe(
-			tap((user: IAccount) => this.setCurrUser(user)),
-			first()
-		);
-	}
+    getOwnAccount(): Observable<IAccount> {
+        return this.http.get<IAccount>(this.accountApi + '/ownAccount').pipe(
+            tap((user: IAccount) => this.setCurrUser(user)),
+            first(),
+        );
+    }
 
-	register(registerData: IAccount): Observable<IAccount> {
-		return this.http
-			.post<IAccount>(this.accountApi + '/register', registerData)
-			.pipe(
-				tap((user: IAccount) => this.setCurrUser(user)),
-				first()
-			);
-	}
+    register(registerData: IAccount): Observable<IAccount> {
+        return this.http
+            .post<IAccount>(this.accountApi + '/register', registerData)
+            .pipe(
+                tap((user: IAccount) => this.setCurrUser(user)),
+                first(),
+            );
+    }
 
-	login(loginData: IAccount): Observable<IAccount> {
-		return this.http
-			.post<IAccount>(this.accountApi + '/login', loginData)
-			.pipe(
-				tap((user: IAccount) => {
-					this.setCurrUser(user);
-					this.router.navigateByUrl('/');
-				}),
-				first()
-			);
-	}
+    login(loginData: IAccount): Observable<IAccount> {
+        return this.http
+            .post<IAccount>(this.accountApi + '/login', loginData)
+            .pipe(
+                tap((user: IAccount) => {
+                    this.setCurrUser(user);
+                    this.router.navigateByUrl('/');
+                }),
+                first(),
+            );
+    }
 
-	logout(): Observable<any> {
-		return this.http.get<IAccount>(this.accountApi + '/logout').pipe(
-			tap(() => {
-				this.setCurrUserAsGuest();
-				this.router.navigateByUrl('/');
-			}),
-			first()
-		);
-	}
+    logout(): Observable<any> {
+        return this.http.get<IAccount>(this.accountApi + '/logout').pipe(
+            tap(() => {
+                this.setCurrUserAsGuest();
+                this.router.navigateByUrl('/');
+            }),
+            first(),
+        );
+    }
 
-	getAllAccounts(query: IUserQuery): Observable<IAccount[]> {
-		return this.http.get<IAccount[]>(
-			this.accountApi +
-				'/accounts' +
-				this.utilService.transformQueryIntoString(
-					query as unknown as Record<string, string>
-				)
-		);
-	}
+    getAllAccounts(query: IUserQuery): Observable<IAccount[]> {
+        return this.http.get<IAccount[]>(
+            this.accountApi +
+                '/accounts' +
+                this.utilService.transformQueryIntoString(
+                    query as unknown as Record<string, string>,
+                ),
+        );
+    }
 
-	getAccount(userId: string): Observable<IAccount> {
-		return this.http
-			.get<IAccount>(this.accountApi + '/accounts/' + userId)
-			.pipe(first());
-	}
+    getAccount(userId: string): Observable<IAccount> {
+        return this.http
+            .get<IAccount>(this.accountApi + '/accounts/' + userId)
+            .pipe(first());
+    }
 
-	updateAccount(modifiedUser: IUser): Observable<IAccount> {
-		return this.http
-			.put<IAccount>(
-				this.accountApi + '/accounts/' + modifiedUser._id,
-				modifiedUser
-			)
-			.pipe(first());
-	}
+    updateAccount(modifiedUser: IUser): Observable<IAccount> {
+        return this.http
+            .put<IAccount>(
+                this.accountApi + '/accounts/' + modifiedUser._id,
+                modifiedUser,
+            )
+            .pipe(first());
+    }
 
-	setCurrUserAsGuest() {
-		this.setCurrUser(null);
-	}
+    setCurrUserAsGuest() {
+        this.setCurrUser(null);
+    }
 
-	private setCurrUser(user: IAccount | null) {
-		this.currUser.set(user);
-		localStorage.setItem(this.currUserSotrageKey, JSON.stringify(user));
-	}
+    private setCurrUser(user: IAccount | null) {
+        this.currUser.set(user);
+        localStorage.setItem(this.currUserSotrageKey, JSON.stringify(user));
+    }
 }

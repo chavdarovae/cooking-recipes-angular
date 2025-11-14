@@ -6,37 +6,31 @@ import { AuthService } from 'src/app/data-access/services/auth.service';
 import { InputFieldComponent } from 'src/app/ui';
 
 @Component({
-	selector: 'app-login',
-	standalone: true,
-	imports: [
-		CommonModule,
-		FormsModule,
-		RouterModule,
-		InputFieldComponent
-	],
-	templateUrl: './login.component.html',
-	styleUrl: './login.component.scss'
+    selector: 'app-login',
+    standalone: true,
+    imports: [CommonModule, FormsModule, RouterModule, InputFieldComponent],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
-	authService = inject(AuthService);
-	router = inject(Router);
+    authService = inject(AuthService);
+    router = inject(Router);
 
-	model: any = {
-		email: '',
-		password: ''
-	};
+    model: any = {
+        email: '',
+        password: '',
+    };
 
-	ngOnInit(): void {
-		if (this.authService.currUserSig()) {
-			this.router.navigateByUrl('/');
-		}
-	}
+    ngOnInit(): void {
+        if (this.authService.currUserSig()) {
+            this.router.navigateByUrl('/');
+        }
+    }
 
-
-	onSubmit() {
-		if (!this.model.email || !this.model.password) {
-			return;
-		}
-		this.authService.login(this.model).subscribe()
-	}
+    onSubmit() {
+        if (!this.model.email || !this.model.password) {
+            return;
+        }
+        this.authService.login(this.model).subscribe();
+    }
 }

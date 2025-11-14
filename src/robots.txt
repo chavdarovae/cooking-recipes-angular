@@ -3,7 +3,7 @@ User-agent: AdsBot-Google
 Disallow: /assets/
 Allow: /
 
-Sitemap: https://www.colleto.de/sitemap.xml
-Sitemap: https://www.colleto.de/sitemap.xml
-Sitemap: http://colleto.de/sitemap.xml
-Sitemap: https://colleto.de/sitemap.xml
+Sitemap: https://www.chavdarovae.github.io/cooking-recipes-angular/sitemap.xml
+Sitemap: https://www.chavdarovae.github.io/cooking-recipes-angular/sitemap.xml
+Sitemap: http://chavdarovae.github.io/cooking-recipes-angular/sitemap.xml
+Sitemap: https://chavdarovae.github.io/cooking-recipes-angular/sitemap.xml

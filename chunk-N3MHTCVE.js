@@ -1,1 +1,0 @@
-import{d as i}from"./chunk-LFNY553R.js";var u=class t{constructor(r,n,e){this.sort=e;this.page=t.toNumber(r,1),this.pageSize=t.toNumber(n,i.size)}page;pageSize;static toNumber(r,n){if(r==null)return n;let e=typeof r=="string"?Number(r):r;return Number.isFinite(e)&&e>0?e:n}};export{u as a};

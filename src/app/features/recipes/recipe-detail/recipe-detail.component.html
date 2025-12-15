@@ -30,14 +30,14 @@
                     <hr />
 
                     <div class="row row--no-wrap row--space-btw w100 mt-20">
-                        @if (authService.currUserSig()?._id === selectedRecipeSig()?.owner) {
+                        @if (authService.currUserSig()?.id === selectedRecipeSig()?.owner) {
                             <button
                                 class="danger"
                                 (click)="userIteractionSubj.next('deleteDialog')">
                                 Delete
                             </button>
                             <button
-                                [routerLink]="['/recipes/' + selectedRecipeSig()?._id + '/edit']"
+                                [routerLink]="['/recipes/' + selectedRecipeSig()?.id + '/edit']"
                                 [state]="{ recipe: selectedRecipeSig() }">
                                 Edit
                             </button>

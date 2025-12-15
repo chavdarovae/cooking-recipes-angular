@@ -50,7 +50,7 @@ export class RecipeCreateComponent implements OnInit {
 
     ngOnInit(): void {
         this.recipe = history.state?.['recipe'] ?? new RecipeCreateItem();
-        this.allowedInteraction = (this.recipe as IRecipe)?._id
+        this.allowedInteraction = (this.recipe as IRecipe)?.id
             ? 'update'
             : 'create';
         this.initUserInteraction();

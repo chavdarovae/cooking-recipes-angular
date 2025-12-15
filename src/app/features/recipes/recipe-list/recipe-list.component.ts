@@ -5,6 +5,7 @@ import { RecipeService } from '../recipe.service';
 import { IRecipe } from '../recipe.interface';
 import { RecipeQuery } from '../recipe.models';
 import { CardComponent } from '../components/card/card.component';
+import { IGenericResList } from 'src/app/utils';
 
 @Component({
     selector: 'app-recipe-list',
@@ -19,7 +20,8 @@ export class RecipeListComponent implements OnInit {
     private recipeService = inject(RecipeService);
 
     // main entity
-    recipes: Signal<IRecipe[]> = this.recipeService.recipesSig;
+    recipesResSig: Signal<IGenericResList<IRecipe>> =
+        this.recipeService.recipesSig;
 
     // auxiliary variables
     query!: RecipeQuery;

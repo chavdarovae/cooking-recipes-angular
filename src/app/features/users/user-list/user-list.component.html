@@ -26,7 +26,7 @@
             [routerLink]="['/users/add-new-user']">
             +
         </span>
-        @for (account of accountsSig(); track account._id) {
+        @for (account of accountsResSig().data; track account.id) {
             <article class="account jumpy-card row row--no-wrap gap-20">
                 <i class="fa-solid fa-user"></i>
 
@@ -43,7 +43,7 @@
                     <span class="text-accent">{{ account.role }}</span>
                     <button
                         class="accent span-2 w100 mt-10"
-                        [routerLink]="['/users/', account?._id]"
+                        [routerLink]="['/users/', account?.id]"
                         routerLinkActive="router-link-active"
                         [state]="{ user: account }">
                         Edit User

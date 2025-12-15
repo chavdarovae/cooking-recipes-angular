@@ -1,11 +1,11 @@
 export interface IRecipe {
-    _id?: string;
+    id?: string;
     title: string;
     ingredients: string;
     instructions: string;
     description: string;
     image: string;
-    recommendList?: { _id: string }[];
+    recommendList?: { id: string }[];
     owner: string;
 }
 

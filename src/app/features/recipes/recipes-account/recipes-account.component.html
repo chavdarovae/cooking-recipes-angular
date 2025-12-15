@@ -21,12 +21,12 @@
         <div><strong>My recepies:</strong></div>
     </div>
     <div class="carousel">
-        @for (recipe of ownRecipesSig(); track recipe._id) {
+        @for (recipe of ownRecipesSig(); track recipe.id) {
             <!-- <clt-card [recipe]="recipe"></clt-card> -->
             <img
                 [src]="recipe.image"
                 [alt]="recipe.title"
-                [routerLink]="['/recipes', recipe?._id]" />
+                [routerLink]="['/recipes', recipe?.id]" />
         } @empty {
             <h5 class="row row--centered row--middle">You don't have any recipes yet!</h5>
         }

@@ -14,16 +14,16 @@ export class UserCreateItem implements IUserWithPassword {
 }
 
 export class UserEditItem implements IUser {
-    _id?: string;
+    id?: string;
     username: string = '';
     email: string = '';
     role: UserRolesEnum = UserRolesEnum.GUEST;
 
     constructor(user?: Partial<IUser>) {
         if (user) {
-            const { _id, username, email, role } = user;
+            const { id, username, email, role } = user;
 
-            this._id = _id;
+            this.id = id;
             this.username = username ?? '';
             this.email = email ?? '';
             this.role = role ?? UserRolesEnum.GUEST;

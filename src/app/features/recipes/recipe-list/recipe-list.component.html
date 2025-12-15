@@ -11,7 +11,7 @@
     </form>
 
     <div class="card-container">
-        @for (recipe of recipes(); track recipe._id) {
+        @for (recipe of recipesResSig().data; track recipe.id) {
             <clt-card [recipe]="recipe"></clt-card>
         }
     </div>

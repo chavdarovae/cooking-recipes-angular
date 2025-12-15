@@ -1,10 +1,11 @@
+import { IMetaDataRes } from './../../utils/interfaces/general.interfaces';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, Observable, shareReplay, Subject, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IRecipe, IRecipeQuery } from './recipe.interface';
-import { UtilService } from 'src/app/utils';
+import { IGenericResList, UtilService } from 'src/app/utils';
 
 @Injectable({
     providedIn: 'root',
@@ -18,11 +19,10 @@ export class RecipeService {
 
     // service state recipe list
     private relaodRecipesSubj: Subject<IRecipeQuery> = new Subject();
-    private recipes$: Observable<IRecipe[]> = this.relaodRecipesSubj
-        .asObservable()
-        .pipe(
+    private recipes$: Observable<IGenericResList<IRecipe>> =
+        this.relaodRecipesSubj.asObservable().pipe(
             switchMap((query: IRecipeQuery) =>
-                this.http.get<IRecipe[]>(
+                this.http.get<IGenericResList<IRecipe>>(
                     this.accountApi +
                         this.utilService.transformQueryIntoString(
                             query as Record<string, string>,
@@ -31,7 +31,12 @@ export class RecipeService {
             ),
             shareReplay(),
         );
-    recipesSig = toSignal(this.recipes$, { initialValue: [] as IRecipe[] });
+    recipesSig = toSignal(this.recipes$, {
+        initialValue: {
+            data: [] as IRecipe[],
+            metaData: {} as IMetaDataRes,
+        },
+    });
 
     // service state selected recipe
     private selectedRecipeSubj: Subject<string> = new Subject();
@@ -59,7 +64,7 @@ export class RecipeService {
 
     update(updatedRecipe: IRecipe) {
         return this.http.put<IRecipe>(
-            `${this.accountApi}/${updatedRecipe._id}`,
+            `${this.accountApi}/${updatedRecipe.id}`,
             updatedRecipe,
         );
     }

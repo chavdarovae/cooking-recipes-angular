@@ -3,7 +3,14 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { first, Observable, shareReplay, Subject, switchMap, tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { IAccount, IUser, IUserQuery, UtilService } from 'src/app/utils';
+import {
+    IAccount,
+    IGenericResList,
+    IMetaDataRes,
+    IUser,
+    IUserQuery,
+    UtilService,
+} from 'src/app/utils';
 import { environment } from 'src/environments/environment';
 import { UserCreateItem } from 'src/app/features/users/user.models';
 
@@ -22,13 +29,17 @@ export class AuthService {
 
     // service state account list
     private relaodAccountsSubj: Subject<IUserQuery> = new Subject();
-    private accounts$: Observable<IAccount[]> = this.relaodAccountsSubj
-        .asObservable()
-        .pipe(
+    private accounts$: Observable<IGenericResList<IAccount>> =
+        this.relaodAccountsSubj.asObservable().pipe(
             switchMap((query: IUserQuery) => this.getAllAccounts(query)),
             shareReplay(),
         );
-    accountsSig = toSignal(this.accounts$, { initialValue: [] as IAccount[] });
+    accountsSig = toSignal(this.accounts$, {
+        initialValue: {
+            data: [] as IAccount[],
+            metaData: {} as IMetaDataRes,
+        },
+    });
 
     // auxiliary varibles
     private accountApi = environment.backendUrl + '/api/users';
@@ -83,8 +94,8 @@ export class AuthService {
         );
     }
 
-    getAllAccounts(query: IUserQuery): Observable<IAccount[]> {
-        return this.http.get<IAccount[]>(
+    getAllAccounts(query: IUserQuery): Observable<IGenericResList<IAccount>> {
+        return this.http.get<IGenericResList<IAccount>>(
             this.accountApi +
                 '/accounts' +
                 this.utilService.transformQueryIntoString(
@@ -108,7 +119,7 @@ export class AuthService {
     updateAccount(modifiedUser: IUser): Observable<IAccount> {
         return this.http
             .put<IAccount>(
-                this.accountApi + '/accounts/' + modifiedUser._id,
+                this.accountApi + '/accounts/' + modifiedUser.id,
                 modifiedUser,
             )
             .pipe(first());
@@ -116,7 +127,7 @@ export class AuthService {
 
     deleteAccount(userToDelete: IUser): Observable<IAccount> {
         return this.http
-            .delete<IAccount>(this.accountApi + '/accounts/' + userToDelete._id)
+            .delete<IAccount>(this.accountApi + '/accounts/' + userToDelete.id)
             .pipe(first());
     }
 

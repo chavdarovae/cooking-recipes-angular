@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { InputFieldComponent, InputSelectComponent } from 'src/app/ui';
 import { NgForm } from '@angular/forms';
 import { UserQuery } from '../user.models';
-import { IAccount, UserRolesEnum } from 'src/app/utils';
+import { IAccount, IGenericResList, UserRolesEnum } from 'src/app/utils';
 
 @Component({
     selector: 'app-user-list',
@@ -19,7 +19,8 @@ export class UserListComponent implements OnInit {
     private authService = inject(AuthService);
 
     // main entity
-    accountsSig: Signal<IAccount[]> = this.authService.accountsSig;
+    accountsResSig: Signal<IGenericResList<IAccount>> =
+        this.authService.accountsSig;
 
     // auxiliary variables
     query!: UserQuery;

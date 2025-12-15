@@ -63,14 +63,14 @@ export class RecipeDetailComponent implements OnInit {
 
     isAlreadyRecommendedByCurrUser(): boolean {
         const recipe = this.selectedRecipeSig();
-        const currUserId = this.authService.currUserSig()?._id;
+        const currUserId = this.authService.currUserSig()?.id;
 
         if (!recipe?.recommendList || !currUserId) {
             return false;
         }
 
         return recipe.recommendList
-            ?.flatMap((x: { _id: string }) => x._id)
+            ?.flatMap((x: { id: string }) => x.id)
             ?.includes(currUserId);
     }
 
@@ -88,7 +88,7 @@ export class RecipeDetailComponent implements OnInit {
                         );
                     case 'delete':
                         return this.recipeService
-                            .delete(this.selectedRecipeSig()?._id)
+                            .delete(this.selectedRecipeSig()?.id)
                             .pipe(
                                 tap(() =>
                                     this.router.navigateByUrl('/recipes'),
@@ -96,7 +96,7 @@ export class RecipeDetailComponent implements OnInit {
                             );
                     case 'recommend':
                         return this.recipeService.recommend(
-                            this.selectedRecipeSig()?._id,
+                            this.selectedRecipeSig()?.id,
                         );
                 }
             }),

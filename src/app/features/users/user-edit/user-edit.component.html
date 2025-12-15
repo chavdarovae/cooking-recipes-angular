@@ -32,7 +32,7 @@
             <clt-input-select
                 label="Role"
                 modelName="role"
-                [selectList]="userRolesEnum"
+                [selectListEnum]="userRolesEnum"
                 [inpValue]="user.role"
                 [selectEcceptions]="[userRolesEnum.GUEST]"
                 (onSelectChanged)="user.role = $event"></clt-input-select>

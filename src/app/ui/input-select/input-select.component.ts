@@ -24,8 +24,9 @@ import { EnumToListPipe } from 'src/app/utils';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputSelectComponent<T> {
-    @Input() inpValue!: T[keyof T] | undefined;
-    @Input() selectList: T = {} as T;
+    @Input() inpValue!: T[keyof T] | undefined | T;
+    @Input() selectList!: T[];
+    @Input() selectListEnum!: T;
     @Input() selectEcceptions: string[] = [];
     @Input() isDisabled!: boolean;
     @Input() isRequired!: boolean;

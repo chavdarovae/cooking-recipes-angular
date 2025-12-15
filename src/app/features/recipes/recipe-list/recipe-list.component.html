@@ -6,7 +6,7 @@
             inpType="text"
             placeholder="Recipe title"
             [isTypeAhead]="true"
-            [inpValue]="query.search ?? ''"
+            [inpValue]="query().search ?? ''"
             (onInpChanged)="onSearchStringChange($event)"></clt-input-field>
     </form>
 
@@ -15,4 +15,9 @@
             <clt-card [recipe]="recipe"></clt-card>
         }
     </div>
+
+    <clt-paging
+        [paging]="query()"
+        (onPageChange)="onPageChange($event)"
+        (onPageSizeChange)="onPageSizeChange($event)"></clt-paging>
 </div>

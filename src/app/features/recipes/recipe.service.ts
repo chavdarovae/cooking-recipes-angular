@@ -4,8 +4,9 @@ import { inject, Injectable } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, Observable, shareReplay, Subject, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IRecipe, IRecipeQuery } from './recipe.interface';
+import { IRecipe } from './recipe.interface';
 import { IGenericResList, UtilService } from 'src/app/utils';
+import { RecipeQuery } from './recipe.models';
 
 @Injectable({
     providedIn: 'root',
@@ -18,14 +19,14 @@ export class RecipeService {
     accountApi = environment.backendUrl + '/api/recipes';
 
     // service state recipe list
-    private relaodRecipesSubj: Subject<IRecipeQuery> = new Subject();
+    private relaodRecipesSubj: Subject<RecipeQuery> = new Subject();
     private recipes$: Observable<IGenericResList<IRecipe>> =
         this.relaodRecipesSubj.asObservable().pipe(
-            switchMap((query: IRecipeQuery) =>
+            switchMap((query: RecipeQuery) =>
                 this.http.get<IGenericResList<IRecipe>>(
                     this.accountApi +
                         this.utilService.transformQueryIntoString(
-                            query as Record<string, string>,
+                            query as Record<string, any>,
                         ),
                 ),
             ),
@@ -50,7 +51,7 @@ export class RecipeService {
         );
     selectedRecipeSig = toSignal(this.selectedRecipe$, { initialValue: null });
 
-    reloadRecipes(query: IRecipeQuery) {
+    reloadRecipes(query: RecipeQuery) {
         this.relaodRecipesSubj.next(query);
     }
 

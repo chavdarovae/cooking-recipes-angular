@@ -7,16 +7,16 @@
             inpType="text"
             placeholder="Username or Email"
             [isTypeAhead]="true"
-            [inpValue]="query.search ?? ''"
-            (onInpChanged)="query.search = $event; onSearchQueryChange()"></clt-input-field>
+            [inpValue]="query().search ?? ''"
+            (onInpChanged)="onSearchChanged($event)"></clt-input-field>
 
         <clt-input-select
             modelName="role"
             placeholder="All roles"
-            [selectList]="userRolesEnum"
-            [inpValue]="query.role"
+            [selectListEnum]="userRolesEnum"
+            [inpValue]="query().role"
             [selectEcceptions]="[userRolesEnum.GUEST]"
-            (onSelectChanged)="query.role = $event; onSearchQueryChange()"></clt-input-select>
+            (onSelectChanged)="onRoleChanged($event)"></clt-input-select>
     </form>
 
     <div class="card-container">

@@ -1,8 +1,24 @@
-export class MetaReqModel<T> {
+import { PAGING } from '../constants/gengeral.constants';
+
+export class MetaReqModel {
+    page: number;
+    pageSize: number;
+
     constructor(
-        public page: number = 1,
-        public entitiesPerPage: number = 50,
+        page?: string | number,
+        pageSize?: string | number,
         public sort?: string,
-        public filter?: T,
-    ) {}
+    ) {
+        this.page = MetaReqModel.toNumber(page, 1);
+        this.pageSize = MetaReqModel.toNumber(pageSize, PAGING.size);
+    }
+
+    private static toNumber(
+        value: string | number | undefined,
+        fallback: number,
+    ): number {
+        if (value === undefined || value === null) return fallback;
+        const num = typeof value === 'string' ? Number(value) : value;
+        return Number.isFinite(num) && num > 0 ? num : fallback;
+    }
 }

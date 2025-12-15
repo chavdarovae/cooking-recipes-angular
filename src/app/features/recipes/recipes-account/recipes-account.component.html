@@ -21,7 +21,7 @@
         <div><strong>My recepies:</strong></div>
     </div>
     <div class="carousel">
-        @for (recipe of ownRecipesSig(); track recipe.id) {
+        @for (recipe of ownRecipesResSig().data; track recipe.id) {
             <!-- <clt-card [recipe]="recipe"></clt-card> -->
             <img
                 [src]="recipe.image"

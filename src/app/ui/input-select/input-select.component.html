@@ -1,5 +1,9 @@
 @if (label) {
-    <label [for]="modelName">{{ label | titlecase }}</label>
+    <label
+        class="mr-5"
+        [for]="modelName">
+        {{ label | titlecase }}
+    </label>
 }
 
 <select
@@ -16,9 +20,15 @@
     [disabled]="isDisabled">
     <option [ngValue]="null">{{ placeholder }}</option>
 
-    @for (role of selectList | appEnumToList; track role) {
-        @if (!selectEcceptions.includes(role)) {
-            <option [ngValue]="role">{{ role.replace('_', ' ') | titlecase }}</option>
+    @if (selectListEnum) {
+        @for (role of selectListEnum | appEnumToList; track role) {
+            @if (!selectEcceptions.includes(role)) {
+                <option [ngValue]="role">{{ role.replace('_', ' ') | titlecase }}</option>
+            }
+        }
+    } @else {
+        @for (opt of selectList; track opt) {
+            <option [ngValue]="opt">{{ opt }}</option>
         }
     }
 </select>

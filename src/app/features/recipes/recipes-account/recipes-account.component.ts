@@ -1,9 +1,11 @@
 import { LowerCasePipe } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, Signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RecipeService } from '../recipe.service';
 import { AuthService } from 'src/app/data-access';
 import { RecipeQuery } from '../recipe.models';
+import { IGenericResList } from 'src/app/utils';
+import { IRecipe } from '../recipe.interface';
 
 @Component({
     selector: 'app-recipes-account',
@@ -17,7 +19,8 @@ export class RecipesAccountComponent implements OnInit {
     private recipeService = inject(RecipeService);
     authService = inject(AuthService);
 
-    ownRecipesSig = this.recipeService.recipesSig;
+    ownRecipesResSig: Signal<IGenericResList<IRecipe>> =
+        this.recipeService.recipesSig;
 
     ngOnInit(): void {
         this.recipeService.reloadRecipes(

@@ -1,4 +1,5 @@
-import { IUser, IUserQuery, UserRolesEnum } from 'src/app/utils';
+import { IUser, UserRolesEnum } from 'src/app/utils';
+import { MetaReqModel } from 'src/app/utils/models/generic.models';
 
 export interface IUserWithPassword extends IUser {
     password?: string; // new property
@@ -31,12 +32,16 @@ export class UserEditItem implements IUser {
     }
 }
 
-export class UserQuery implements IUserQuery {
-    search?: string;
+export class UserQuery extends MetaReqModel {
     role?: UserRolesEnum;
-
-    constructor(search?: string, role?: UserRolesEnum) {
-        this.search = search;
-        this.role = role;
+    constructor(
+        public search?: string,
+        role?: string,
+        page?: string | number,
+        pageSize?: string | number,
+        sort?: string,
+    ) {
+        super(page, pageSize, sort);
+        this.role = role as UserRolesEnum;
     }
 }

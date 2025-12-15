@@ -1,4 +1,5 @@
 export * from './constants/menu-items';
+export * from './constants/gengeral.constants';
 
 export * from './enums/user.enums';
 

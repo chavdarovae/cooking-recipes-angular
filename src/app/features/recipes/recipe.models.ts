@@ -1,4 +1,5 @@
-import { IRecipe, IRecipeQuery } from './recipe.interface';
+import { MetaReqModel } from 'src/app/utils/models/generic.models';
+import { IRecipe } from './recipe.interface';
 
 export class RecipeCreateItem implements IRecipe {
     title: string;
@@ -25,12 +26,14 @@ export class RecipeCreateItem implements IRecipe {
     }
 }
 
-export class RecipeQuery implements IRecipeQuery {
-    search?: string;
-    owner?: string;
-
-    constructor(search?: string, owner?: string) {
-        this.search = search;
-        this.owner = owner;
+export class RecipeQuery extends MetaReqModel {
+    constructor(
+        public search?: string,
+        public owner?: string,
+        page?: string | number,
+        pageSize?: string | number,
+        sort?: string,
+    ) {
+        super(page, pageSize, sort);
     }
 }

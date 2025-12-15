@@ -10,8 +10,3 @@ export interface IUser {
 export interface IAccount extends IUser {
     password: string;
 }
-
-export interface IUserQuery {
-    search?: string;
-    role?: UserRolesEnum;
-}

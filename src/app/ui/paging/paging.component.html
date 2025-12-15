@@ -1,0 +1,23 @@
+<div class="row row--no-wrap row--centered gap-50">
+    <clt-input-select
+        label="Page size"
+        modelName="pageSize"
+        [selectList]="pagingSizeOptions"
+        [inpValue]="paging().pageSize"
+        (onSelectChanged)="onPageSizeChange.emit($event)"></clt-input-select>
+
+    <div class="page row row--no-wrap row--centered gap-20">
+        <span
+            class="btn accent"
+            [ngClass]="{ disabled: paging().page === 1 }"
+            (click)="onPageChange.emit(paging().page - 1)">
+            ❮
+        </span>
+        <span class="page">{{ paging().page }} / total</span>
+        <span
+            class="btn accent"
+            (click)="onPageChange.emit(paging().page + 1)">
+            ❯
+        </span>
+    </div>
+</div>

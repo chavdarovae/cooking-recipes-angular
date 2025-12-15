@@ -8,11 +8,10 @@ import {
     IGenericResList,
     IMetaDataRes,
     IUser,
-    IUserQuery,
     UtilService,
 } from 'src/app/utils';
 import { environment } from 'src/environments/environment';
-import { UserCreateItem } from 'src/app/features/users/user.models';
+import { UserCreateItem, UserQuery } from 'src/app/features/users/user.models';
 
 @Injectable({
     providedIn: 'root',
@@ -28,10 +27,10 @@ export class AuthService {
     currUserSig = computed(() => this.currUser());
 
     // service state account list
-    private relaodAccountsSubj: Subject<IUserQuery> = new Subject();
+    private relaodAccountsSubj: Subject<UserQuery> = new Subject();
     private accounts$: Observable<IGenericResList<IAccount>> =
         this.relaodAccountsSubj.asObservable().pipe(
-            switchMap((query: IUserQuery) => this.getAllAccounts(query)),
+            switchMap((query: UserQuery) => this.getAllAccounts(query)),
             shareReplay(),
         );
     accountsSig = toSignal(this.accounts$, {
@@ -52,7 +51,7 @@ export class AuthService {
         this.setCurrUser(storedCurrUser);
     }
 
-    relaodAccountList(query: IUserQuery) {
+    relaodAccountList(query: UserQuery) {
         this.relaodAccountsSubj.next(query);
     }
 
@@ -94,7 +93,7 @@ export class AuthService {
         );
     }
 
-    getAllAccounts(query: IUserQuery): Observable<IGenericResList<IAccount>> {
+    getAllAccounts(query: UserQuery): Observable<IGenericResList<IAccount>> {
         return this.http.get<IGenericResList<IAccount>>(
             this.accountApi +
                 '/accounts' +

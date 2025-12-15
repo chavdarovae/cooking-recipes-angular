@@ -1,38 +1,80 @@
-import { Component, inject, OnInit, Signal } from '@angular/core';
-import { InputFieldComponent } from 'src/app/ui';
+import { Component, computed, effect, inject, Signal } from '@angular/core';
+import { InputFieldComponent, PagingComponent } from 'src/app/ui';
 import { NgForm } from '@angular/forms';
 import { RecipeService } from '../recipe.service';
 import { IRecipe } from '../recipe.interface';
 import { RecipeQuery } from '../recipe.models';
 import { CardComponent } from '../components/card/card.component';
 import { IGenericResList } from 'src/app/utils';
+import { ActivatedRoute, Router } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-recipe-list',
     standalone: true,
     templateUrl: './recipe-list.component.html',
     styleUrl: './recipe-list.component.scss',
-    imports: [CardComponent, InputFieldComponent],
+    imports: [CardComponent, InputFieldComponent, PagingComponent],
     providers: [NgForm],
 })
-export class RecipeListComponent implements OnInit {
+export class RecipeListComponent {
     // services
     private recipeService = inject(RecipeService);
+    private route = inject(ActivatedRoute);
+    private router = inject(Router);
 
     // main entity
     recipesResSig: Signal<IGenericResList<IRecipe>> =
         this.recipeService.recipesSig;
 
-    // auxiliary variables
-    query!: RecipeQuery;
+    // query params
+    queryParams = toSignal(this.route.queryParamMap);
+    query = computed(() => {
+        const qp = this.queryParams();
+        return new RecipeQuery(
+            qp?.get('search') ?? undefined,
+            qp?.get('owner') ?? undefined,
+            qp?.get('page') ?? undefined,
+            qp?.get('pageSize') ?? undefined,
+            qp?.get('sort') ?? undefined,
+        );
+    });
 
-    ngOnInit(): void {
-        this.query = new RecipeQuery('');
-        this.recipeService.reloadRecipes(this.query);
+    constructor() {
+        let lastQueryJson = '';
+
+        effect(
+            () => {
+                const query = this.query();
+                const currentJson = JSON.stringify(query);
+
+                if (currentJson === lastQueryJson) return;
+                lastQueryJson = currentJson;
+
+                this.recipeService.reloadRecipes(query);
+            },
+            { allowSignalWrites: true },
+        );
     }
 
-    onSearchStringChange(searchStr: string) {
-        this.query.search = searchStr;
-        this.recipeService.reloadRecipes(this.query);
+    onSearchStringChange(search: string) {
+        this.router.navigate([], {
+            queryParams: { search, page: 1 },
+            queryParamsHandling: 'merge', // keeps existing params
+        });
+    }
+
+    onPageChange(page: number) {
+        this.router.navigate([], {
+            queryParams: { page },
+            queryParamsHandling: 'merge', // keeps existing params
+        });
+    }
+
+    onPageSizeChange(pageSize: number) {
+        this.router.navigate([], {
+            queryParams: { pageSize },
+            queryParamsHandling: 'merge', // keeps existing params
+        });
     }
 }

@@ -14,8 +14,7 @@ export interface IGenericResList<T> {
 
 export interface IMetaDataRes {
     page: number;
-    entitiesPerPage: number;
+    pageSize: number;
     total: number;
     sort?: string;
-    filter?: string;
 }

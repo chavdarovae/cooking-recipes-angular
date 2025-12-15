@@ -1,1 +1,0 @@
-var r=class{_id;username="";email="";role="GUEST";constructor(s){if(s){let{_id:e,username:o,email:n,role:l}=s;this._id=e,this.username=o??"",this.email=n??"",this.role=l??"GUEST"}}},i=class{search;role;constructor(s,e){this.search=s,this.role=e}};export{r as a,i as b};

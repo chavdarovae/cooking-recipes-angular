@@ -20,6 +20,12 @@
     </form>
 
     <div class="card-container">
+        <span
+            class="card-container__add btn accent"
+            title="Add new user"
+            [routerLink]="['/users/add-new-user']">
+            +
+        </span>
         @for (account of accountsSig(); track account._id) {
             <article class="account jumpy-card row row--no-wrap gap-20">
                 <i class="fa-solid fa-user"></i>

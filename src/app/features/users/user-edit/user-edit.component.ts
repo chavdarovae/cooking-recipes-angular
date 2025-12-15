@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { UserEditItem } from '../user.models';
+import { UserCreateItem, UserEditItem } from '../user.models';
 import {
     catchError,
     distinctUntilChanged,
@@ -18,7 +18,7 @@ import { AuthService } from 'src/app/data-access/services/auth.service';
 import { IUser, UserRolesEnum } from 'src/app/utils';
 import { AlertService } from 'src/app/data-access';
 
-type UserUserInteractionType = 'update';
+type UserUserInteractionType = 'update' | 'delete' | 'create';
 
 @Component({
     selector: 'app-user-edit',
@@ -44,13 +44,27 @@ export class UserEditComponent implements OnInit {
     userIteraction$!: Observable<IUser>;
 
     // main entity
-    user!: IUser | UserEditItem;
+    user!: IUser | UserEditItem | UserCreateItem;
     currInteraction!: UserUserInteractionType;
     userRolesEnum = UserRolesEnum;
 
+    // imlicit input from routing
+    @Input() id!: string;
+
     ngOnInit(): void {
         this.user = new UserEditItem(history.state?.['user']);
+        if (!this.user && this.id === 'add-new-user') {
+            this.user = new UserCreateItem();
+        }
         this.initUserInteraction();
+    }
+
+    isEditEntity(obj: any): obj is UserEditItem {
+        return obj && obj.id;
+    }
+
+    isCreateEntity(obj: any): obj is UserCreateItem {
+        return obj && !obj.id;
     }
 
     private initUserInteraction(): void {
@@ -59,8 +73,14 @@ export class UserEditComponent implements OnInit {
             tap((action) => (this.currInteraction = action)),
             switchMap((action) => {
                 switch (action) {
+                    case 'create':
+                        return this.userService.createAccount(
+                            this.user as UserCreateItem,
+                        );
                     case 'update':
                         return this.userService.updateAccount(this.user);
+                    case 'delete':
+                        return this.userService.deleteAccount(this.user);
                 }
             }),
             tap(() => {

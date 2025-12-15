@@ -5,6 +5,7 @@ import { first, Observable, shareReplay, Subject, switchMap, tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { IAccount, IUser, IUserQuery, UtilService } from 'src/app/utils';
 import { environment } from 'src/environments/environment';
+import { UserCreateItem } from 'src/app/features/users/user.models';
 
 @Injectable({
     providedIn: 'root',
@@ -98,12 +99,24 @@ export class AuthService {
             .pipe(first());
     }
 
+    createAccount(createDto: UserCreateItem): Observable<IAccount> {
+        return this.http
+            .post<IAccount>(this.accountApi + '/accounts', createDto)
+            .pipe(first());
+    }
+
     updateAccount(modifiedUser: IUser): Observable<IAccount> {
         return this.http
             .put<IAccount>(
                 this.accountApi + '/accounts/' + modifiedUser._id,
                 modifiedUser,
             )
+            .pipe(first());
+    }
+
+    deleteAccount(userToDelete: IUser): Observable<IAccount> {
+        return this.http
+            .delete<IAccount>(this.accountApi + '/accounts/' + userToDelete._id)
             .pipe(first());
     }
 

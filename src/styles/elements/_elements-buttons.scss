@@ -1,6 +1,7 @@
 @import 'app-variables';
 
-button:not([popovertarget]) {
+button:not([popovertarget]),
+.btn {
     border-radius: $rounding-pri;
     text-transform: uppercase;
     width: 200px;
@@ -19,7 +20,8 @@ button:not([popovertarget]) {
     }
 }
 
-button {
+button,
+.btn {
     display: flex;
     align-items: center;
     justify-content: center;

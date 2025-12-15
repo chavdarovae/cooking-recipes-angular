@@ -11,6 +11,7 @@
     align-items: center;
     gap: 20px;
 
+
     &--centerd-vert {
         justify-content: center;
     }
@@ -44,6 +45,7 @@
     column-gap: 20px;
     row-gap: 20px;
     justify-content: center;
+    position: relative;
 
     @include tablet-portrait {
         grid-template-columns: repeat(auto-fit, 400px);
@@ -55,5 +57,15 @@
         grid-template-columns: repeat(auto-fit, 350px);
         column-gap: 40px;
         row-gap: 40px;
+    }
+
+    &__add {
+        $btn-size: 50px;
+        position: absolute;
+        top: calc(-1 * $btn-size);
+        right: $btn-size;
+        width: $btn-size;
+        height: $btn-size;
+        font-size: calc(0.6 * $btn-size);
     }
 }

@@ -17,7 +17,6 @@
     </div>
 
     <clt-paging
-        [paging]="query()"
-        (onPageChange)="onPageChange($event)"
-        (onPageSizeChange)="onPageSizeChange($event)"></clt-paging>
+        [paging]="recipesResSig().metaData"
+        (onPagingChange)="onPagingChange($event)"></clt-paging>
 </div>

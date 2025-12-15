@@ -1,7 +1,11 @@
 import { Component, computed, effect, inject, Signal } from '@angular/core';
 import { AuthService } from 'src/app/data-access/services/auth.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { InputFieldComponent, InputSelectComponent } from 'src/app/ui';
+import {
+    InputFieldComponent,
+    InputSelectComponent,
+    PagingComponent,
+} from 'src/app/ui';
 import { NgForm } from '@angular/forms';
 import { UserQuery } from '../user.models';
 import { IAccount, IGenericResList, UserRolesEnum } from 'src/app/utils';
@@ -12,7 +16,12 @@ import { toSignal } from '@angular/core/rxjs-interop';
     standalone: true,
     templateUrl: './user-list.component.html',
     styleUrl: './user-list.component.scss',
-    imports: [RouterLink, InputFieldComponent, InputSelectComponent],
+    imports: [
+        RouterLink,
+        InputFieldComponent,
+        InputSelectComponent,
+        PagingComponent,
+    ],
     providers: [NgForm],
 })
 export class UserListComponent {
@@ -32,7 +41,7 @@ export class UserListComponent {
         const qp = this.queryParam();
         return new UserQuery(
             qp?.get('search') ?? undefined,
-            (qp?.get('role') as UserRolesEnum) ?? undefined,
+            qp?.get('role') ?? undefined,
             qp?.get('page') ?? undefined,
             qp?.get('pageSize') ?? undefined,
             qp?.get('sort') ?? undefined,
@@ -64,9 +73,16 @@ export class UserListComponent {
         });
     }
 
-    onRoleChanged(role: UserRolesEnum) {
+    onRoleChanged(role: string) {
         this.router.navigate([], {
             queryParams: { role, page: 1 },
+            queryParamsHandling: 'merge', // keeps existing params
+        });
+    }
+
+    onPagingChange(paging: { page: number; pageSize: number }) {
+        this.router.navigate([], {
+            queryParams: paging,
             queryParamsHandling: 'merge', // keeps existing params
         });
     }

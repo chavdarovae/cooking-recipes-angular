@@ -24,9 +24,9 @@ import { EnumToListPipe } from 'src/app/utils';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputSelectComponent<T> {
-    @Input() inpValue!: T[keyof T] | undefined | T;
+    @Input() inpValue!: undefined | T;
     @Input() selectList!: T[];
-    @Input() selectListEnum!: T;
+    @Input() selectListEnum!: Record<string, T>;
     @Input() selectEcceptions: string[] = [];
     @Input() isDisabled!: boolean;
     @Input() isRequired!: boolean;
@@ -34,7 +34,7 @@ export class InputSelectComponent<T> {
     @Input() modelName!: string;
     @Input() placeholder: string = '';
 
-    @Output() onSelectChanged: EventEmitter<T[keyof T]> = new EventEmitter();
-    @Output() onSelectFocusedOut: EventEmitter<T[keyof T]> = new EventEmitter();
-    @Output() onSelectFocusedIn: EventEmitter<T[keyof T]> = new EventEmitter();
+    @Output() onSelectChanged: EventEmitter<T> = new EventEmitter();
+    @Output() onSelectFocusedOut: EventEmitter<T> = new EventEmitter();
+    @Output() onSelectFocusedIn: EventEmitter<T> = new EventEmitter();
 }

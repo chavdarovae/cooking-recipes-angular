@@ -13,9 +13,9 @@
     [id]="modelName"
     [name]="modelName"
     [ngModel]="inpValue ?? null"
-    (ngModelChange)="onSelectChanged.emit(inpSelect.value)"
-    (focusin)="onSelectFocusedIn.emit(inpSelect.value)"
-    (focusout)="onSelectFocusedOut.emit(inpSelect.value)"
+    (ngModelChange)="onSelectChanged.emit($event)"
+    (focusin)="onSelectFocusedIn.emit(inpValue)"
+    (focusout)="onSelectFocusedOut.emit(inpValue)"
     [required]="isRequired"
     [disabled]="isDisabled">
     <option [ngValue]="null">{{ placeholder }}</option>

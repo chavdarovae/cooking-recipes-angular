@@ -54,4 +54,8 @@
             <h5 class="row row--centered row--middle">No results found!</h5>
         }
     </div>
+
+    <clt-paging
+        [paging]="accountsResSig().metaData"
+        (onPagingChange)="onPagingChange($event)"></clt-paging>
 </div>

@@ -4,19 +4,20 @@
         modelName="pageSize"
         [selectList]="pagingSizeOptions"
         [inpValue]="paging().pageSize"
-        (onSelectChanged)="onPageSizeChange.emit($event)"></clt-input-select>
+        (onSelectChanged)="onPagingChange.emit({ page: 1, pageSize: $event })"></clt-input-select>
 
     <div class="page row row--no-wrap row--centered gap-20">
         <span
             class="btn accent"
-            [ngClass]="{ disabled: paging().page === 1 }"
-            (click)="onPageChange.emit(paging().page - 1)">
+            [ngClass]="{ disabled: getMinCount() === 1 }"
+            (click)="onPagingChange.emit({ page: paging().page - 1, pageSize: paging().pageSize })">
             ❮
         </span>
-        <span class="page">{{ paging().page }} / total</span>
+        <div class="page__info">{{ getMinCount() }} - {{ getMaxCount() }} / {{ paging().total }}</div>
         <span
             class="btn accent"
-            (click)="onPageChange.emit(paging().page + 1)">
+            [ngClass]="{ disabled: getMaxCount() === paging().total }"
+            (click)="onPagingChange.emit({ page: paging().page + 1, pageSize: paging().pageSize })">
             ❯
         </span>
     </div>

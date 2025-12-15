@@ -64,16 +64,9 @@ export class RecipeListComponent {
         });
     }
 
-    onPageChange(page: number) {
+    onPagingChange(paging: { page: number; pageSize: number }) {
         this.router.navigate([], {
-            queryParams: { page },
-            queryParamsHandling: 'merge', // keeps existing params
-        });
-    }
-
-    onPageSizeChange(pageSize: number) {
-        this.router.navigate([], {
-            queryParams: { pageSize },
+            queryParams: paging,
             queryParamsHandling: 'merge', // keeps existing params
         });
     }

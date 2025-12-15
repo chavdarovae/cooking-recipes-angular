@@ -1,8 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, EventEmitter, input, Output } from '@angular/core';
-import { MetaReqModel } from 'src/app/utils/models/generic.models';
 import { InputSelectComponent } from '../input-select/input-select.component';
-import { PAGING } from 'src/app/utils';
+import { IMetaDataRes, PAGING } from 'src/app/utils';
 
 @Component({
     selector: 'clt-paging',
@@ -12,8 +11,19 @@ import { PAGING } from 'src/app/utils';
     imports: [NgClass, InputSelectComponent],
 })
 export class PagingComponent {
-    paging = input.required<MetaReqModel>();
+    paging = input.required<IMetaDataRes>();
     pagingSizeOptions = PAGING.sizeOptions;
-    @Output() onPageChange: EventEmitter<number> = new EventEmitter();
-    @Output() onPageSizeChange: EventEmitter<number> = new EventEmitter();
+    @Output() onPagingChange: EventEmitter<{ page: number; pageSize: number }> =
+        new EventEmitter();
+
+    getMaxCount(): number {
+        return Math.min(
+            this.paging().page * this.paging().pageSize,
+            this.paging().total,
+        );
+    }
+
+    getMinCount(): number {
+        return Math.max((this.paging().page - 1) * this.paging().pageSize, 1);
+    }
 }

@@ -1,1 +1,0 @@
-import{a as g}from"./chunk-T743TERL.js";var o=class{title;ingredients;instructions;description;image;owner;constructor(r="",n="",e="",i="",t="",s=""){this.title=r,this.ingredients=n,this.instructions=e,this.description=i,this.image=t,this.owner=s}},c=class extends g{constructor(n,e,i,t,s){super(i,t,s);this.search=n;this.owner=e}};export{o as a,c as b};

@@ -101,10 +101,12 @@ export class RecipeDetailComponent implements OnInit {
                 }
             }),
             tap(() => {
-                this.alertService.showAlert({
-                    alert: `The recipe was successfully ${this.currInteraction}d!`,
-                    type: 'success',
-                });
+                if (['deleteDialog'].includes(this.currInteraction)) {
+                    this.alertService.showAlert({
+                        alert: `The recipe was successfully ${this.currInteraction}d!`,
+                        type: 'success',
+                    });
+                }
             }),
             catchError((err: HttpErrorResponse) => {
                 console.error('Recipe operation failed:', err);

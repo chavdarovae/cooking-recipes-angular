@@ -1,10 +1,10 @@
 {
-	"/apiLocal": {
-		"target": "http://localhost:3000",
-		"secure": false,
-		"pathRewrite": {
-			"^/apiLocal": ""
-		},
-		"logLevel": "debug"
-	}
+    "/apiLocal": {
+        "target": "http://localhost:3000",
+        "secure": false,
+        "pathRewrite": {
+            "^/apiLocal": ""
+        },
+        "logLevel": "debug"
+    }
 }

@@ -94,12 +94,11 @@ export class AuthService {
     }
 
     getAllAccounts(query: UserQuery): Observable<IGenericResList<IAccount>> {
+        const params =
+            this.utilService.transformQueryIntoParams<UserQuery>(query);
         return this.http.get<IGenericResList<IAccount>>(
-            this.accountApi +
-                '/accounts' +
-                this.utilService.transformQueryIntoString(
-                    query as unknown as Record<string, string>,
-                ),
+            this.accountApi + '/accounts',
+            { params },
         );
     }
 

@@ -1,17 +1,23 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MetaReqModel } from '../models/generic.models';
 
 @Injectable({
     providedIn: 'root',
 })
 export class UtilService {
-    transformQueryIntoString(query: Record<string, string>) {
-        let strToReturn = '?';
-
+    transformQueryIntoParams<T extends MetaReqModel>(query: T): HttpParams {
+        let params = new HttpParams();
         for (const key in query) {
-            if (query.hasOwnProperty(key) && !!query[key]) {
-                strToReturn += `${key}=${query[key]}&`;
-            }
+            if (!Object.hasOwn(query, key)) continue;
+
+            const value = query[key];
+
+            if (!['string', 'number', 'boolean'].includes(typeof value))
+                continue;
+
+            params = params.append(key, String(value));
         }
-        return strToReturn;
+        return params;
     }
 }

@@ -24,7 +24,7 @@ export class RecipesAccountComponent implements OnInit {
 
     ngOnInit(): void {
         this.recipeService.reloadRecipes(
-            new RecipeQuery('null', this.authService.currUserSig()?.id),
+            new RecipeQuery(undefined, this.authService.currUserSig()?.id),
         );
     }
 }

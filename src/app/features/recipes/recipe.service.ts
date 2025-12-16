@@ -22,14 +22,17 @@ export class RecipeService {
     private relaodRecipesSubj: Subject<RecipeQuery> = new Subject();
     private recipes$: Observable<IGenericResList<IRecipe>> =
         this.relaodRecipesSubj.asObservable().pipe(
-            switchMap((query: RecipeQuery) =>
-                this.http.get<IGenericResList<IRecipe>>(
-                    this.accountApi +
-                        this.utilService.transformQueryIntoString(
-                            query as Record<string, any>,
-                        ),
-                ),
-            ),
+            switchMap((query: RecipeQuery) => {
+                const params =
+                    this.utilService.transformQueryIntoParams<RecipeQuery>(
+                        query,
+                    );
+
+                return this.http.get<IGenericResList<IRecipe>>(
+                    this.accountApi,
+                    { params },
+                );
+            }),
             shareReplay(),
         );
     recipesSig = toSignal(this.recipes$, {

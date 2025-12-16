@@ -1,4 +1,4 @@
-export const PAGING: { size: number; sizeOptions: number[] } = {
-    size: 5,
-    sizeOptions: [5, 10, 20, 30],
+export const PAGING: { pageSize: number; pageSizeOptions: number[] } = {
+    pageSize: 10,
+    pageSizeOptions: [5, 10, 20, 30],
 };

@@ -12,7 +12,7 @@ import { IMetaDataRes, PAGING } from 'src/app/utils';
 })
 export class PagingComponent {
     paging = input.required<IMetaDataRes>();
-    pagingSizeOptions = PAGING.sizeOptions;
+    pagingSizeOptions = PAGING.pageSizeOptions;
     @Output() onPagingChange: EventEmitter<{ page: number; pageSize: number }> =
         new EventEmitter();
 

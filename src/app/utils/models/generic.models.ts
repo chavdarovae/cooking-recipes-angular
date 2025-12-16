@@ -10,7 +10,7 @@ export class MetaReqModel {
         public sort?: string,
     ) {
         this.page = MetaReqModel.toNumber(page, 1);
-        this.pageSize = MetaReqModel.toNumber(pageSize, PAGING.size);
+        this.pageSize = MetaReqModel.toNumber(pageSize, PAGING.pageSize);
     }
 
     private static toNumber(

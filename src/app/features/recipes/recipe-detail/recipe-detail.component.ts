@@ -21,7 +21,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 type RecipeUserInteractionType = 'deleteDialog' | 'delete' | 'recommend';
 
 @Component({
-    selector: 'app-recipe-detail',
+    selector: 'rcp-recipe-detail',
     standalone: true,
     templateUrl: './recipe-detail.component.html',
     styleUrl: './recipe-detail.component.scss',

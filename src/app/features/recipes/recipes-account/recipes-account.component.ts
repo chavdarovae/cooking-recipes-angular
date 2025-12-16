@@ -8,7 +8,7 @@ import { IGenericResList } from 'src/app/utils';
 import { IRecipe } from '../recipe.interface';
 
 @Component({
-    selector: 'app-recipes-account',
+    selector: 'rcp-recipes-account',
     standalone: true,
     imports: [RouterLink, LowerCasePipe],
     templateUrl: './recipes-account.component.html',

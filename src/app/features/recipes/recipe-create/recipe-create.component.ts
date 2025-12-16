@@ -21,7 +21,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 type RecipeUserInteractionType = 'create' | 'update';
 
 @Component({
-    selector: 'app-recipe-create',
+    selector: 'rcp-recipe-create',
     standalone: true,
     templateUrl: './recipe-create.component.html',
     styleUrl: './recipe-create.component.scss',

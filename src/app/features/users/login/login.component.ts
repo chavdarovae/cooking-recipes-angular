@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/data-access/services/auth.service';
 import { InputFieldComponent } from 'src/app/ui';
 
 @Component({
-    selector: 'app-login',
+    selector: 'rcp-login',
     standalone: true,
     imports: [CommonModule, FormsModule, RouterModule, InputFieldComponent],
     templateUrl: './login.component.html',

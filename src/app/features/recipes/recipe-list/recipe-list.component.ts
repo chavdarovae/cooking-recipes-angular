@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
-    selector: 'app-recipe-list',
+    selector: 'rcp-recipe-list',
     standalone: true,
     templateUrl: './recipe-list.component.html',
     styleUrl: './recipe-list.component.scss',

@@ -21,7 +21,7 @@ import { AlertService } from 'src/app/data-access';
 type UserUserInteractionType = 'update' | 'delete' | 'create';
 
 @Component({
-    selector: 'app-user-edit',
+    selector: 'rcp-user-edit',
     standalone: true,
     templateUrl: './user-edit.component.html',
     styleUrl: './user-edit.component.scss',

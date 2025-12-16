@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
-    selector: 'app-footer',
+    selector: 'rcp-footer',
     standalone: true,
     imports: [RouterModule],
     templateUrl: './footer.component.html',

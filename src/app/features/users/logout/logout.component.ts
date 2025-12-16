@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/data-access';
 
 @Component({
-    selector: 'app-logout',
+    selector: 'rcp-logout',
     standalone: true,
     imports: [],
     template: '',

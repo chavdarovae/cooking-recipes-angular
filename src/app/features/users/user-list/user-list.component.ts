@@ -12,7 +12,7 @@ import { IAccount, IGenericResList, UserRolesEnum } from 'src/app/utils';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
-    selector: 'app-user-list',
+    selector: 'rcp-user-list',
     standalone: true,
     templateUrl: './user-list.component.html',
     styleUrl: './user-list.component.scss',

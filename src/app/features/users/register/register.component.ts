@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/data-access';
 import { InputFieldComponent } from 'src/app/ui';
 
 @Component({
-    selector: 'app-register',
+    selector: 'rcp-register',
     standalone: true,
     imports: [CommonModule, FormsModule, RouterModule, InputFieldComponent],
     templateUrl: './register.component.html',

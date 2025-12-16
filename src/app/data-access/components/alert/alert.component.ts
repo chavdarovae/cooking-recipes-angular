@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AlertService } from '../../services/alert.service';
 
 @Component({
-    selector: 'app-alert',
+    selector: 'rcp-alert',
     standalone: true,
     imports: [],
     templateUrl: './alert.component.html',

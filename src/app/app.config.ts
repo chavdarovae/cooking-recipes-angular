@@ -7,6 +7,7 @@ import {
     provideRouter,
     RouterModule,
     withComponentInputBinding,
+    withHashLocation,
 } from '@angular/router';
 
 import {
@@ -36,7 +37,7 @@ export const appConfig: ApplicationConfig = {
                 useHash: true,
             }),
         ),
-        provideRouter(routes, withComponentInputBinding()),
+        provideRouter(routes, withComponentInputBinding(), withHashLocation()),
         provideHttpClient(),
         provideHttpClient(withInterceptorsFromDi()),
         {

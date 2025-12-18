@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
 import { IAccount, IGenericListRes, UserRolesEnum } from 'src/app/utils';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { UserCradComponent } from '../../ui/user-card/user-card.component';
-import { UserQuery } from '../../user.models';
+import { UserQuery } from '../../utils/user.models';
 
 @Component({
     selector: 'rcp-user-list',

@@ -14,9 +14,9 @@ import {
     tap,
 } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { RecipeService } from '../../recipe.service';
-import { IRecipe } from '../../recipe.interface';
-import { RecipeCreateItem } from '../../recipe.models';
+import { RecipeService } from '../../data-access/recipe.service';
+import { RecipeCreateItem } from '../../utils/recipe.models';
+import { IRecipe } from '../../utils/recipe.interface';
 
 type RecipeUserInteractionType = 'create' | 'update';
 

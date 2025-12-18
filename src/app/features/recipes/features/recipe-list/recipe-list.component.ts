@@ -4,10 +4,10 @@ import { InputFieldComponent, PagingComponent } from 'src/app/ui';
 import { NgForm } from '@angular/forms';
 import { IGenericListRes } from 'src/app/utils';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { RecipeService } from '../../recipe.service';
-import { IRecipe } from '../../recipe.interface';
+import { RecipeService } from '../../data-access/recipe.service';
+import { IRecipe } from '../../utils/recipe.interface';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { RecipeQuery } from '../../recipe.models';
+import { RecipeQuery } from '../../utils/recipe.models';
 import { RecipeCardComponent } from '../../ui/recipe-card/recipe-card.component';
 
 @Component({

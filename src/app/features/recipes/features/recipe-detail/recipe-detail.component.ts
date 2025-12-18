@@ -15,8 +15,8 @@ import {
     tap,
 } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { RecipeService } from '../../recipe.service';
-import { IRecipe } from '../../recipe.interface';
+import { RecipeService } from '../../data-access/recipe.service';
+import { IRecipe } from '../../utils/recipe.interface';
 
 type RecipeUserInteractionType = 'deleteDialog' | 'delete' | 'recommend';
 

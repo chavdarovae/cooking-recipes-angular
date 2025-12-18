@@ -3,9 +3,9 @@ import { Component, inject, OnInit, Signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from 'src/app/data-access';
 import { IGenericListRes } from 'src/app/utils';
-import { RecipeService } from '../../recipe.service';
-import { IRecipe } from '../../recipe.interface';
-import { RecipeQuery } from '../../recipe.models';
+import { RecipeService } from '../../data-access/recipe.service';
+import { IRecipe } from '../../utils/recipe.interface';
+import { RecipeQuery } from '../../utils/recipe.models';
 
 @Component({
     selector: 'rcp-recipes-account',

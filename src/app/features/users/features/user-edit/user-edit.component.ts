@@ -16,7 +16,7 @@ import { InputFieldComponent, InputSelectComponent } from 'src/app/ui';
 import { AuthService } from 'src/app/data-access/services/auth.service';
 import { IUser, UserRolesEnum } from 'src/app/utils';
 import { AlertService } from 'src/app/data-access';
-import { UserCreateItem, UserEditItem } from '../../user.models';
+import { UserCreateItem, UserEditItem } from '../../utils/user.models';
 
 type UserUserInteractionType = 'update' | 'delete' | 'create';
 

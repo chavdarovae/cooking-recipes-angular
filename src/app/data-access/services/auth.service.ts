@@ -11,7 +11,10 @@ import {
     UtilService,
 } from 'src/app/utils';
 import { environment } from 'src/environments/environment';
-import { UserCreateItem, UserQuery } from 'src/app/features/users/user.models';
+import {
+    UserCreateItem,
+    UserQuery,
+} from 'src/app/features/users/utils/user.models';
 
 @Injectable({
     providedIn: 'root',

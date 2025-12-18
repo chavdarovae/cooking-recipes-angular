@@ -1,12 +1,11 @@
-import { IMetaDataListRes } from './../../utils/interfaces/general.interfaces';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, Observable, shareReplay, Subject, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IRecipe } from './recipe.interface';
-import { IGenericListRes, UtilService } from 'src/app/utils';
-import { RecipeQuery } from './recipe.models';
+import { IRecipe } from '../utils/recipe.interface';
+import { IGenericListRes, IMetaDataListRes, UtilService } from 'src/app/utils';
+import { RecipeQuery } from '../utils/recipe.models';
 
 @Injectable({
     providedIn: 'root',

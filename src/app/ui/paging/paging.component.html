@@ -13,7 +13,7 @@
         (click)="onPagingChange.emit({ page: paging().page - 1, pageSize: paging().pageSize })">
         ❮
     </span>
-    <div class="page__info w-130">{{ getMinCount() }} - {{ getMaxCount() }} of {{ paging().total }}</div>
+    <div class="page__info w-100">{{ getMinCount() }} - {{ getMaxCount() }} of {{ paging().total }}</div>
     <span
         class="btn accent"
         [ngClass]="{ disabled: getMaxCount() === paging().total }"

@@ -30,16 +30,15 @@
     }
 
     .page__info {
-        font-size: calc(2 * $font-size-base);
         text-align: center;
     }
 
     .btn {
-        width: 30px;
-        max-width: 30px;
+        width: 25px;
+        max-width: 25px;
     }
 
     .size {
-        transform: scale(1.5);
+        transform: scale(1.2);
     }
 }

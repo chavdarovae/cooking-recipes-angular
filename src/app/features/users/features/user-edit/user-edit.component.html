@@ -48,7 +48,7 @@
                         type="submit"
                         class="accent ml-50"
                         (click)="userIteractionSubj.next('update')"
-                        [disabled]="userEditForm.invalid || !userEditForm.dirty">
+                        [disabled]="userEditForm.invalid || userEditForm.pristine">
                         {{ 'update' | titlecase }} User
                     </button>
                 } @else if (isCreateEntity(user)) {
@@ -56,7 +56,7 @@
                         type="submit"
                         class="accent ml-a"
                         (click)="userIteractionSubj.next('create')"
-                        [disabled]="userEditForm.invalid || !userEditForm.dirty">
+                        [disabled]="userEditForm.invalid || userEditForm.pristine">
                         {{ 'create' | titlecase }} User
                     </button>
                 }

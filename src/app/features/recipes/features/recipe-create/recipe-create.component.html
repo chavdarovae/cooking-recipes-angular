@@ -53,7 +53,7 @@
                     type="submit"
                     class="accent"
                     (click)="userIteractionSubj.next(allowedInteraction)"
-                    [disabled]="createForm.invalid">
+                    [disabled]="createForm.invalid || createForm.pristine">
                     {{ allowedInteraction | titlecase }} Recipe
                 </button>
             </div>

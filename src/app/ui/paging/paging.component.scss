@@ -5,7 +5,7 @@
     width: 100%;
     position: relative;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 
     &::before {
@@ -19,7 +19,7 @@
         z-index: 0;
     }
 
-    clt-input-select,
+    .size,
     .page {
         position: relative;
         width: fit-content;
@@ -31,7 +31,6 @@
 
     .page__info {
         font-size: calc(2 * $font-size-base);
-        width: 130px;
         text-align: center;
     }
 
@@ -40,7 +39,7 @@
         max-width: 30px;
     }
 
-    clt-input-select {
+    .size {
         transform: scale(1.5);
     }
 }

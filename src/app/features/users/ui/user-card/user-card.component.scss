@@ -1,0 +1,28 @@
+@import 'app-variables';
+
+.card-container {
+    grid-template-columns: repeat(auto-fit, 390px);
+}
+
+.account {
+    width: fit-content;
+    height: fit-content;
+    box-shadow: $shadow-pri;
+    border-radius: $rounding-pri;
+    background-color: $bg-ter;
+    padding: 1rem;
+
+    i {
+        font-size: 130px;
+    }
+
+    &:hover i {
+        transform: scale(1.05);
+    }
+
+    &__body {
+        display: grid;
+        grid-template-columns: 90px 130px;
+        justify-items: start;
+    }
+}

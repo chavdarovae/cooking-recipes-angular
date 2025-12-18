@@ -1,11 +1,11 @@
-import { IMetaDataRes } from './../../utils/interfaces/general.interfaces';
+import { IMetaDataListRes } from './../../utils/interfaces/general.interfaces';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, Observable, shareReplay, Subject, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IRecipe } from './recipe.interface';
-import { IGenericResList, UtilService } from 'src/app/utils';
+import { IGenericListRes, UtilService } from 'src/app/utils';
 import { RecipeQuery } from './recipe.models';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class RecipeService {
 
     // service state recipe list
     private relaodRecipesSubj: Subject<RecipeQuery> = new Subject();
-    private recipes$: Observable<IGenericResList<IRecipe>> =
+    private recipes$: Observable<IGenericListRes<IRecipe>> =
         this.relaodRecipesSubj.asObservable().pipe(
             switchMap((query: RecipeQuery) => {
                 const params =
@@ -28,7 +28,7 @@ export class RecipeService {
                         query,
                     );
 
-                return this.http.get<IGenericResList<IRecipe>>(
+                return this.http.get<IGenericListRes<IRecipe>>(
                     this.accountApi,
                     { params },
                 );
@@ -38,7 +38,7 @@ export class RecipeService {
     recipesSig = toSignal(this.recipes$, {
         initialValue: {
             data: [] as IRecipe[],
-            metaData: {} as IMetaDataRes,
+            metaData: {} as IMetaDataListRes,
         },
     });
 

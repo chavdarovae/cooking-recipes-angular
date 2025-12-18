@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { UserCreateItem, UserEditItem } from '../user.models';
 import {
     catchError,
     distinctUntilChanged,
@@ -17,6 +16,7 @@ import { InputFieldComponent, InputSelectComponent } from 'src/app/ui';
 import { AuthService } from 'src/app/data-access/services/auth.service';
 import { IUser, UserRolesEnum } from 'src/app/utils';
 import { AlertService } from 'src/app/data-access';
+import { UserCreateItem, UserEditItem } from '../../user.models';
 
 type UserUserInteractionType = 'update' | 'delete' | 'create';
 

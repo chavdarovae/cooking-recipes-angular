@@ -7,12 +7,12 @@ export interface IAppMenuItem {
     underMainMenu?: string;
 }
 
-export interface IGenericResList<T> {
+export interface IGenericListRes<T> {
     data: T[];
-    metaData: IMetaDataRes;
+    metaData: IMetaDataListRes;
 }
 
-export interface IMetaDataRes {
+export interface IMetaDataListRes {
     page: number;
     pageSize: number;
     total: number;

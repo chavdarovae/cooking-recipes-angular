@@ -1,53 +1,51 @@
+import { AuthService } from 'src/app/data-access';
 import { Component, computed, effect, inject, Signal } from '@angular/core';
-import { AuthService } from 'src/app/data-access/services/auth.service';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import {
-    InputFieldComponent,
-    InputSelectComponent,
-    PagingComponent,
-} from 'src/app/ui';
+import { InputFieldComponent, PagingComponent } from 'src/app/ui';
 import { NgForm } from '@angular/forms';
-import { UserQuery } from '../user.models';
-import { IAccount, IGenericResList, UserRolesEnum } from 'src/app/utils';
+import { IGenericListRes } from 'src/app/utils';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { RecipeService } from '../../recipe.service';
+import { IRecipe } from '../../recipe.interface';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { RecipeQuery } from '../../recipe.models';
+import { RecipeCardComponent } from '../../ui/recipe-card/recipe-card.component';
 
 @Component({
-    selector: 'rcp-user-list',
+    selector: 'rcp-recipe-list',
     standalone: true,
-    templateUrl: './user-list.component.html',
-    styleUrl: './user-list.component.scss',
+    templateUrl: './recipe-list.component.html',
+    styleUrl: './recipe-list.component.scss',
     imports: [
-        RouterLink,
+        RecipeCardComponent,
         InputFieldComponent,
-        InputSelectComponent,
         PagingComponent,
+        RouterLink,
     ],
     providers: [NgForm],
 })
-export class UserListComponent {
+export class RecipeListComponent {
     // services
-    private authService = inject(AuthService);
+    authService = inject(AuthService);
+    private recipeService = inject(RecipeService);
     private route = inject(ActivatedRoute);
     private router = inject(Router);
 
     // main entity
-    accountsResSig: Signal<IGenericResList<IAccount>> =
-        this.authService.accountsSig;
+    recipesResSig: Signal<IGenericListRes<IRecipe>> =
+        this.recipeService.recipesSig;
 
-    // auxiliary variables
-    queryParam = toSignal(this.route.queryParamMap);
-
+    // query params
+    queryParams = toSignal(this.route.queryParamMap);
     query = computed(() => {
-        const qp = this.queryParam();
-        return new UserQuery(
+        const qp = this.queryParams();
+        return new RecipeQuery(
             qp?.get('search') ?? undefined,
-            qp?.get('role') ?? undefined,
+            qp?.get('owner') ?? undefined,
             qp?.get('page') ?? undefined,
             qp?.get('pageSize') ?? undefined,
             qp?.get('sort') ?? undefined,
         );
     });
-    userRolesEnum = UserRolesEnum;
 
     constructor() {
         let lastQueryJson = '';
@@ -60,22 +58,15 @@ export class UserListComponent {
                 if (currentJson === lastQueryJson) return;
                 lastQueryJson = currentJson;
 
-                this.authService.relaodAccountList(query);
+                this.recipeService.reloadRecipes(query);
             },
             { allowSignalWrites: true },
         );
     }
 
-    onSearchChanged(search: string) {
+    onSearchStringChange(search: string) {
         this.router.navigate([], {
             queryParams: { search, page: 1 },
-            queryParamsHandling: 'merge', // keeps existing params
-        });
-    }
-
-    onRoleChanged(role: string) {
-        this.router.navigate([], {
-            queryParams: { role, page: 1 },
             queryParamsHandling: 'merge', // keeps existing params
         });
     }

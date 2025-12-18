@@ -5,8 +5,8 @@ import { first, Observable, shareReplay, Subject, switchMap, tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
     IAccount,
-    IGenericResList,
-    IMetaDataRes,
+    IGenericListRes,
+    IMetaDataListRes,
     IUser,
     UtilService,
 } from 'src/app/utils';
@@ -28,7 +28,7 @@ export class AuthService {
 
     // service state account list
     private relaodAccountsSubj: Subject<UserQuery> = new Subject();
-    private accounts$: Observable<IGenericResList<IAccount>> =
+    private accounts$: Observable<IGenericListRes<IAccount>> =
         this.relaodAccountsSubj.asObservable().pipe(
             switchMap((query: UserQuery) => this.getAllAccounts(query)),
             shareReplay(),
@@ -36,7 +36,7 @@ export class AuthService {
     accountsSig = toSignal(this.accounts$, {
         initialValue: {
             data: [] as IAccount[],
-            metaData: {} as IMetaDataRes,
+            metaData: {} as IMetaDataListRes,
         },
     });
 
@@ -93,10 +93,10 @@ export class AuthService {
         );
     }
 
-    getAllAccounts(query: UserQuery): Observable<IGenericResList<IAccount>> {
+    getAllAccounts(query: UserQuery): Observable<IGenericListRes<IAccount>> {
         const params =
             this.utilService.transformQueryIntoParams<UserQuery>(query);
-        return this.http.get<IGenericResList<IAccount>>(
+        return this.http.get<IGenericListRes<IAccount>>(
             this.accountApi + '/accounts',
             { params },
         );

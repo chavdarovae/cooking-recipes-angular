@@ -1,0 +1,40 @@
+<div class="container">
+    <form class="form form--filter">
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <clt-input-field
+            modelName="searchString"
+            inpType="text"
+            placeholder="Username or Email"
+            [isTypeAhead]="true"
+            [inpValue]="query().search ?? ''"
+            (onInpChanged)="onSearchChanged($event)"></clt-input-field>
+
+        <clt-input-select
+            modelName="role"
+            placeholder="All roles"
+            [selectListEnum]="userRolesEnum"
+            [inpValue]="query().role"
+            [selectEcceptions]="[userRolesEnum.GUEST]"
+            (onSelectChanged)="onRoleChanged($event)"></clt-input-select>
+    </form>
+
+    <div class="card-container">
+        <span
+            class="card-container__add btn accent"
+            title="Add new user"
+            [routerLink]="['/recipes/add-new-user']">
+            +
+        </span>
+
+        @for (account of accountsResSig().data; track account.id) {
+            <rcp-user-card [account]="account"></rcp-user-card>
+        } @empty {
+            <h5 class="row row--centered row--middle">No results found!</h5>
+        }
+    </div>
+
+    <clt-paging
+        [paging]="accountsResSig().metaData"
+        (onPagingChange)="onPagingChange($event)"></clt-paging>
+</div>

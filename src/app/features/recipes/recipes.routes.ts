@@ -5,7 +5,7 @@ export const RECIPE_ROUTES: Routes = [
     {
         path: '',
         loadComponent: () =>
-            import('./recipe-list/recipe-list.component').then(
+            import('./features/recipe-list/recipe-list.component').then(
                 (m) => m.RecipeListComponent,
             ),
         canActivate: [],
@@ -13,7 +13,7 @@ export const RECIPE_ROUTES: Routes = [
     {
         path: 'account',
         loadComponent: () =>
-            import('./recipes-account/recipes-account.component').then(
+            import('./features/recipes-account/recipes-account.component').then(
                 (m) => m.RecipesAccountComponent,
             ),
         canActivate: [AuthGuard],
@@ -21,7 +21,7 @@ export const RECIPE_ROUTES: Routes = [
     {
         path: 'create',
         loadComponent: () =>
-            import('./recipe-create/recipe-create.component').then(
+            import('./features/recipe-create/recipe-create.component').then(
                 (m) => m.RecipeCreateComponent,
             ),
         canActivate: [AuthGuard],
@@ -29,7 +29,7 @@ export const RECIPE_ROUTES: Routes = [
     {
         path: ':id',
         loadComponent: () =>
-            import('./recipe-detail/recipe-detail.component').then(
+            import('./features/recipe-detail/recipe-detail.component').then(
                 (m) => m.RecipeDetailComponent,
             ),
         canActivate: [AuthGuard],
@@ -37,7 +37,7 @@ export const RECIPE_ROUTES: Routes = [
     {
         path: ':id/edit',
         loadComponent: () =>
-            import('./recipe-create/recipe-create.component').then(
+            import('./features/recipe-create/recipe-create.component').then(
                 (m) => m.RecipeCreateComponent,
             ),
         canActivate: [AuthGuard],

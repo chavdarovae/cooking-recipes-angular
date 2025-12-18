@@ -2,7 +2,6 @@ import { AsyncPipe } from '@angular/common';
 import { Component, inject, Input, OnInit, Signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ModalComponent } from 'src/app/ui';
-import { RecipeService } from '../recipe.service';
 import { AlertService } from 'src/app/data-access';
 import { AuthService } from 'src/app/data-access/services/auth.service';
 import {
@@ -15,8 +14,9 @@ import {
     switchMap,
     tap,
 } from 'rxjs';
-import { IRecipe } from '../recipe.interface';
 import { HttpErrorResponse } from '@angular/common/http';
+import { RecipeService } from '../../recipe.service';
+import { IRecipe } from '../../recipe.interface';
 
 type RecipeUserInteractionType = 'deleteDialog' | 'delete' | 'recommend';
 

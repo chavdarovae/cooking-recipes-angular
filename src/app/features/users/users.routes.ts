@@ -5,31 +5,35 @@ export const USER_ROUTES: Routes = [
     {
         path: '',
         loadComponent: () =>
-            import('./user-list/user-list.component').then(
+            import('./features/user-list/user-list.component').then(
                 (c) => c.UserListComponent,
             ),
     },
     {
         path: 'register',
         loadComponent: () =>
-            import('./register/register.component').then(
+            import('./features/register/register.component').then(
                 (c) => c.RegisterComponent,
             ),
     },
     {
         path: 'login',
         loadComponent: () =>
-            import('./login/login.component').then((c) => c.LoginComponent),
+            import('./features/login/login.component').then(
+                (c) => c.LoginComponent,
+            ),
     },
     {
         path: 'logout',
         loadComponent: () =>
-            import('./logout/logout.component').then((c) => c.LogoutComponent),
+            import('./features/logout/logout.component').then(
+                (c) => c.LogoutComponent,
+            ),
     },
     {
         path: ':id',
         loadComponent: () =>
-            import('./user-edit/user-edit.component').then(
+            import('./features/user-edit/user-edit.component').then(
                 (c) => c.UserEditComponent,
             ),
         canActivate: [AuthGuard],

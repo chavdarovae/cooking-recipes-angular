@@ -11,8 +11,18 @@
     </form>
 
     <div class="card-container">
+        @if (authService.currUserSig()) {
+            <span
+                class="card-container__add btn accent"
+                title="Add new recipe"
+                [routerLink]="['/users/add-new-user']">
+                +
+            </span>
+        }
         @for (recipe of recipesResSig().data; track recipe.id) {
-            <clt-card [recipe]="recipe"></clt-card>
+            <clt-recipe-card [recipe]="recipe"></clt-recipe-card>
+        } @empty {
+            <h5 class="row row--centered row--middle">No results found!</h5>
         }
     </div>
 

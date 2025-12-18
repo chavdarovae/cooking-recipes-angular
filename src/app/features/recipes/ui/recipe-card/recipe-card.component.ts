@@ -3,13 +3,13 @@ import { RouterLink } from '@angular/router';
 import { IRecipe } from '../../recipe.interface';
 
 @Component({
-    selector: 'clt-card',
+    selector: 'clt-recipe-card',
     standalone: true,
     imports: [RouterLink],
-    templateUrl: './card.component.html',
-    styleUrl: './card.component.scss',
+    templateUrl: './recipe-card.component.html',
+    styleUrl: './recipe-card.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardComponent {
+export class RecipeCardComponent {
     recipe = input<IRecipe>();
 }

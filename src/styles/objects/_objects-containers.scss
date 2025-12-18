@@ -46,6 +46,7 @@
     row-gap: 20px;
     justify-content: center;
     position: relative;
+    flex: 1;
 
     @include tablet-portrait {
         grid-template-columns: repeat(auto-fit, 400px);
@@ -62,8 +63,8 @@
     &__add {
         $btn-size: 50px;
         position: absolute;
-        top: calc(-1 * $btn-size);
-        right: $btn-size;
+        top: calc(-1.1 * $btn-size);
+        right: calc(-1.1 * $btn-size);
         width: $btn-size;
         height: $btn-size;
         font-size: calc(0.6 * $btn-size);

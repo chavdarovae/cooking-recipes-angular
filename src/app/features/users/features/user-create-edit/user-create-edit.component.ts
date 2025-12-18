@@ -21,10 +21,10 @@ import { UserCreateItem, UserEditItem } from '../../utils/user.models';
 type UserUserInteractionType = 'update' | 'delete' | 'create';
 
 @Component({
-    selector: 'rcp-user-edit',
+    selector: 'rcp-user-create-edit',
     standalone: true,
-    templateUrl: './user-edit.component.html',
-    styleUrl: './user-edit.component.scss',
+    templateUrl: './user-create-edit.component.html',
+    styleUrl: './user-create-edit.component.scss',
     imports: [
         CommonModule,
         FormsModule,
@@ -33,7 +33,7 @@ type UserUserInteractionType = 'update' | 'delete' | 'create';
         InputSelectComponent,
     ],
 })
-export class UserEditComponent implements OnInit {
+export class UserCreateEditComponent implements OnInit {
     // services
     private userService = inject(AuthService);
     private alertService = inject(AlertService);

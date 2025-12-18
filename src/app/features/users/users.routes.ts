@@ -33,9 +33,9 @@ export const USER_ROUTES: Routes = [
     {
         path: ':id',
         loadComponent: () =>
-            import('./features/user-edit/user-edit.component').then(
-                (c) => c.UserEditComponent,
-            ),
+            import(
+                './features/user-create-edit/user-create-edit.component'
+            ).then((c) => c.UserCreateEditComponent),
         canActivate: [AuthGuard],
     },
 ];

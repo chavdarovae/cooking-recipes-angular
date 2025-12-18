@@ -21,10 +21,10 @@ import { IRecipe } from '../../utils/recipe.interface';
 type RecipeUserInteractionType = 'create' | 'update';
 
 @Component({
-    selector: 'rcp-recipe-create',
+    selector: 'rcp-recipe-create-edit',
     standalone: true,
-    templateUrl: './recipe-create.component.html',
-    styleUrl: './recipe-create.component.scss',
+    templateUrl: './recipe-create-edit.component.html',
+    styleUrl: './recipe-create-edit.component.scss',
     imports: [
         CommonModule,
         FormsModule,
@@ -33,7 +33,7 @@ type RecipeUserInteractionType = 'create' | 'update';
         InputTextareaComponent,
     ],
 })
-export class RecipeCreateComponent implements OnInit {
+export class RecipeCreateEditComponent implements OnInit {
     // services
     private recipeService = inject(RecipeService);
     private alertService = inject(AlertService);

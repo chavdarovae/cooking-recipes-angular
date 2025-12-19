@@ -9,7 +9,7 @@
                 inpType="text"
                 [minLength]="5"
                 [isRequired]="true"
-                [inpValue]="user.username ?? ''"
+                [inpValue]="user.username"
                 (onInpChanged)="user.username = $event"></clt-input-field>
 
             <clt-input-field

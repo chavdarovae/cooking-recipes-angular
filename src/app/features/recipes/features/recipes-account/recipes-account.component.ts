@@ -1,16 +1,15 @@
-import { LowerCasePipe, TitleCasePipe } from '@angular/common';
 import { Component, inject, OnInit, Signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from 'src/app/data-access';
-import { IAccount, IGenericListRes, IUser, UserRolesEnum } from 'src/app/utils';
+import { IGenericListRes, IUserRes, UserRolesEnum } from 'src/app/utils';
 import { RecipeService } from '../../data-access/recipe.service';
-import { IRecipe } from '../../utils/recipe.interface';
+import { IRecipeRes } from '../../utils/recipe.interface';
 import { RecipeQuery } from '../../utils/recipe.models';
 import { FormsModule } from '@angular/forms';
 import { InputFieldComponent, InputSelectComponent } from 'src/app/ui';
 import {
     UserCreateItem,
-    UserEditItem,
+    UserUpdateItem,
 } from 'src/app/features/users/utils/user.models';
 import { Observable } from 'rxjs';
 
@@ -32,13 +31,13 @@ export class RecipesAccountComponent implements OnInit {
     private recipeService = inject(RecipeService);
     authService = inject(AuthService);
 
-    ownRecipesResSig: Signal<IGenericListRes<IRecipe>> =
+    ownRecipesResSig: Signal<IGenericListRes<IRecipeRes>> =
         this.recipeService.recipesSig;
 
-    userIteraction$!: Observable<IUser>;
+    userIteraction$!: Observable<IUserRes>;
 
     // main entity
-    user!: IUser | UserEditItem | UserCreateItem;
+    user!: IUserRes | UserUpdateItem | UserCreateItem;
     userRolesEnum = UserRolesEnum;
 
     // auxiliary
@@ -46,8 +45,8 @@ export class RecipesAccountComponent implements OnInit {
 
     constructor() {
         if (this.authService.currUserSig()) {
-            this.user = new UserEditItem(
-                this.authService.currUserSig() as IUser,
+            this.user = new UserUpdateItem(
+                this.authService.currUserSig() as IUserRes,
             );
         }
     }

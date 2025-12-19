@@ -37,29 +37,21 @@
                 [selectEcceptions]="[userRolesEnum.GUEST]"
                 (onSelectChanged)="user.role = $event"></clt-input-select>
 
-            <div class="row row--no-wrap">
+            <div class="row row--no-wrap gap-50">
                 @if (isEditEntity(user)) {
                     <button
                         class="danger"
                         (click)="userIteractionSubj.next('delete')">
                         {{ 'delete' | titlecase }} User
                     </button>
-                    <button
-                        type="submit"
-                        class="accent ml-50"
-                        (click)="userIteractionSubj.next('update')"
-                        [disabled]="userEditForm.invalid || userEditForm.pristine">
-                        {{ 'update' | titlecase }} User
-                    </button>
-                } @else if (isCreateEntity(user)) {
-                    <button
-                        type="submit"
-                        class="accent ml-a"
-                        (click)="userIteractionSubj.next('create')"
-                        [disabled]="userEditForm.invalid || userEditForm.pristine">
-                        {{ 'create' | titlecase }} User
-                    </button>
                 }
+                <button
+                    type="submit"
+                    class="accent"
+                    (click)="userIteractionSubj.next(allowedInteraction)"
+                    [disabled]="userEditForm.invalid || userEditForm.pristine">
+                    {{ allowedInteraction | titlecase }} User
+                </button>
             </div>
         </form>
     </div>

@@ -14,9 +14,9 @@ import {
 import { HttpErrorResponse } from '@angular/common/http';
 import { InputFieldComponent, InputSelectComponent } from 'src/app/ui';
 import { AuthService } from 'src/app/data-access/services/auth.service';
-import { IUser, UserRolesEnum } from 'src/app/utils';
+import { IUserRes, UserRolesEnum } from 'src/app/utils';
 import { AlertService } from 'src/app/data-access';
-import { UserCreateItem, UserEditItem } from '../../utils/user.models';
+import { UserCreateItem, UserUpdateItem } from '../../utils/user.models';
 
 type UserUserInteractionType = 'update' | 'delete' | 'create';
 
@@ -41,10 +41,11 @@ export class UserCreateEditComponent implements OnInit {
 
     // user interaction stream
     userIteractionSubj: Subject<UserUserInteractionType> = new Subject();
-    userIteraction$!: Observable<IUser>;
+    userIteraction$!: Observable<IUserRes>;
+    allowedInteraction!: UserUserInteractionType;
 
     // main entity
-    user!: IUser | UserEditItem | UserCreateItem;
+    user!: IUserRes | UserUpdateItem | UserCreateItem;
     currInteraction!: UserUserInteractionType;
     userRolesEnum = UserRolesEnum;
 
@@ -53,14 +54,17 @@ export class UserCreateEditComponent implements OnInit {
 
     ngOnInit(): void {
         if (history.state?.['user']) {
-            this.user = new UserEditItem(history.state?.['user']);
+            this.user = new UserUpdateItem(history.state?.['user']);
         } else if (!this.user && this.id === 'add-new-entity') {
             this.user = new UserCreateItem();
         }
+        this.allowedInteraction = (this.user as IUserRes)?.id
+            ? 'update'
+            : 'create';
         this.initUserInteraction();
     }
 
-    isEditEntity(obj: any): obj is UserEditItem {
+    isEditEntity(obj: any): obj is UserUpdateItem {
         return obj && obj.id;
     }
 
@@ -79,9 +83,11 @@ export class UserCreateEditComponent implements OnInit {
                             this.user as UserCreateItem,
                         );
                     case 'update':
-                        return this.userService.updateAccount(this.user);
+                        return this.userService.updateAccount(
+                            this.user as UserUpdateItem,
+                        );
                     case 'delete':
-                        return this.userService.deleteAccount(this.user);
+                        return this.userService.deleteAccount(this.id);
                 }
             }),
             tap(() => {

@@ -3,11 +3,11 @@ import { inject, Injectable } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, Observable, shareReplay, Subject, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IRecipe } from '../utils/recipe.interface';
+import { IRecipeRes } from '../utils/recipe.interface';
 import { IGenericListRes, IMetaDataListRes, UtilService } from 'src/app/utils';
 import {
     RecipeCreateItem,
-    RecipeEditItem,
+    RecipeUpdateItem,
     RecipeQuery,
 } from '../utils/recipe.models';
 
@@ -23,7 +23,7 @@ export class RecipeService {
 
     // service state recipe list
     private relaodRecipesSubj: Subject<RecipeQuery> = new Subject();
-    private recipes$: Observable<IGenericListRes<IRecipe>> =
+    private recipes$: Observable<IGenericListRes<IRecipeRes>> =
         this.relaodRecipesSubj.asObservable().pipe(
             switchMap((query: RecipeQuery) => {
                 const params =
@@ -31,7 +31,7 @@ export class RecipeService {
                         query,
                     );
 
-                return this.http.get<IGenericListRes<IRecipe>>(
+                return this.http.get<IGenericListRes<IRecipeRes>>(
                     this.accountApi,
                     { params },
                 );
@@ -40,19 +40,19 @@ export class RecipeService {
         );
     recipesSig = toSignal(this.recipes$, {
         initialValue: {
-            data: [] as IRecipe[],
+            data: [] as IRecipeRes[],
             metaData: {} as IMetaDataListRes,
         },
     });
 
     // service state selected recipe
     private selectedRecipeSubj: Subject<string> = new Subject();
-    private selectedRecipe$: Observable<IRecipe> = this.selectedRecipeSubj
+    private selectedRecipe$: Observable<IRecipeRes> = this.selectedRecipeSubj
         .asObservable()
         .pipe(
             filter((id: string) => !!id),
             switchMap((id: string) =>
-                this.http.get<IRecipe>(`${this.accountApi}/${id}`),
+                this.http.get<IRecipeRes>(`${this.accountApi}/${id}`),
             ),
         );
     selectedRecipeSig = toSignal(this.selectedRecipe$, { initialValue: null });
@@ -65,19 +65,19 @@ export class RecipeService {
         this.selectedRecipeSubj.next(id);
     }
 
-    create(newRecipe: RecipeCreateItem): Observable<IRecipe> {
-        return this.http.post<IRecipe>(this.accountApi, newRecipe);
+    create(newRecipe: RecipeCreateItem): Observable<IRecipeRes> {
+        return this.http.post<IRecipeRes>(this.accountApi, newRecipe);
     }
 
-    update(updatedRecipe: RecipeEditItem) {
-        return this.http.put<IRecipe>(
-            `${this.accountApi}/${updatedRecipe.id}`,
+    update(id: string, updatedRecipe: RecipeUpdateItem) {
+        return this.http.put<IRecipeRes>(
+            `${this.accountApi}/${id}`,
             updatedRecipe,
         );
     }
 
     recommend(id?: string) {
-        return this.http.get<IRecipe>(`${this.accountApi}/${id}/recommend`);
+        return this.http.get<IRecipeRes>(`${this.accountApi}/${id}/recommend`);
     }
 
     delete(id?: string) {

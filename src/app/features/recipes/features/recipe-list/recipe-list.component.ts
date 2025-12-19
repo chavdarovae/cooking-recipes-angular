@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { IGenericListRes } from 'src/app/utils';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { RecipeService } from '../../data-access/recipe.service';
-import { IRecipe } from '../../utils/recipe.interface';
+import { IRecipeRes } from '../../utils/recipe.interface';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RecipeQuery } from '../../utils/recipe.models';
 import { RecipeCardComponent } from '../../ui/recipe-card/recipe-card.component';
@@ -31,7 +31,7 @@ export class RecipeListComponent {
     private router = inject(Router);
 
     // main entity
-    recipesResSig: Signal<IGenericListRes<IRecipe>> =
+    recipesResSig: Signal<IGenericListRes<IRecipeRes>> =
         this.recipeService.recipesSig;
 
     // query params

@@ -7,7 +7,7 @@ import {
     IAccount,
     IGenericListRes,
     IMetaDataListRes,
-    IUser,
+    IUserRes,
     UtilService,
 } from 'src/app/utils';
 import { environment } from 'src/environments/environment';
@@ -117,7 +117,7 @@ export class AuthService {
             .pipe(first());
     }
 
-    updateAccount(modifiedUser: IUser): Observable<IAccount> {
+    updateAccount(modifiedUser: IUserRes): Observable<IAccount> {
         return this.http
             .put<IAccount>(
                 this.accountApi + '/accounts/' + modifiedUser.id,
@@ -126,9 +126,9 @@ export class AuthService {
             .pipe(first());
     }
 
-    deleteAccount(userToDelete: IUser): Observable<IAccount> {
+    deleteAccount(id: string): Observable<IAccount> {
         return this.http
-            .delete<IAccount>(this.accountApi + '/accounts/' + userToDelete.id)
+            .delete<IAccount>(this.accountApi + '/accounts/' + id)
             .pipe(first());
     }
 

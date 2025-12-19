@@ -1,26 +1,29 @@
 import { MetaReqModel } from 'src/app/utils/models/generic.models';
-import { IRecipe } from './recipe.interface';
+import {
+    IRecipeRes,
+    RecipeCreateType,
+    RecipeUpdateType,
+} from './recipe.interface';
 
-export class RecipeCreateItem implements IRecipe {
+export class RecipeCreateItem implements RecipeCreateType {
     constructor(
         public title: string = '',
         public ingredients: string = '',
         public instructions: string = '',
         public description: string = '',
         public image: string = '',
-        public owner: string = '',
     ) {}
 }
 
-export class RecipeEditItem implements Partial<IRecipe> {
-    id: string | undefined;
+export class RecipeUpdateItem implements RecipeUpdateType {
+    id: string;
     title: string;
     ingredients: string;
     instructions: string;
     description: string;
     image: string;
 
-    constructor(recipe: IRecipe) {
+    constructor(recipe: IRecipeRes) {
         const {
             id,
             title,
@@ -30,12 +33,12 @@ export class RecipeEditItem implements Partial<IRecipe> {
             image,
             ...rest
         } = recipe;
-        this.id = id;
-        this.title = title;
-        this.ingredients = ingredients;
-        this.instructions = instructions;
-        this.description = description;
-        this.image = image;
+        this.id = id ?? '';
+        this.title = title ?? '';
+        this.ingredients = ingredients ?? '';
+        this.instructions = instructions ?? '';
+        this.description = description ?? '';
+        this.image = image ?? '';
     }
 }
 

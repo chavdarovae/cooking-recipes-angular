@@ -15,8 +15,8 @@ import {
 } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RecipeService } from '../../data-access/recipe.service';
-import { RecipeCreateItem, RecipeEditItem } from '../../utils/recipe.models';
-import { IRecipe } from '../../utils/recipe.interface';
+import { RecipeCreateItem, RecipeUpdateItem } from '../../utils/recipe.models';
+import { IRecipeRes } from '../../utils/recipe.interface';
 
 type RecipeUserInteractionType = 'create' | 'update';
 
@@ -41,11 +41,11 @@ export class RecipeCreateEditComponent implements OnInit {
 
     // user interaction stream
     userIteractionSubj: Subject<RecipeUserInteractionType> = new Subject();
-    userIteraction$!: Observable<IRecipe>;
+    userIteraction$!: Observable<IRecipeRes>;
     allowedInteraction!: RecipeUserInteractionType;
 
     // main entity
-    recipe!: IRecipe | RecipeCreateItem | RecipeEditItem;
+    recipe!: IRecipeRes | RecipeCreateItem | RecipeUpdateItem;
     currInteraction!: RecipeUserInteractionType;
 
     // implicit input from routing
@@ -53,12 +53,12 @@ export class RecipeCreateEditComponent implements OnInit {
 
     ngOnInit(): void {
         if (history.state?.['recipe']) {
-            this.recipe = new RecipeEditItem(history.state?.['recipe']);
+            this.recipe = new RecipeUpdateItem(history.state?.['recipe']);
         } else if (!this.recipe && this.id === 'add-new-entity') {
             this.recipe = new RecipeCreateItem();
         }
 
-        this.allowedInteraction = (this.recipe as IRecipe)?.id
+        this.allowedInteraction = (this.recipe as IRecipeRes)?.id
             ? 'update'
             : 'create';
         this.initUserInteraction();
@@ -76,7 +76,8 @@ export class RecipeCreateEditComponent implements OnInit {
                         );
                     case 'update':
                         return this.recipeService.update(
-                            this.recipe as RecipeEditItem,
+                            this.id,
+                            this.recipe as RecipeUpdateItem,
                         );
                 }
             }),

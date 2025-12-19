@@ -16,7 +16,7 @@ import {
 } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RecipeService } from '../../data-access/recipe.service';
-import { IRecipe } from '../../utils/recipe.interface';
+import { IRecipeRes } from '../../utils/recipe.interface';
 
 type RecipeUserInteractionType = 'deleteDialog' | 'delete' | 'recommend';
 
@@ -39,11 +39,11 @@ export class RecipeDetailComponent implements OnInit {
 
     // user interaction
     userIteractionSubj: Subject<RecipeUserInteractionType> = new Subject();
-    userIteraction$!: Observable<IRecipe>;
+    userIteraction$!: Observable<IRecipeRes>;
     currInteraction!: RecipeUserInteractionType;
 
     // main entity
-    selectedRecipeSig: Signal<IRecipe | null> =
+    selectedRecipeSig: Signal<IRecipeRes | null> =
         this.recipeService.selectedRecipeSig;
 
     // aucxiliary variables
@@ -101,7 +101,7 @@ export class RecipeDetailComponent implements OnInit {
                 }
             }),
             tap(() => {
-                if (['deleteDialog'].includes(this.currInteraction)) {
+                if (!['deleteDialog'].includes(this.currInteraction)) {
                     this.alertService.showAlert({
                         alert: `The recipe was successfully ${this.currInteraction}d!`,
                         type: 'success',

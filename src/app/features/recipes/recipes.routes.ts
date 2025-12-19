@@ -19,7 +19,7 @@ export const RECIPE_ROUTES: Routes = [
         canActivate: [AuthGuard],
     },
     {
-        path: 'create',
+        path: 'create-edit/:id',
         loadComponent: () =>
             import(
                 './features/recipe-create-edit/recipe-create-edit.component'
@@ -32,14 +32,6 @@ export const RECIPE_ROUTES: Routes = [
             import('./features/recipe-detail/recipe-detail.component').then(
                 (m) => m.RecipeDetailComponent,
             ),
-        canActivate: [AuthGuard],
-    },
-    {
-        path: ':id/edit',
-        loadComponent: () =>
-            import(
-                './features/recipe-create-edit/recipe-create-edit.component'
-            ).then((m) => m.RecipeCreateEditComponent),
         canActivate: [AuthGuard],
     },
 ];

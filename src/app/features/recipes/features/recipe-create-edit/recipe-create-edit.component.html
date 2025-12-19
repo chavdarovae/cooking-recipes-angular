@@ -1,62 +1,64 @@
 @if ({ ui: userIteraction$ | async }; as subs) {
-    <div class="container">
-        <form
-            #createForm="ngForm"
-            class="form w80 pt-30 pb-30 pl-50 pr-50">
-            <clt-input-field
-                label="Recipe Title"
-                modelName="recipeTitle"
-                inpType="text"
-                [minLength]="2"
-                [isRequired]="true"
-                [inpValue]="recipe.title"
-                (onInpChanged)="recipe.title = $event"></clt-input-field>
+    @if (recipe) {
+        <div class="container">
+            <form
+                #createForm="ngForm"
+                class="form w80 pt-30 pb-30 pl-50 pr-50">
+                <clt-input-field
+                    label="Recipe Title"
+                    modelName="recipeTitle"
+                    inpType="text"
+                    [minLength]="2"
+                    [isRequired]="true"
+                    [inpValue]="recipe.title"
+                    (onInpChanged)="recipe.title = $event"></clt-input-field>
 
-            <clt-input-textarea
-                label="Description"
-                modelName="description"
-                [minLength]="10"
-                [maxLength]="100"
-                [isRequired]="true"
-                [inpValue]="recipe.description"
-                (onInpChanged)="recipe.description = $event"></clt-input-textarea>
+                <clt-input-textarea
+                    label="Description"
+                    modelName="description"
+                    [minLength]="10"
+                    [maxLength]="100"
+                    [isRequired]="true"
+                    [inpValue]="recipe.description"
+                    (onInpChanged)="recipe.description = $event"></clt-input-textarea>
 
-            <clt-input-textarea
-                label="Ingredients"
-                modelName="ingredients"
-                [minLength]="10"
-                [maxLength]="400"
-                [isRequired]="true"
-                [inpValue]="recipe.ingredients"
-                (onInpChanged)="recipe.ingredients = $event"></clt-input-textarea>
+                <clt-input-textarea
+                    label="Ingredients"
+                    modelName="ingredients"
+                    [minLength]="10"
+                    [maxLength]="400"
+                    [isRequired]="true"
+                    [inpValue]="recipe.ingredients"
+                    (onInpChanged)="recipe.ingredients = $event"></clt-input-textarea>
 
-            <clt-input-field
-                label="Instructions"
-                modelName="instructions"
-                inpType="text"
-                [minLength]="10"
-                [isRequired]="true"
-                [inpValue]="recipe.instructions"
-                (onInpChanged)="recipe.instructions = $event"></clt-input-field>
+                <clt-input-field
+                    label="Instructions"
+                    modelName="instructions"
+                    inpType="text"
+                    [minLength]="10"
+                    [isRequired]="true"
+                    [inpValue]="recipe.instructions"
+                    (onInpChanged)="recipe.instructions = $event"></clt-input-field>
 
-            <clt-input-field
-                label="Image URL"
-                modelName="instructions"
-                inpType="text"
-                [minLength]="6"
-                [isRequired]="true"
-                [inpValue]="recipe.image"
-                (onInpChanged)="recipe.image = $event"></clt-input-field>
+                <clt-input-field
+                    label="Image URL"
+                    modelName="instructions"
+                    inpType="text"
+                    [minLength]="6"
+                    [isRequired]="true"
+                    [inpValue]="recipe.image"
+                    (onInpChanged)="recipe.image = $event"></clt-input-field>
 
-            <div>
-                <button
-                    type="submit"
-                    class="accent"
-                    (click)="userIteractionSubj.next(allowedInteraction)"
-                    [disabled]="createForm.invalid || createForm.pristine">
-                    {{ allowedInteraction | titlecase }} Recipe
-                </button>
-            </div>
-        </form>
-    </div>
+                <div>
+                    <button
+                        type="submit"
+                        class="accent"
+                        (click)="userIteractionSubj.next(allowedInteraction)"
+                        [disabled]="createForm.invalid || createForm.pristine">
+                        {{ allowedInteraction | titlecase }} Recipe
+                    </button>
+                </div>
+            </form>
+        </div>
+    }
 }

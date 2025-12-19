@@ -31,7 +31,7 @@ export const USER_ROUTES: Routes = [
             ),
     },
     {
-        path: ':id',
+        path: 'crate-edit/:id',
         loadComponent: () =>
             import(
                 './features/user-create-edit/user-create-edit.component'

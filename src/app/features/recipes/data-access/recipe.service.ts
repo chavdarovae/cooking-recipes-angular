@@ -5,7 +5,11 @@ import { filter, Observable, shareReplay, Subject, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IRecipe } from '../utils/recipe.interface';
 import { IGenericListRes, IMetaDataListRes, UtilService } from 'src/app/utils';
-import { RecipeQuery } from '../utils/recipe.models';
+import {
+    RecipeCreateItem,
+    RecipeEditItem,
+    RecipeQuery,
+} from '../utils/recipe.models';
 
 @Injectable({
     providedIn: 'root',
@@ -61,11 +65,11 @@ export class RecipeService {
         this.selectedRecipeSubj.next(id);
     }
 
-    create(newRecipe: IRecipe): Observable<IRecipe> {
+    create(newRecipe: RecipeCreateItem): Observable<IRecipe> {
         return this.http.post<IRecipe>(this.accountApi, newRecipe);
     }
 
-    update(updatedRecipe: IRecipe) {
+    update(updatedRecipe: RecipeEditItem) {
         return this.http.put<IRecipe>(
             `${this.accountApi}/${updatedRecipe.id}`,
             updatedRecipe,

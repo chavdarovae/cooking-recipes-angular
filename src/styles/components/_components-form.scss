@@ -31,39 +31,40 @@
         }
     }
 
-    label {
-        display: block;
-        margin-bottom: 0.5em;
-        color: $text-color-ter;
-    }
-
-    input,
-    select {
-        height: clamp(40px, 45px, 50px);
-        width: clamp(150px, auto, 250px);
-    }
-
-    textarea {
-        height: clamp(80px, 100px, 120px);
-        width: clamp(150px, auto, 250px);
-    }
-
-    input,
-    textarea,
-    select {
-        width: 100%;
-        padding: 2px 5px;
-        margin-bottom: 3px;
-        border: 1px solid #ddd;
-        border-radius: $rounding-pri;
-        font-family: $font-family-sec;
-
-        &.ng-invalid.ng-touched {
-            border-color: $danger;
-        }
-    }
-
     button {
         width: 100%;
+    }
+}
+
+
+label {
+    display: block;
+    margin-bottom: 0.5em;
+    color: $text-color-ter;
+}
+
+input,
+select {
+    height: clamp(40px, 45px, 50px);
+    width: clamp(150px, auto, 250px);
+}
+
+textarea {
+    height: clamp(80px, 100px, 120px);
+    width: clamp(150px, auto, 250px);
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 2px 5px;
+    margin-bottom: 3px;
+    border: 1px solid #ddd;
+    border-radius: $rounding-pri;
+    font-family: $font-family-sec;
+
+    &.ng-invalid.ng-touched {
+        border-color: $danger;
     }
 }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { InputFieldComponent, InputTextareaComponent } from 'src/app/ui';
@@ -15,7 +15,7 @@ import {
 } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RecipeService } from '../../data-access/recipe.service';
-import { RecipeCreateItem } from '../../utils/recipe.models';
+import { RecipeCreateItem, RecipeEditItem } from '../../utils/recipe.models';
 import { IRecipe } from '../../utils/recipe.interface';
 
 type RecipeUserInteractionType = 'create' | 'update';
@@ -45,11 +45,19 @@ export class RecipeCreateEditComponent implements OnInit {
     allowedInteraction!: RecipeUserInteractionType;
 
     // main entity
-    recipe!: IRecipe | RecipeCreateItem;
+    recipe!: IRecipe | RecipeCreateItem | RecipeEditItem;
     currInteraction!: RecipeUserInteractionType;
 
+    // implicit input from routing
+    @Input() id!: string;
+
     ngOnInit(): void {
-        this.recipe = history.state?.['recipe'] ?? new RecipeCreateItem();
+        if (history.state?.['recipe']) {
+            this.recipe = new RecipeEditItem(history.state?.['recipe']);
+        } else if (!this.recipe && this.id === 'add-new-entity') {
+            this.recipe = new RecipeCreateItem();
+        }
+
         this.allowedInteraction = (this.recipe as IRecipe)?.id
             ? 'update'
             : 'create';
@@ -63,9 +71,13 @@ export class RecipeCreateEditComponent implements OnInit {
             switchMap((action: RecipeUserInteractionType) => {
                 switch (action) {
                     case 'create':
-                        return this.recipeService.create(this.recipe);
+                        return this.recipeService.create(
+                            this.recipe as RecipeCreateItem,
+                        );
                     case 'update':
-                        return this.recipeService.update(this.recipe);
+                        return this.recipeService.update(
+                            this.recipe as RecipeEditItem,
+                        );
                 }
             }),
             tap(() => {

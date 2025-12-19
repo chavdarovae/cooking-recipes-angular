@@ -1,19 +1,22 @@
-<clt-input-select
-    class="size w-220"
-    label="Items per page:"
-    modelName="pageSize"
-    [selectList]="pagingSizeOptions"
-    [inpValue]="paging().pageSize"
-    (onSelectChanged)="onPagingChange.emit({ page: 1, pageSize: $event })"></clt-input-select>
+<div class="size row row--no-wrap row--centered gap-10">
+    <span class="info">Items per page:</span>
 
-<div class="page row row--no-wrap row--centered gap-20">
+    <clt-input-select
+        class="w-60 m-0"
+        modelName="pageSize"
+        [selectList]="pagingSizeOptions"
+        [inpValue]="paging().pageSize"
+        (onSelectChanged)="onPagingChange.emit({ page: 1, pageSize: $event })"></clt-input-select>
+</div>
+
+<div class="page row row--no-wrap row--centered gap-10">
     <span
         class="btn accent"
         [ngClass]="{ disabled: getMinCount() === 1 }"
         (click)="onPagingChange.emit({ page: paging().page - 1, pageSize: paging().pageSize })">
         ❮
     </span>
-    <div class="page__info w-100">{{ getMinCount() }} - {{ getMaxCount() }} of {{ paging().total }}</div>
+    <div class="info w-100">{{ getMinCount() }} - {{ getMaxCount() }} of {{ paging().total }}</div>
     <span
         class="btn accent"
         [ngClass]="{ disabled: getMaxCount() === paging().total }"

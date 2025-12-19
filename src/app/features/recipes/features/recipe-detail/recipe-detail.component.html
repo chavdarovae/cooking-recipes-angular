@@ -37,7 +37,7 @@
                                 Delete
                             </button>
                             <button
-                                [routerLink]="['/recipes/' + selectedRecipeSig()?.id + '/edit']"
+                                [routerLink]="['/recipes/create-edit/' + selectedRecipeSig()?.id]"
                                 [state]="{ recipe: selectedRecipeSig() }">
                                 Edit
                             </button>

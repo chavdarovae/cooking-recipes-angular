@@ -48,12 +48,13 @@ export class UserCreateEditComponent implements OnInit {
     currInteraction!: UserUserInteractionType;
     userRolesEnum = UserRolesEnum;
 
-    // imlicit input from routing
+    // implicit input from routing
     @Input() id!: string;
 
     ngOnInit(): void {
-        this.user = new UserEditItem(history.state?.['user']);
-        if (!this.user && this.id === 'add-new-user') {
+        if (history.state?.['user']) {
+            this.user = new UserEditItem(history.state?.['user']);
+        } else if (!this.user && this.id === 'add-new-entity') {
             this.user = new UserCreateItem();
         }
         this.initUserInteraction();

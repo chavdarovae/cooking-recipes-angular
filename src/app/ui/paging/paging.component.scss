@@ -7,6 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 30px;
 
     &::before {
         content: '';
@@ -29,16 +30,12 @@
         margin-bottom: 0;
     }
 
-    .page__info {
+    .info {
         text-align: center;
     }
 
     .btn {
         width: 25px;
         max-width: 25px;
-    }
-
-    .size {
-        transform: scale(1.2);
     }
 }

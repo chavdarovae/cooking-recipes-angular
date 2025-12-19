@@ -14,7 +14,7 @@
         <span class="text-accent">{{ account().role }}</span>
         <button
             class="accent span-2 w100 mt-10"
-            [routerLink]="['/users/', account().id]"
+            [routerLink]="['/users/crate-edit/', account().id]"
             routerLinkActive="router-link-active"
             [state]="{ user: account() }">
             Edit User

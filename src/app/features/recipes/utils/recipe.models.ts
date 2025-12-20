@@ -1,4 +1,4 @@
-import { MetaReqModel } from 'src/app/utils/models/generic.models';
+import { MetaDataReqModel } from 'src/app/utils/models/generic.models';
 import {
     IRecipeRes,
     RecipeCreateType,
@@ -42,7 +42,7 @@ export class RecipeUpdateItem implements RecipeUpdateType {
     }
 }
 
-export class RecipeQuery extends MetaReqModel {
+export class RecipeQuery extends MetaDataReqModel {
     constructor(
         public search?: string,
         public owner?: string,

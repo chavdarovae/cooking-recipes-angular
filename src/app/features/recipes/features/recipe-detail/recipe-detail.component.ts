@@ -2,7 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import { Component, inject, Input, OnInit, Signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ModalComponent } from 'src/app/ui';
-import { AlertService } from 'src/app/data-access';
+import { AlertService, PaginationService } from 'src/app/data-access';
 import { AuthService } from 'src/app/data-access/services/auth.service';
 import {
     catchError,
@@ -17,6 +17,7 @@ import {
 import { HttpErrorResponse } from '@angular/common/http';
 import { RecipeService } from '../../data-access/recipe.service';
 import { IRecipeRes } from '../../utils/recipe.interface';
+import { RecipeQuery } from '../../utils/recipe.models';
 
 type RecipeUserInteractionType = 'deleteDialog' | 'delete' | 'recommend';
 
@@ -33,6 +34,7 @@ export class RecipeDetailComponent implements OnInit {
     private alertService = inject(AlertService);
     private router = inject(Router);
     public authService = inject(AuthService);
+    paginationService = inject(PaginationService<RecipeQuery>);
 
     // imlicit input from routing
     @Input() id!: string;

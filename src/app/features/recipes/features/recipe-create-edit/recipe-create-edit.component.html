@@ -49,7 +49,12 @@
                     [inpValue]="recipe.image"
                     (onInpChanged)="recipe.image = $event"></clt-input-field>
 
-                <div>
+                <div class="row row--no-wrap gap-20">
+                    <button
+                        [routerLink]="['/recipes']"
+                        [queryParams]="paginationService.getLastListViewMetaData()">
+                        Back to Recipes
+                    </button>
                     <button
                         type="submit"
                         class="accent"

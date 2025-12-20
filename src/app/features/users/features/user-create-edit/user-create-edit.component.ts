@@ -15,8 +15,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { InputFieldComponent, InputSelectComponent } from 'src/app/ui';
 import { AuthService } from 'src/app/data-access/services/auth.service';
 import { IUserRes, UserRolesEnum } from 'src/app/utils';
-import { AlertService } from 'src/app/data-access';
-import { UserCreateItem, UserUpdateItem } from '../../utils/user.models';
+import { AlertService, PaginationService } from 'src/app/data-access';
+import {
+    UserCreateItem,
+    UserQuery,
+    UserUpdateItem,
+} from '../../utils/user.models';
 
 type UserUserInteractionType = 'update' | 'delete' | 'create';
 
@@ -38,6 +42,7 @@ export class UserCreateEditComponent implements OnInit {
     private userService = inject(AuthService);
     private alertService = inject(AlertService);
     private router = inject(Router);
+    paginationService = inject(PaginationService<UserQuery>);
 
     // user interaction stream
     userIteractionSubj: Subject<UserUserInteractionType> = new Subject();
@@ -64,7 +69,7 @@ export class UserCreateEditComponent implements OnInit {
         this.initUserInteraction();
     }
 
-    isEditEntity(obj: any): obj is UserUpdateItem {
+    isUpdateEntity(obj: any): obj is UserUpdateItem {
         return obj && obj.id;
     }
 

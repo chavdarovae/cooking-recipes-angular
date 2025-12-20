@@ -1,4 +1,4 @@
-import { LoaderService } from './../../services/loader-service';
+import { LoaderService } from '../../util-services/loader-service';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 

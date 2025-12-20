@@ -12,7 +12,7 @@ import {
     catchError,
     throwError as throwErrorObservable,
 } from 'rxjs';
-import { AlertService } from '../services/alert.service';
+import { AlertService } from '../util-services/alert.service';
 import { AuthService } from '../services/auth.service';
 
 @Injectable()

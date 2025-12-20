@@ -1,6 +1,6 @@
-import { PAGING } from '../constants/gengeral.constants';
+import { PAGINATION } from '../constants/gengeral.constants';
 
-export class MetaReqModel {
+export class MetaDataReqModel {
     page: number;
     pageSize: number;
 
@@ -9,8 +9,11 @@ export class MetaReqModel {
         pageSize?: string | number,
         public sort?: string,
     ) {
-        this.page = MetaReqModel.toNumber(page, 1);
-        this.pageSize = MetaReqModel.toNumber(pageSize, PAGING.pageSize);
+        this.page = MetaDataReqModel.toNumber(page, 1);
+        this.pageSize = MetaDataReqModel.toNumber(
+            pageSize,
+            PAGINATION.pageSize,
+        );
     }
 
     private static toNumber(

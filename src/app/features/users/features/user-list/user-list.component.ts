@@ -4,13 +4,14 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {
     InputFieldComponent,
     InputSelectComponent,
-    PagingComponent,
+    PaginationComponent,
 } from 'src/app/ui';
 import { NgForm } from '@angular/forms';
 import { IAccount, IGenericListRes, UserRolesEnum } from 'src/app/utils';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { UserCradComponent } from '../../ui/user-card/user-card.component';
 import { UserQuery } from '../../utils/user.models';
+import { PaginationService } from 'src/app/data-access';
 
 @Component({
     selector: 'rcp-user-list',
@@ -21,7 +22,7 @@ import { UserQuery } from '../../utils/user.models';
         RouterLink,
         InputFieldComponent,
         InputSelectComponent,
-        PagingComponent,
+        PaginationComponent,
         UserCradComponent,
     ],
     providers: [NgForm],
@@ -31,6 +32,7 @@ export class UserListComponent {
     private authService = inject(AuthService);
     private route = inject(ActivatedRoute);
     private router = inject(Router);
+    private paginationService = inject(PaginationService<UserQuery>);
 
     // main entity
     accountsResSig: Signal<IGenericListRes<IAccount>> =
@@ -63,6 +65,7 @@ export class UserListComponent {
                 lastQueryJson = currentJson;
 
                 this.authService.relaodAccountList(query);
+                this.paginationService.setState(query);
             },
             { allowSignalWrites: true },
         );

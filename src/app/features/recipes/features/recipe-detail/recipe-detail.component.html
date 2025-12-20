@@ -30,7 +30,11 @@
                     <hr />
 
                     <div class="row row--no-wrap row--space-btw gap-10 w100 mt-20">
-                        <button [routerLink]="['/recipes/']">Back to Recipes</button>
+                        <button
+                            [routerLink]="['/recipes']"
+                            [queryParams]="paginationService.getLastListViewMetaData()">
+                            Back to Recipes
+                        </button>
 
                         @if (authService.currUserSig()?.id === selectedRecipeSig()?.owner) {
                             <button

@@ -3,7 +3,7 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { InputFieldComponent, InputTextareaComponent } from 'src/app/ui';
-import { AlertService } from 'src/app/data-access';
+import { AlertService, PaginationService } from 'src/app/data-access';
 import {
     catchError,
     distinctUntilChanged,
@@ -38,6 +38,7 @@ export class RecipeCreateEditComponent implements OnInit {
     private recipeService = inject(RecipeService);
     private alertService = inject(AlertService);
     private router = inject(Router);
+    paginationService = inject(PaginationService);
 
     // user interaction stream
     userIteractionSubj: Subject<RecipeUserInteractionType> = new Subject();
@@ -82,7 +83,11 @@ export class RecipeCreateEditComponent implements OnInit {
                 }
             }),
             tap(() => {
-                this.router.navigateByUrl('/recipes');
+                this.router.navigate(['/recipes'], {
+                    queryParams:
+                        this.paginationService.getLastListViewMetaData(),
+                    queryParamsHandling: 'merge',
+                });
                 this.alertService.showAlert({
                     alert: `The recipe was successfully ${this.currInteraction}d!`,
                     type: 'success',

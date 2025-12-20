@@ -1,18 +1,18 @@
 import { NgClass } from '@angular/common';
 import { Component, EventEmitter, input, Output } from '@angular/core';
 import { InputSelectComponent } from '../input-select/input-select.component';
-import { IMetaDataListRes, PAGING } from 'src/app/utils';
+import { IMetaDataListRes, PAGINATION } from 'src/app/utils';
 
 @Component({
-    selector: 'clt-paging',
+    selector: 'clt-pagination',
     standalone: true,
-    templateUrl: './paging.component.html',
-    styleUrl: './paging.component.scss',
+    templateUrl: './pagination.component.html',
+    styleUrl: './pagination.component.scss',
     imports: [NgClass, InputSelectComponent],
 })
-export class PagingComponent {
+export class PaginationComponent {
     paging = input.required<IMetaDataListRes>();
-    pagingSizeOptions = PAGING.pageSizeOptions;
+    pagingSizeOptions = PAGINATION.pageSizeOptions;
     @Output() onPagingChange: EventEmitter<{ page: number; pageSize: number }> =
         new EventEmitter();
 

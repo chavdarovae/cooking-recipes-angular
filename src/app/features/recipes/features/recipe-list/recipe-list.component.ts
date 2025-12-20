@@ -1,6 +1,6 @@
-import { AuthService } from 'src/app/data-access';
+import { AuthService, PaginationService } from 'src/app/data-access';
 import { Component, computed, effect, inject, Signal } from '@angular/core';
-import { InputFieldComponent, PagingComponent } from 'src/app/ui';
+import { InputFieldComponent, PaginationComponent } from 'src/app/ui';
 import { NgForm } from '@angular/forms';
 import { IGenericListRes } from 'src/app/utils';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -18,7 +18,7 @@ import { RecipeCardComponent } from '../../ui/recipe-card/recipe-card.component'
     imports: [
         RecipeCardComponent,
         InputFieldComponent,
-        PagingComponent,
+        PaginationComponent,
         RouterLink,
     ],
     providers: [NgForm],
@@ -29,6 +29,7 @@ export class RecipeListComponent {
     private recipeService = inject(RecipeService);
     private route = inject(ActivatedRoute);
     private router = inject(Router);
+    private paginationService = inject(PaginationService<RecipeQuery>);
 
     // main entity
     recipesResSig: Signal<IGenericListRes<IRecipeRes>> =
@@ -59,6 +60,7 @@ export class RecipeListComponent {
                 lastQueryJson = currentJson;
 
                 this.recipeService.reloadRecipes(query);
+                this.paginationService.setState(query);
             },
             { allowSignalWrites: true },
         );

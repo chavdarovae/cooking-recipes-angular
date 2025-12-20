@@ -16,7 +16,7 @@
                 label="Email"
                 modelName="email"
                 inpType="text"
-                [isDisabled]="isEditEntity(user)"
+                [isDisabled]="isUpdateEntity(user)"
                 [inpValue]="user.email"
                 (onInpChanged)="user.email = $event"></clt-input-field>
 
@@ -37,8 +37,13 @@
                 [selectEcceptions]="[userRolesEnum.GUEST]"
                 (onSelectChanged)="user.role = $event"></clt-input-select>
 
-            <div class="row row--no-wrap gap-50">
-                @if (isEditEntity(user)) {
+            <div class="row row--no-wrap gap-20">
+                <button
+                    [routerLink]="['/users']"
+                    [queryParams]="paginationService.getLastListViewMetaData()">
+                    Back to Users
+                </button>
+                @if (isUpdateEntity(user)) {
                     <button
                         class="danger"
                         (click)="userIteractionSubj.next('delete')">

@@ -4,7 +4,7 @@ import {
     UserRolesEnum,
     UserUpdateType,
 } from 'src/app/utils';
-import { MetaReqModel } from 'src/app/utils/models/generic.models';
+import { MetaDataReqModel } from 'src/app/utils/models/generic.models';
 
 export interface IUserWithPassword extends IUserRes {
     password?: string; // new property
@@ -34,7 +34,7 @@ export class UserUpdateItem implements UserUpdateType {
     }
 }
 
-export class UserQuery extends MetaReqModel {
+export class UserQuery extends MetaDataReqModel {
     role?: UserRolesEnum;
     constructor(
         public search?: string,

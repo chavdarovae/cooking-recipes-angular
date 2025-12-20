@@ -46,7 +46,7 @@ export class RecipeDetailComponent implements OnInit {
     selectedRecipeSig: Signal<IRecipeRes | null> =
         this.recipeService.selectedRecipeSig;
 
-    // aucxiliary variables
+    // auxiliary variables
     showModal = false;
 
     ngOnInit(): void {
@@ -69,9 +69,7 @@ export class RecipeDetailComponent implements OnInit {
             return false;
         }
 
-        return recipe.recommendList
-            ?.flatMap((x: { id: string }) => x.id)
-            ?.includes(currUserId);
+        return recipe.recommendList?.includes(currUserId);
     }
 
     private initUserInteraction(): void {

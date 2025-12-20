@@ -29,7 +29,9 @@
 
                     <hr />
 
-                    <div class="row row--no-wrap row--space-btw w100 mt-20">
+                    <div class="row row--no-wrap row--space-btw gap-10 w100 mt-20">
+                        <button [routerLink]="['/recipes/']">Back to Recipes</button>
+
                         @if (authService.currUserSig()?.id === selectedRecipeSig()?.owner) {
                             <button
                                 class="danger"
@@ -37,12 +39,12 @@
                                 Delete
                             </button>
                             <button
+                                class="accent"
                                 [routerLink]="['/recipes/create-edit/' + selectedRecipeSig()?.id]"
                                 [state]="{ recipe: selectedRecipeSig() }">
                                 Edit
                             </button>
                         } @else {
-                            <button [routerLink]="['/recipes/']">Back to Recipes</button>
                             <button
                                 class="accent"
                                 (click)="userIteractionSubj.next('recommend')"

@@ -5,7 +5,7 @@ export interface IRecipeRes {
     instructions: string;
     description: string;
     image: string;
-    recommendList?: { id: string }[];
+    recommendList?: string[];
     owner: string;
 }
 

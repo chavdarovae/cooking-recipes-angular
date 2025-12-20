@@ -10,7 +10,7 @@
             [minLength]="5"
             [isRequired]="true"
             [isDisabled]="!isEditMode"
-            [inpValue]="user.username ?? ''"
+            [inpValue]="user.username"
             (onInpChanged)="user.username = $event"></clt-input-field>
 
         <clt-input-field

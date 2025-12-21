@@ -20,7 +20,7 @@ import {
 } from 'rxjs';
 
 @Component({
-    selector: 'clt-input-textarea',
+    selector: 'rcp-input-textarea',
     standalone: true,
     imports: [FormsModule, TitleCasePipe],
     viewProviders: [

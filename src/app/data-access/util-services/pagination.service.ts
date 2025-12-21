@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import {
     Injectable,
     signal,
@@ -37,6 +38,21 @@ export class PaginationService<T extends MetaDataReqModel> {
             PaginationService.META_DATA_KEY,
             JSON.stringify(metaData),
         );
+    }
+
+    transformQueryIntoParams<T extends MetaDataReqModel>(query: T): HttpParams {
+        let params = new HttpParams();
+        for (const key in query) {
+            if (!Object.hasOwn(query, key)) continue;
+
+            const value = query[key];
+
+            if (!['string', 'number', 'boolean'].includes(typeof value))
+                continue;
+
+            params = params.append(key, String(value));
+        }
+        return params;
     }
 
     private isMetaDataReq(obj: any): obj is MetaDataReqModel {

@@ -8,13 +8,13 @@ import {
     IGenericListRes,
     IMetaDataListRes,
     IUserRes,
-    UtilService,
 } from 'src/app/utils';
 import { environment } from 'src/environments/environment';
 import {
     UserCreateItem,
     UserQuery,
 } from 'src/app/features/users/utils/user.models';
+import { PaginationService } from '../util-services/pagination.service';
 
 @Injectable({
     providedIn: 'root',
@@ -23,7 +23,7 @@ export class AuthService {
     // services
     private http = inject(HttpClient);
     private router = inject(Router);
-    private utilService = inject(UtilService);
+    private paginationService = inject(PaginationService);
 
     // main entity
     private currUser = signal<IAccount | null | undefined>(undefined);
@@ -98,7 +98,7 @@ export class AuthService {
 
     getAllAccounts(query: UserQuery): Observable<IGenericListRes<IAccount>> {
         const params =
-            this.utilService.transformQueryIntoParams<UserQuery>(query);
+            this.paginationService.transformQueryIntoParams<UserQuery>(query);
         return this.http.get<IGenericListRes<IAccount>>(
             this.accountApi + '/accounts',
             { params },

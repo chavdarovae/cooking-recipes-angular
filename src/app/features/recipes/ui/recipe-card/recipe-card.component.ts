@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { IRecipeRes } from '../../utils/recipe.interface';
 
 @Component({
-    selector: 'clt-recipe-card',
+    selector: 'rcp-recipe-card',
     standalone: true,
     imports: [RouterLink],
     templateUrl: './recipe-card.component.html',

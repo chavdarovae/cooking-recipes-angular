@@ -5,7 +5,7 @@
         #ownAccountForm="ngForm"
         class="w100">
         <div class="row row--no-wrap row--middle gap-30">
-            <clt-input-field
+            <rcp-input-field
                 class="w-250"
                 label="Username"
                 modelName="usesrname"
@@ -14,25 +14,25 @@
                 [isRequired]="true"
                 [isDisabled]="!isEditMode"
                 [inpValue]="user.username"
-                (onInpChanged)="user.username = $event"></clt-input-field>
+                (onInpChanged)="user.username = $event"></rcp-input-field>
 
-            <clt-input-field
+            <rcp-input-field
                 class="w-250"
                 label="Email"
                 modelName="email"
                 inpType="text"
                 [isDisabled]="!isEditMode"
                 [inpValue]="user.email"
-                (onInpChanged)="user.email = $event"></clt-input-field>
+                (onInpChanged)="user.email = $event"></rcp-input-field>
 
-            <clt-input-select
+            <rcp-input-select
                 class="w-250"
                 label="Role"
                 modelName="role"
                 [selectListEnum]="userRolesEnum"
                 [isDisabled]="true"
                 [inpValue]="user.role"
-                (onSelectChanged)="user.role = $event"></clt-input-select>
+                (onSelectChanged)="user.role = $event"></rcp-input-select>
 
             @if (isEditMode) {
                 <button

@@ -20,7 +20,7 @@ import {
 } from 'rxjs';
 
 @Component({
-    selector: 'clt-input-field',
+    selector: 'rcp-input-field',
     standalone: true,
     imports: [FormsModule, TitleCasePipe],
     viewProviders: [

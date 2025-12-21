@@ -4,50 +4,50 @@
             <form
                 #createForm="ngForm"
                 class="form w80 pt-30 pb-30 pl-50 pr-50">
-                <clt-input-field
+                <rcp-input-field
                     label="Recipe Title"
                     modelName="recipeTitle"
                     inpType="text"
                     [minLength]="2"
                     [isRequired]="true"
                     [inpValue]="recipe.title"
-                    (onInpChanged)="recipe.title = $event"></clt-input-field>
+                    (onInpChanged)="recipe.title = $event"></rcp-input-field>
 
-                <clt-input-textarea
+                <rcp-input-textarea
                     label="Description"
                     modelName="description"
                     [minLength]="10"
                     [maxLength]="100"
                     [isRequired]="true"
                     [inpValue]="recipe.description"
-                    (onInpChanged)="recipe.description = $event"></clt-input-textarea>
+                    (onInpChanged)="recipe.description = $event"></rcp-input-textarea>
 
-                <clt-input-textarea
+                <rcp-input-textarea
                     label="Ingredients"
                     modelName="ingredients"
                     [minLength]="10"
                     [maxLength]="400"
                     [isRequired]="true"
                     [inpValue]="recipe.ingredients"
-                    (onInpChanged)="recipe.ingredients = $event"></clt-input-textarea>
+                    (onInpChanged)="recipe.ingredients = $event"></rcp-input-textarea>
 
-                <clt-input-field
+                <rcp-input-field
                     label="Instructions"
                     modelName="instructions"
                     inpType="text"
                     [minLength]="10"
                     [isRequired]="true"
                     [inpValue]="recipe.instructions"
-                    (onInpChanged)="recipe.instructions = $event"></clt-input-field>
+                    (onInpChanged)="recipe.instructions = $event"></rcp-input-field>
 
-                <clt-input-field
+                <rcp-input-field
                     label="Image URL"
                     modelName="image"
                     inpType="text"
                     [minLength]="6"
                     [isRequired]="true"
                     [inpValue]="recipe.image"
-                    (onInpChanged)="recipe.image = $event"></clt-input-field>
+                    (onInpChanged)="recipe.image = $event"></rcp-input-field>
 
                 <div class="row row--no-wrap gap-20">
                     <button

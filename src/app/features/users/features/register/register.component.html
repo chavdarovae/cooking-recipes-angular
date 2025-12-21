@@ -3,23 +3,23 @@
         #registerForm="ngForm"
         class="form w-500 p-50"
         (ngSubmit)="onSubmit()">
-        <clt-input-field
+        <rcp-input-field
             label="username"
             modelName="username"
             inpType="text"
             [isRequired]="true"
             [inpValue]="model.username"
-            (onInpChanged)="model.username = $event"></clt-input-field>
+            (onInpChanged)="model.username = $event"></rcp-input-field>
 
-        <clt-input-field
+        <rcp-input-field
             label="email"
             modelName="email"
             inpType="email"
             [isRequired]="true"
             [inpValue]="model.email"
-            (onInpChanged)="model.email = $event"></clt-input-field>
+            (onInpChanged)="model.email = $event"></rcp-input-field>
 
-        <clt-input-field
+        <rcp-input-field
             label="password"
             modelName="password"
             inpType="password"
@@ -27,9 +27,9 @@
             [minLength]="4"
             [maxLength]="10"
             [inpValue]="model.password"
-            (onInpChanged)="model.password = $event"></clt-input-field>
+            (onInpChanged)="model.password = $event"></rcp-input-field>
 
-        <clt-input-field
+        <rcp-input-field
             label="repeat password"
             modelName="rePassword"
             inpType="password"
@@ -37,7 +37,7 @@
             [minLength]="4"
             [maxLength]="10"
             [inpValue]="model.rePassword"
-            (onInpChanged)="model.rePassword = $event"></clt-input-field>
+            (onInpChanged)="model.rePassword = $event"></rcp-input-field>
 
         <div class="form__row">
             <button

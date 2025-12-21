@@ -38,9 +38,10 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
                         break;
                     case 401:
                         this.authService.setCurrUserAsGuest();
-                        this.router.navigateByUrl('/users/login');
+                        this.router.navigateByUrl('/recipes');
                         break;
                     case 403:
+                        this.router.navigateByUrl('/users/login');
                         this.alertService.showAlert({
                             alert: 'You are not authorised for this section. Please login!',
                             type: 'danger',

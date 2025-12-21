@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: 'appEnumToList',
+    name: 'rcpEnumToList',
     standalone: true,
 })
 export class EnumToListPipe implements PipeTransform {

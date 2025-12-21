@@ -4,7 +4,7 @@ import { InputSelectComponent } from '../input-select/input-select.component';
 import { IMetaDataListRes, PAGINATION } from 'src/app/utils';
 
 @Component({
-    selector: 'clt-pagination',
+    selector: 'rcp-pagination',
     standalone: true,
     templateUrl: './pagination.component.html',
     styleUrl: './pagination.component.scss',

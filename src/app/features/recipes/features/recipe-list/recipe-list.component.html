@@ -1,13 +1,13 @@
 <div class="container">
     <form class="form form--filter">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <clt-input-field
+        <rcp-input-field
             modelName="searchString"
             inpType="text"
             placeholder="Recipe title"
             [isTypeAhead]="true"
             [inpValue]="query().search ?? ''"
-            (onInpChanged)="onSearchStringChange($event)"></clt-input-field>
+            (onInpChanged)="onSearchStringChange($event)"></rcp-input-field>
     </form>
 
     <div class="card-container">
@@ -20,13 +20,13 @@
             </span>
         }
         @for (recipe of recipesResSig().data; track recipe.id) {
-            <clt-recipe-card [recipe]="recipe"></clt-recipe-card>
+            <rcp-recipe-card [recipe]="recipe"></rcp-recipe-card>
         } @empty {
             <h5 class="row row--centered row--middle">No results found!</h5>
         }
     </div>
 
-    <clt-pagination
+    <rcp-pagination
         [paging]="recipesResSig().metaData"
-        (onPagingChange)="onPagingChange($event)"></clt-pagination>
+        (onPagingChange)="onPagingChange($event)"></rcp-pagination>
 </div>

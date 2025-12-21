@@ -10,7 +10,7 @@ import { ControlContainer, FormsModule, NgForm } from '@angular/forms';
 import { EnumToListPipe } from 'src/app/utils';
 
 @Component({
-    selector: 'clt-input-select',
+    selector: 'rcp-input-select',
     standalone: true,
     imports: [FormsModule, TitleCasePipe, EnumToListPipe],
     viewProviders: [

@@ -4,19 +4,20 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, Observable, shareReplay, Subject, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IRecipeRes } from '../utils/recipe.interface';
-import { IGenericListRes, IMetaDataListRes, UtilService } from 'src/app/utils';
+import { IGenericListRes, IMetaDataListRes } from 'src/app/utils';
 import {
     RecipeCreateItem,
     RecipeUpdateItem,
     RecipeQuery,
 } from '../utils/recipe.models';
+import { PaginationService } from 'src/app/data-access';
 
 @Injectable({
     providedIn: 'root',
 })
 export class RecipeService {
     private http = inject(HttpClient);
-    private utilService = inject(UtilService);
+    private paginationService = inject(PaginationService);
 
     //auxiliary variables
     accountApi = environment.backendUrl + '/api/recipes';
@@ -27,7 +28,7 @@ export class RecipeService {
         this.relaodRecipesSubj.asObservable().pipe(
             switchMap((query: RecipeQuery) => {
                 const params =
-                    this.utilService.transformQueryIntoParams<RecipeQuery>(
+                    this.paginationService.transformQueryIntoParams<RecipeQuery>(
                         query,
                     );
 

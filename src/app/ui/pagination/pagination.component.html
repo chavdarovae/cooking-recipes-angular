@@ -1,12 +1,12 @@
 <div class="size row row--no-wrap row--centered gap-10">
     <span class="info">Items per page:</span>
 
-    <clt-input-select
+    <rcp-input-select
         class="w-60 m-0"
         modelName="pageSize"
         [selectList]="pagingSizeOptions"
         [inpValue]="paging().pageSize"
-        (onSelectChanged)="onPagingChange.emit({ page: 1, pageSize: $event })"></clt-input-select>
+        (onSelectChanged)="onPagingChange.emit({ page: 1, pageSize: $event })"></rcp-input-select>
 </div>
 
 <div class="page row row--no-wrap row--centered gap-10">

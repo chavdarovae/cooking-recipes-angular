@@ -2,21 +2,21 @@
     <form class="form form--filter">
         <i class="fa-solid fa-magnifying-glass"></i>
 
-        <clt-input-field
+        <rcp-input-field
             modelName="searchString"
             inpType="text"
             placeholder="Username or Email"
             [isTypeAhead]="true"
             [inpValue]="query().search ?? ''"
-            (onInpChanged)="onSearchChanged($event)"></clt-input-field>
+            (onInpChanged)="onSearchChanged($event)"></rcp-input-field>
 
-        <clt-input-select
+        <rcp-input-select
             modelName="role"
             placeholder="All roles"
             [selectListEnum]="userRolesEnum"
             [inpValue]="query().role"
             [selectEcceptions]="[userRolesEnum.GUEST]"
-            (onSelectChanged)="onRoleChanged($event)"></clt-input-select>
+            (onSelectChanged)="onRoleChanged($event)"></rcp-input-select>
     </form>
 
     <div class="card-container">
@@ -34,7 +34,7 @@
         }
     </div>
 
-    <clt-pagination
+    <rcp-pagination
         [paging]="accountsResSig().metaData"
-        (onPagingChange)="onPagingChange($event)"></clt-pagination>
+        (onPagingChange)="onPagingChange($event)"></rcp-pagination>
 </div>

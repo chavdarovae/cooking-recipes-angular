@@ -3,39 +3,39 @@
         <form
             #userEditForm="ngForm"
             class="form w50 pt-30 pb-30 pl-50 pr-50">
-            <clt-input-field
+            <rcp-input-field
                 label="Username"
                 modelName="usesrname"
                 inpType="text"
                 [minLength]="5"
                 [isRequired]="true"
                 [inpValue]="user.username"
-                (onInpChanged)="user.username = $event"></clt-input-field>
+                (onInpChanged)="user.username = $event"></rcp-input-field>
 
-            <clt-input-field
+            <rcp-input-field
                 label="Email"
                 modelName="email"
                 inpType="text"
                 [isDisabled]="isUpdateEntity(user)"
                 [inpValue]="user.email"
-                (onInpChanged)="user.email = $event"></clt-input-field>
+                (onInpChanged)="user.email = $event"></rcp-input-field>
 
             @if (isCreateEntity(user)) {
-                <clt-input-field
+                <rcp-input-field
                     label="Password"
                     modelName="password"
                     inpType="password"
                     [inpValue]="user.password"
-                    (onInpChanged)="user.password = $event"></clt-input-field>
+                    (onInpChanged)="user.password = $event"></rcp-input-field>
             }
 
-            <clt-input-select
+            <rcp-input-select
                 label="Role"
                 modelName="role"
                 [selectListEnum]="userRolesEnum"
                 [inpValue]="user.role"
                 [selectEcceptions]="[userRolesEnum.GUEST]"
-                (onSelectChanged)="user.role = $event"></clt-input-select>
+                (onSelectChanged)="user.role = $event"></rcp-input-select>
 
             <div class="row row--no-wrap gap-20">
                 <button

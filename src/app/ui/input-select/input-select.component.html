@@ -21,7 +21,7 @@
     <option [ngValue]="null">{{ placeholder }}</option>
 
     @if (selectListEnum) {
-        @for (role of selectListEnum | appEnumToList; track role) {
+        @for (role of selectListEnum | rcpEnumToList; track role) {
             @if (!selectEcceptions.includes(role)) {
                 <option [ngValue]="role">{{ role.replace('_', ' ') | titlecase }}</option>
             }

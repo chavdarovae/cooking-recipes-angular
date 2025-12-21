@@ -11,7 +11,7 @@
         </span>
 
         <!-- navgation -->
-        @for (item of menuItems | appListFilterPipe: filterMenuMainMenu('account', false); track item.title) {
+        @for (item of menuItems | rcpListFilterPipe: filterMenuMainMenu('account', false); track item.title) {
             <ng-container *ngTemplateOutlet="navItem; context: { item }"></ng-container>
         }
 
@@ -34,7 +34,7 @@
                 id="userMenu"
                 class="popover__panel"
                 anchor="userMenuTrigger">
-                @for (item of menuItems | appListFilterPipe: filterMenuMainMenu('account', true); track item.title) {
+                @for (item of menuItems | rcpListFilterPipe: filterMenuMainMenu('account', true); track item.title) {
                     <ng-container *ngTemplateOutlet="navItem; context: { item }"></ng-container>
                 }
             </div>

@@ -40,7 +40,7 @@
             <div class="row row--no-wrap gap-20">
                 <button
                     [routerLink]="['/users']"
-                    [queryParams]="paginationService.getLastListViewMetaData()">
+                    [queryParams]="paginationService.prevReqMetaData()">
                     Back to Users
                 </button>
                 @if (isUpdateEntity(user)) {

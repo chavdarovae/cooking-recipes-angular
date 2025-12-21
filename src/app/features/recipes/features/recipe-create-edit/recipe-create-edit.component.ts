@@ -84,8 +84,7 @@ export class RecipeCreateEditComponent implements OnInit {
             }),
             tap(() => {
                 this.router.navigate(['/recipes'], {
-                    queryParams:
-                        this.paginationService.getLastListViewMetaData(),
+                    queryParams: this.paginationService.prevReqMetaData(),
                     queryParamsHandling: 'merge',
                 });
                 this.alertService.showAlert({

@@ -1,5 +1,6 @@
 <div class="container">
     <h2>Personal data:</h2>
+
     <form
         #ownAccountForm="ngForm"
         class="w100">
@@ -52,10 +53,11 @@
             }
         </div>
     </form>
+
     <h2>All my {{ ownRecipesResSig().data.length }} recipes:</h2>
+
     <div class="carousel">
         @for (recipe of ownRecipesResSig().data; track recipe.id) {
-            <!-- <clt-card [recipe]="recipe"></clt-card> -->
             <img
                 [src]="recipe.image"
                 [alt]="recipe.title"

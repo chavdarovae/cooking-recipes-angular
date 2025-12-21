@@ -1,0 +1,1 @@
+import{d as i}from"./chunk-4JPLKD5E.js";var u=class t{constructor(r,e,n){this.sort=n;this.page=t.toNumber(r,1),this.pageSize=t.toNumber(e,i.pageSize)}page;pageSize;static toNumber(r,e){if(r==null)return e;let n=typeof r=="string"?Number(r):r;return Number.isFinite(n)&&n>0?n:e}};export{u as a};

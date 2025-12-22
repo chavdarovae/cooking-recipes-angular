@@ -1,17 +1,14 @@
 import { Component, inject, OnInit, Signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from 'src/app/data-access';
-import { IGenericListRes, IUserRes, UserRolesEnum } from 'src/app/utils';
+import { IGenericListRes, UserRolesEnum } from 'src/app/utils';
 import { RecipeService } from '../../data-access/recipe.service';
 import { IRecipeRes } from '../../utils/recipe.interface';
 import { RecipeQuery } from '../../utils/recipe.models';
 import { FormsModule } from '@angular/forms';
 import { InputFieldComponent, InputSelectComponent } from 'src/app/ui';
-import {
-    UserCreateItem,
-    UserUpdateItem,
-} from 'src/app/features/users/utils/user.models';
-import { Observable } from 'rxjs';
+import { UserUpdateItem } from 'src/app/features/users/utils/user.models';
+import { tap } from 'rxjs';
 
 @Component({
     selector: 'rcp-recipes-account',
@@ -31,25 +28,16 @@ export class RecipesAccountComponent implements OnInit {
     private recipeService = inject(RecipeService);
     authService = inject(AuthService);
 
+    // main entities
+    user = new UserUpdateItem(this.authService.currUserSig()!);
     ownRecipesResSig: Signal<IGenericListRes<IRecipeRes>> =
         this.recipeService.recipesSig;
 
-    userIteraction$!: Observable<IUserRes>;
-
-    // main entity
-    user!: IUserRes | UserUpdateItem | UserCreateItem;
-    userRolesEnum = UserRolesEnum;
-
     // auxiliary
     isEditMode = false;
+    userRolesEnum = UserRolesEnum;
 
-    constructor() {
-        if (this.authService.currUserSig()) {
-            this.user = new UserUpdateItem(
-                this.authService.currUserSig() as IUserRes,
-            );
-        }
-    }
+    constructor() {}
 
     ngOnInit(): void {
         this.recipeService.reloadRecipes(
@@ -57,5 +45,10 @@ export class RecipesAccountComponent implements OnInit {
         );
     }
 
-    updateOwnAccount() {}
+    updateOwnAccount() {
+        this.authService
+            .updateOwnAccount(this.user)
+            .pipe(tap(() => (this.isEditMode = false)))
+            .subscribe();
+    }
 }

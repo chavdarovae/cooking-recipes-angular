@@ -3,16 +3,12 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { first, Observable, shareReplay, Subject, switchMap, tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
-import {
-    IAccount,
-    IGenericListRes,
-    IMetaDataListRes,
-    IUserRes,
-} from 'src/app/utils';
+import { IAccount, IGenericListRes, IMetaDataListRes } from 'src/app/utils';
 import { environment } from 'src/environments/environment';
 import {
     UserCreateItem,
     UserQuery,
+    UserUpdateItem,
 } from 'src/app/features/users/utils/user.models';
 import { PaginationService } from '../util-services/pagination.service';
 
@@ -117,13 +113,24 @@ export class AuthService {
             .pipe(first());
     }
 
-    updateAccount(modifiedUser: IUserRes): Observable<IAccount> {
+    updateAccount(modifiedUser: UserUpdateItem): Observable<IAccount> {
         return this.http
             .put<IAccount>(
                 this.accountApi + '/accounts/' + modifiedUser.id,
                 modifiedUser,
             )
             .pipe(first());
+    }
+
+    updateOwnAccount(ownAccount: UserUpdateItem): Observable<IAccount> {
+        return this.http
+            .put<IAccount>(this.accountApi + '/ownAccount', ownAccount)
+            .pipe(
+                first(),
+                tap((updatedAccpint: IAccount) =>
+                    this.setCurrUser(updatedAccpint),
+                ),
+            );
     }
 
     deleteAccount(id: string): Observable<IAccount> {

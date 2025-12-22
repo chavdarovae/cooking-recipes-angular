@@ -1,60 +1,61 @@
 <div class="container">
     <h2>Personal data:</h2>
 
-    <form
-        #ownAccountForm="ngForm"
-        class="w100">
-        <div class="row row--no-wrap row--middle gap-30">
-            <rcp-input-field
-                class="w-250"
-                label="Username"
-                modelName="usesrname"
-                inpType="text"
-                [minLength]="5"
-                [isRequired]="true"
-                [isDisabled]="!isEditMode"
-                [inpValue]="user.username"
-                (onInpChanged)="user.username = $event"></rcp-input-field>
+    @if (user) {
+        <form
+            #ownAccountForm="ngForm"
+            class="w100">
+            <div class="row row--no-wrap row--middle gap-30">
+                <rcp-input-field
+                    class="w-250"
+                    label="Username"
+                    modelName="usesrname"
+                    inpType="text"
+                    [minLength]="5"
+                    [isRequired]="true"
+                    [isDisabled]="!isEditMode"
+                    [inpValue]="user.username"
+                    (onInpChanged)="user.username = $event"></rcp-input-field>
 
-            <rcp-input-field
-                class="w-250"
-                label="Email"
-                modelName="email"
-                inpType="text"
-                [isDisabled]="!isEditMode"
-                [inpValue]="user.email"
-                (onInpChanged)="user.email = $event"></rcp-input-field>
+                <rcp-input-field
+                    class="w-250"
+                    label="Email"
+                    modelName="email"
+                    inpType="text"
+                    [isDisabled]="!isEditMode"
+                    [inpValue]="user.email"
+                    (onInpChanged)="user.email = $event"></rcp-input-field>
 
-            <rcp-input-select
-                class="w-250"
-                label="Role"
-                modelName="role"
-                [selectListEnum]="userRolesEnum"
-                [isDisabled]="true"
-                [inpValue]="user.role"
-                (onSelectChanged)="user.role = $event"></rcp-input-select>
+                <rcp-input-select
+                    class="w-250"
+                    label="Role"
+                    modelName="role"
+                    [selectListEnum]="userRolesEnum"
+                    [isDisabled]="true"
+                    [inpValue]="user.role"></rcp-input-select>
 
-            @if (isEditMode) {
-                <button
-                    type="submit"
-                    class="accent ml-a"
-                    (click)="updateOwnAccount()"
-                    [disabled]="ownAccountForm.invalid || ownAccountForm.pristine">
-                    Update Account
-                </button>
-            } @else {
-                <button
-                    type="submit"
-                    class="accent ml-a"
-                    (click)="isEditMode = true"
-                    [disabled]="isEditMode">
-                    Edit Account
-                </button>
-            }
-        </div>
-    </form>
+                @if (isEditMode) {
+                    <button
+                        type="submit"
+                        class="accent ml-a"
+                        (click)="updateOwnAccount()"
+                        [disabled]="ownAccountForm.invalid || ownAccountForm.pristine">
+                        Update Account
+                    </button>
+                } @else {
+                    <button
+                        type="submit"
+                        class="accent ml-a"
+                        (click)="isEditMode = true"
+                        [disabled]="isEditMode">
+                        Edit Account
+                    </button>
+                }
+            </div>
+        </form>
+    }
 
-    <h2>All my {{ ownRecipesResSig().data.length }} recipes:</h2>
+    <h2>All my recipes ({{ ownRecipesResSig().data.length }}):</h2>
 
     <div class="carousel">
         @for (recipe of ownRecipesResSig().data; track recipe.id) {

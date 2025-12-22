@@ -4,7 +4,7 @@
     @if (user) {
         <form
             #ownAccountForm="ngForm"
-            class="w100">
+            class="w100 pl-40 pr-40">
             <div class="row row--no-wrap row--middle gap-30">
                 <rcp-input-field
                     class="w-250"
@@ -55,7 +55,7 @@
         </form>
     }
 
-    <h2>All my recipes ({{ ownRecipesResSig().data.length }}):</h2>
+    <h2>All my {{ ownRecipesResSig().data.length }} recipes at a glance:</h2>
 
     <div class="carousel">
         @for (recipe of ownRecipesResSig().data; track recipe.id) {

@@ -5,9 +5,11 @@
                 <h2>{{ selectedRecipeSig()?.title }}</h2>
 
                 <div class="recipe__block">
-                    <div class="likes">
+                    <div
+                        class="likes"
+                        [title]="selectedRecipeSig()?.recommendList?.length + 'other users liked this recipe'">
                         <span>{{ selectedRecipeSig()?.recommendList?.length }}</span>
-                        <i class="fa-solid fa-heart"></i>
+                        <i class="icon icon--help fa-solid fa-heart"></i>
                     </div>
                     <img
                         src="{{ selectedRecipeSig()?.image }}"

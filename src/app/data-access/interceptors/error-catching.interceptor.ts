@@ -27,32 +27,44 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
     ): Observable<HttpEvent<unknown>> {
         return next.handle(req).pipe(
             catchError((error: HttpErrorResponse) => {
-                // handle server side errors
                 switch (error.status) {
                     case 400:
                         this.alertService.showAlert({
-                            alert:
-                                error.error?.errorMsg ?? 'Invalid information.',
+                            alert: 'Invalid request.',
                             type: 'danger',
                         });
                         break;
                     case 401:
                         this.authService.setCurrUserAsGuest();
-                        this.router.navigateByUrl('/recipes');
                         break;
                     case 403:
                         this.router.navigateByUrl('/users/login');
                         this.alertService.showAlert({
-                            alert: 'You are not authorised for this section. Please login!',
+                            alert: 'Insurficient credentials. Please login!',
                             type: 'danger',
                         });
                         break;
                     case 404:
-                        this.router.navigateByUrl('/404');
+                        this.alertService.showAlert({
+                            alert: 'Resource missing!',
+                            type: 'danger',
+                        });
+                        break;
+                    case 409:
+                        this.alertService.showAlert({
+                            alert: 'Resource state conflict!',
+                            type: 'danger',
+                        });
+                        break;
+                    case 422:
+                        this.alertService.showAlert({
+                            alert: 'Semantically invalid data!',
+                            type: 'danger',
+                        });
                         break;
                     case 500:
                         this.alertService.showAlert({
-                            alert: 'There is a server error',
+                            alert: 'Server error!',
                             type: 'danger',
                         });
                         break;

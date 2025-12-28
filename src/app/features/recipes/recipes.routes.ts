@@ -32,6 +32,6 @@ export const RECIPE_ROUTES: Routes = [
             import('./features/recipe-detail/recipe-detail.component').then(
                 (m) => m.RecipeDetailComponent,
             ),
-        canActivate: [AuthGuard],
+        canActivate: [],
     },
 ];

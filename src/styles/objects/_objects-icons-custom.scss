@@ -2,9 +2,17 @@
     height: 16px;
     width: auto;
     background-repeat: no-repeat;
-    cursor: pointer;
 
-    &:hover {
-        scale: 1.2;
+
+    &--help {
+        cursor: help;
+    }
+
+    &--clickable {
+        cursor: pointer;
+
+        &:hover {
+            scale: 1.2;
+        }
     }
 }

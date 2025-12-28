@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
         } else {
             this.router.navigateByUrl('/users/login');
             this.alertSrevice.showAlert({
-                alert: 'You are not authorised for this section. Please login!',
+                alert: 'Insurficient credetials for this resource. Please login!',
                 type: 'warning',
             });
             return false;

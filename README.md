@@ -1,27 +1,90 @@
-# CookingRecipesAngular
+# Angular 20 Web Application – Tech Stack Overview
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7. and uses Singals
+## Overview
 
-## Development server
+This document describes the technology stack and architectural principles used in an **Angular 20** web application.  
+The application is **signal-based**, communicates with a **RESTful backend**, follows structured CSS methodologies using **ITCSS** and **BEM**, and is built with a **domain-oriented, scalable architecture**.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+A strong focus is placed on **minimal dependencies**, **performance**, and **long-term maintainability**.
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Frontend
 
-## Build
+### Framework: Angular 20
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Standalone components** (no NgModules)
+- **Signals-first architecture** for state management
 
-## Running unit tests
+### Dependency Philosophy
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- The application intentionally avoids third-party runtime libraries
+- **Prettier** is the **only external dependency**, used exclusively for code formatting
+- No UI libraries, component kits, or animation frameworks
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### State Management
 
-## Further help
+- Uses **Angular Signals**
+    - Local and shared state managed via `signal`, `computed`, and `effect`
+    - No external state libraries required
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+## Application Architecture
+
+The application follows a **domain-oriented component organization** that promotes **scalability, maintainability, and clear separation of concerns**.
+
+### Component Organization
+
+Each domain or feature is structured using the following layers:
+
+- **`data-access`** – API communication, repositories, signal-based state
+- **`feature`** – Business logic, workflows, routing
+- **`ui`** – Presentational, reusable UI components
+- **`utils`** – Shared helpers, formatters, and pure utilities
+
+This structure keeps domains isolated, testable, and easy to evolve.
+
+---
+
+## Backend Communication
+
+### RESTful API
+
+- REST-compliant HTTP backend
+- Communication via Angular `HttpClient`
+- JSON-based payloads
+
+### Authentication & Security
+
+- JWT-based authentication using **HttpOnly cookies**
+- Protection against XSS attacks
+
+### Global Error Handling
+
+- Centralized error handling via **Angular HTTP Interceptors**
+
+---
+
+## Styling & Animations
+
+### Styling Approach
+
+- **SCSS** used as a superset of **pure CSS**
+
+### CSS Architecture
+
+- **ITCSS (Inverted Triangle CSS)** for scalable structure
+- **BEM (Block Element Modifier)** for component naming
+
+### Animations & Interactions
+
+- **CSS-only animations** for:
+    - Menus
+    - Carousels
+    - Transitions and micro-interactions
+- No JavaScript animation libraries
+
+---

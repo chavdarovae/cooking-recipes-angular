@@ -7,13 +7,11 @@
 .account {
     width: fit-content;
     height: fit-content;
-    box-shadow: $shadow-pri;
-    border-radius: $rounding-pri;
-    background-color: $bg-ter;
     padding: 1rem;
 
     i {
         font-size: 130px;
+
     }
 
     &:hover i {

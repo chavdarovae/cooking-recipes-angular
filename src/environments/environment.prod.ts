@@ -1,6 +1,6 @@
 export const environment = {
     envName: 'prod',
-    host: 'http://localhost:4200',
+    host: 'https://cooking-recipes-angular.onrender.com/',
     production: true,
     backendUrl: 'https://cooking-recipes-nestjs.onrender.com',
 };

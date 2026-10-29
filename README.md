@@ -24,7 +24,7 @@ A strong focus is placed on **minimal dependencies**, **performance**, and **lon
 
 ---
 
-### State Management
+### State Management !
 
 - Uses **Angular Signals**
     - Local and shared state managed via `signal`, `computed`, and `effect`

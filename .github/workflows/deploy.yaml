@@ -1,4 +1,4 @@
-name: Deploy Cooking Recipes ReactJS Application to Render!
+name: Deploy Cooking Recipes Angular Application to Render!
 
 on:
     push:
